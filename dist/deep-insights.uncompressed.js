@@ -9270,7 +9270,7 @@ module.exports={
   },
   "homepage": "https://github.com/cartodb/carto#readme",
   "_id": "carto@0.15.1-cdb1",
-  "_shasum": "bf50f66fe4c56d5fc54e0c5e428c87ad9a9ff703",
+  "_shasum": "a00bdc3b24f04c75e3359946f443fc5f4ae44099",
   "_from": "git://github.com/CartoDB/carto.git#27850ed",
   "_resolved": "git://github.com/CartoDB/carto.git#27850ed122a6f5dbfc5efa4938d8385bbcbc87c5"
 }
@@ -31427,7 +31427,7 @@ module.exports={
   ],
   "licenses": [
     {
-      "type": "BSD"
+      "type": "BSD-3-Clause"
     }
   ],
   "dependencies": {
@@ -31558,7 +31558,7 @@ module.exports={
       "/vendor"
     ]
   },
-  "gitHead": "f928e064ddbaa25f4a0d575fd06aaa651a1e73c7",
+  "gitHead": "ff8948f59457595c53828a249464343ce2302dcd",
   "readme": "CartoDB.js (v3.15)\n===========\n\n[![Build Status](http://clinker.cartodb.net/desktop/plugin/public/status/CartoDB-js-develop-testing)]\n(http://clinker.cartodb.net/jenkins/job/CartoDB-js-develop-testing)\n\nThis library allows to embed visualizations created with CartoDB in your map or website in a simple way.\n\n\n## Quick start\n\n  1. Add cartodb.js and css to your site:\n\n    ```html\n\n        <link rel=\"stylesheet\" href=\"http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css\" />\n        <script src=\"http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js\"></script>\n\n        <!-- use these cartodb.css links if you are using https -->\n        <!--link rel=\"stylesheet\" href=\"https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css\" /-->\n\n        <!-- use this cartodb.js link if you are using https -->\n        <!-- script src=\"https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js\"></script -->\n    ```\n\n\n  2. Create the map and add the layer\n\n    ```javascript\n      var map = L.map('map').setView([0, 0], 3);\n\n      // set a base layer\n      L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {\n        attribution: 'stamen http://maps.stamen.com/'\n      }).addTo(map);\n\n      // add the cartodb layer\n      var layerUrl = 'http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json';\n      cartodb.createLayer(map, layerUrl).addTo(map);\n    ```\n\n### Usage with Bower\n\nYou can install **cartodb.js** with [bower](http://bower.io/) by running\n\n```sh\nbower install cartodb.js\n```\n\n\n## Documentation\nYou can find the documentation online [here](http://docs.cartodb.com/cartodb-platform/cartodb-js.html) and the [source](https://github.com/CartoDB/cartodb.js/blob/develop/doc/API.md) inside this repository.\n\n## Examples\n\n - [Load a layer with google maps](http://cartodb.github.com/cartodb.js/examples/gmaps_force_basemap.html)\n - [Load a layer with Leaflet](http://cartodb.github.com/cartodb.js/examples/leaflet.html)\n - [Show a complete visualization](http://cartodb.github.com/cartodb.js/examples/easy.html)\n - [A visualization with a layer selector](http://cartodb.github.com/cartodb.js/examples/layer_selector.html)\n - [How to create a custom infowindow](http://cartodb.github.com/cartodb.js/examples/custom_infowindow.html)\n - [The Hobbit filming location paths](http://cartodb.github.com/cartodb.js/examples/TheHobbitLocations/) a full example with some widgets\n\n\n## How to build\nBuild CartoDB.js library:\n\n  - Install [node.js](http://nodejs.org/download/), from 0.10 version\n  - Install grunt & bower: `npm install -g grunt-cli bower`\n  - Install node dependencies: `npm install`\n  - Install bower dependencies: `bower install`\n  - Install [ruby](https://www.ruby-lang.org/en/installation/) and [bundler](https://github.com/bundler/bundler)\n  - Install ruby dependencies: `bundle install` (necessary for compass gem)\n  - Start the server: `grunt build`\n  - Happy mapping!\n  - \n  \n## Submitting Contributions\n\nYou will need to sign a Contributor License Agreement (CLA) before making a submission. [Learn more here.](https://cartodb.com/contributing)\n\n",
   "readmeFilename": "README.md",
   "bugs": {
@@ -31566,9 +31566,9 @@ module.exports={
   },
   "homepage": "https://github.com/CartoDB/cartodb.js#readme",
   "_id": "cartodb.js@4.0.0-alpha.1",
-  "_shasum": "76f90e935d1460ad000ac7f3d14a1424be362106",
+  "_shasum": "bf173760cda23e276142d51b425b401cdfd07b49",
   "_from": "cartodb/cartodb.js#v4",
-  "_resolved": "git://github.com/cartodb/cartodb.js.git#f928e064ddbaa25f4a0d575fd06aaa651a1e73c7"
+  "_resolved": "git://github.com/cartodb/cartodb.js.git#ff8948f59457595c53828a249464343ce2302dcd"
 }
 
 },{}],133:[function(require,module,exports){
@@ -31766,43 +31766,137 @@ module.exports = function(map, layer, options, callback) {
   return promise;
 };
 
-},{"../core/loader":144,"../geo/map":210,"../vis/vis":282,"../vis/vis/layers":284,"./promise":135,"cdb":140,"leaflet":63,"underscore":329}],134:[function(require,module,exports){
+},{"../core/loader":145,"../geo/map":211,"../vis/vis":283,"../vis/vis/layers":285,"./promise":135,"cdb":141,"leaflet":63,"underscore":329}],134:[function(require,module,exports){
 var _ = require('underscore');
 var Vis = require('../vis/vis');
+var Loader = require('../core/loader');
+var VizJSON = require('./vizjson');
 
-var createVis = function(el, vizjson, options, callback) {
+var DEFAULT_OPTIONS = {
+  tiles_loader: true,
+  loaderControl: true,
+  infowindow: true,
+  tooltip: true,
+  time_slider: true
+};
+
+var createVis = function (el, vizjson, options, callback) {
   if (!el) {
-    throw new TypeError("a DOM element should be provided");
+    throw new TypeError('a DOM element must be provided');
+  }
+  if (!vizjson) {
+    throw new TypeError('a vizjson URL or object must be provided');
   }
 
-  var
-  args = arguments,
-  fn   = args[args.length -1];
+  var args = arguments;
+  var fn = args[args.length - 1];
 
   if (_.isFunction(fn)) {
     callback = fn;
   }
+  if (typeof el === 'string') {
+    el = document.getElementById(el);
+  }
 
-  el = (typeof el === 'string' ? document.getElementById(el) : el);
+  options = _.defaults(options || {}, DEFAULT_OPTIONS);
 
   var vis = new Vis({
     el: el
   });
 
-  if (vizjson) {
-    vis.load(vizjson, options);
+  if (callback) {
+    vis.done(callback);
+  }
 
-    if (callback) {
-      vis.done(callback);
-    }
+  if (typeof vizjson === 'string') {
+    var url = vizjson;
+    Loader.get(url, function (vizjson) {
+      if (vizjson) {
+        loadVizJSON(vis, vizjson, options);
+      } else {
+        throw new Error('error fetching viz.json file');
+      }
+    });
+  } else {
+    loadVizJSON(vis, vizjson, options);
   }
 
   return vis;
 };
 
+var loadVizJSON = function (vis, vizjsonData, options) {
+  var vizjson = new VizJSON(vizjsonData);
+  applyOptionsToVizJSON(vizjson, options);
+  vis.load(vizjson, options);
+  if (!options.skipMapInstantiation) {
+    vis.instantiateMap();
+  }
+};
+
+var applyOptionsToVizJSON = function (vizjson, options) {
+  vizjson.scrollwheel = options.scrollwheel || vizjson.scrollwheel;
+
+  if (!options.tiles_loader || !options.loaderControl) {
+    vizjson.removeLoaderOverlay();
+  }
+
+  if (options.searchControl === true) {
+    vizjson.addSearchOverlay();
+  } else if (options.searchControl === false) {
+    vizjson.removeSearchOverlay();
+  }
+
+  if ((options.title && vizjson.title) || (options.description && vizjson.description)) {
+    vizjson.addHeaderOverlay(options.title, options.description, options.shareable);
+  }
+
+  if (options.layer_selector) {
+    vizjson.addLayerSelectorOverlay();
+  }
+
+  if (options.zoomControl !== undefined && !options.zoomControl) {
+    vizjson.removeZoomOverlay();
+  }
+
+  // if bounds are present zoom and center will not taken into account
+  var zoom = parseInt(options.zoom, 10);
+  if (!isNaN(zoom)) {
+    vizjson.setZoom(zoom);
+  }
+
+  // Center coordinates?
+  var center_lat = parseFloat(options.center_lat);
+  var center_lon = parseFloat(options.center_lon);
+  if (!isNaN(center_lat) && !isNaN(center_lon)) {
+    vizjson.setCenter([center_lat, center_lon]);
+  }
+
+  // Center object
+  if (options.center !== undefined) {
+    vizjson.setCenter(options.center);
+  }
+
+  // Bounds?
+  var sw_lat = parseFloat(options.sw_lat);
+  var sw_lon = parseFloat(options.sw_lon);
+  var ne_lat = parseFloat(options.ne_lat);
+  var ne_lon = parseFloat(options.ne_lon);
+
+  if (!isNaN(sw_lat) && !isNaN(sw_lon) && !isNaN(ne_lat) && !isNaN(ne_lon)) {
+    vizjson.setBounds([
+      [ sw_lat, sw_lon ],
+      [ ne_lat, ne_lon ]
+    ]);
+  }
+
+  if (options.gmaps_base_type) {
+    vizjson.enforceGMapsBaseLayer(options.gmaps_base_type, options.gmaps_style);
+  }
+};
+
 module.exports = createVis;
 
-},{"../vis/vis":282,"underscore":329}],135:[function(require,module,exports){
+},{"../core/loader":145,"../vis/vis":283,"./vizjson":137,"underscore":329}],135:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -32500,6 +32594,152 @@ SQL.prototype.describe = function(sql, column, options) {
 module.exports = SQL;
 
 },{"./promise":135,"jquery":306,"mustache":64,"underscore":329}],137:[function(require,module,exports){
+var _ = require('underscore');
+var log = require('cdb.log');
+
+var GMAPS_BASE_LAYER_TYPES = ['roadmap', 'gray_roadmap', 'dark_roadmap', 'hybrid', 'satellite', 'terrain'];
+
+var VizJSON = function (vizjson) {
+  _.each(Object.keys(vizjson), function (property) {
+    this[property] = vizjson[property];
+  }, this);
+
+  this.overlays = this.overlays || [];
+  this.layers = this.layers || [];
+
+  this._addAttributionOverlay();
+};
+
+VizJSON.OVERLAY_TYPES = {
+  ZOOM: 'zoom',
+  ATTRIBUTION: 'attribution',
+  LOADER: 'loader',
+  SEARCH: 'search',
+  HEADER: 'header',
+  LAYER_SELECTOR: 'layer_selector'
+};
+
+VizJSON.MAP_PROVIDER_TYPES = {
+  GMAPS: 'googlemaps',
+  LEAFLET: 'leaflet'
+};
+
+VizJSON.prototype.hasZoomOverlay = function () {
+  return this.hasOverlay(VizJSON.OVERLAY_TYPES.ZOOM);
+};
+
+VizJSON.prototype.hasOverlay = function (overlayType) {
+  return _.isObject(this.getOverlayByType(overlayType));
+};
+
+VizJSON.prototype.getOverlayByType = function (overlayType) {
+  return _.find(this.overlays, function (overlay) {
+    return overlay.type === overlayType;
+  });
+};
+
+VizJSON.prototype.addHeaderOverlay = function (showTitle, showDescription, isShareable) {
+  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.HEADER)) {
+    this.overlays.unshift({
+      type: VizJSON.OVERLAY_TYPES.HEADER,
+      order: 1,
+      shareable: isShareable,
+      url: this.url,
+      options: {
+        extra: {
+          title: this.title,
+          description: this.description,
+          show_title: showTitle,
+          show_description: showDescription
+        }
+      }
+    });
+  }
+};
+
+VizJSON.prototype.addLayerSelectorOverlay = function () {
+  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.LAYER_SELECTOR)) {
+    this.overlays.push({
+      type: VizJSON.OVERLAY_TYPES.LAYER_SELECTOR
+    });
+  }
+};
+
+VizJSON.prototype.addSearchOverlay = function () {
+  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.SEARCH)) {
+    this.overlays.push({
+      type: VizJSON.OVERLAY_TYPES.SEARCH,
+      order: 3
+    });
+  }
+};
+
+VizJSON.prototype.removeOverlay = function (overlayType) {
+  for (var i = 0; i < this.overlays.length; ++i) {
+    if (this.overlays[i].type === overlayType) {
+      this.overlays.splice(i, 1);
+      return;
+    }
+  }
+};
+
+VizJSON.prototype.removeLoaderOverlay = function () {
+  this.removeOverlay(VizJSON.OVERLAY_TYPES.LOADER);
+};
+
+VizJSON.prototype.removeZoomOverlay = function () {
+  this.removeOverlay(VizJSON.OVERLAY_TYPES.ZOOM);
+};
+
+VizJSON.prototype.removeSearchOverlay = function () {
+  this.removeOverlay(VizJSON.OVERLAY_TYPES.SEARCH);
+};
+
+VizJSON.prototype._addAttributionOverlay = function () {
+  this.overlays.push({
+    type: VizJSON.OVERLAY_TYPES.ATTRIBUTION
+  });
+};
+
+VizJSON.prototype.enforceGMapsBaseLayer = function (gmapsBaseType, gmapsStyle) {
+  var isGmapsBaseTypeValid = _.contains(GMAPS_BASE_LAYER_TYPES, gmapsBaseType);
+  if (this.map_provider === VizJSON.MAP_PROVIDER_TYPES.LEAFLET && isGmapsBaseTypeValid) {
+    if (this.layers) {
+      this.layers[0].options.type = 'GMapsBase';
+      this.layers[0].options.base_type = gmapsBaseType;
+      this.layers[0].options.name = gmapsBaseType;
+
+      if (gmapsStyle) {
+        this.layers[0].options.style = typeof gmapsStyle === 'string' ? JSON.parse(gmapsStyle) : gmapsStyle;
+      }
+
+      this.map_provider = VizJSON.MAP_PROVIDER_TYPES.GMAPS;
+      this.layers[0].options.attribution = ''; // GMaps has its own attribution
+    } else {
+      log.error('No base map loaded. Using Leaflet.');
+    }
+  } else {
+    log.error('GMaps base_type "' + gmapsBaseType + ' is not supported. Using leaflet.');
+  }
+};
+
+VizJSON.prototype.setZoom = function (zoom) {
+  this.zoom = zoom;
+  this.bounds = null;
+};
+
+VizJSON.prototype.setCenter = function (center) {
+  this.center = center;
+  this.bounds = null;
+};
+
+VizJSON.prototype.setBounds = function (bounds) {
+  this.bounds = bounds;
+};
+
+module.exports = VizJSON;
+
+},{"cdb.log":142,"underscore":329}],138:[function(require,module,exports){
 var isLeafletAlreadyLoaded = !!window.L;
 
 var _ = require('underscore');
@@ -32604,7 +32844,7 @@ require('./vis/layers'); // Layers.register calls
 
 module.exports = cdb;
 
-},{"./api/create-layer":133,"./api/create-vis":134,"./api/promise":135,"./api/sql":136,"./core/loader":144,"./core/model":148,"./core/sanitize":150,"./core/template":152,"./core/template-list":151,"./core/view":154,"./geo/geocoder/nokia-geocoder":177,"./geo/geocoder/yahoo-geocoder":178,"./geo/geometry":180,"./geo/gmaps":181,"./geo/leaflet":195,"./geo/map":210,"./geo/map-view":209,"./geo/map/cartodb-layer":211,"./geo/map/gmaps-base-layer":212,"./geo/map/layers":214,"./geo/map/plain-layer":215,"./geo/map/tile-layer":216,"./geo/map/torque-layer":217,"./geo/map/wms-layer":218,"./geo/ui/annotation":220,"./geo/ui/header":223,"./geo/ui/image":224,"./geo/ui/infobox":225,"./geo/ui/infowindow":227,"./geo/ui/infowindow-model":226,"./geo/ui/layer-selector":228,"./geo/ui/layer-view":229,"./geo/ui/legend":235,"./geo/ui/legend-exports":230,"./geo/ui/legend/legend-view-exports":254,"./geo/ui/search/search":258,"./geo/ui/text":261,"./geo/ui/tiles-loader":262,"./geo/ui/tooltip":263,"./geo/ui/zoom/zoom-view":265,"./ui/common/dialog":267,"./ui/common/dropdown":268,"./ui/common/fullscreen/fullscreen-view":270,"./ui/common/notification":271,"./ui/common/table":272,"./ui/common/table/row":274,"./ui/common/table/row-view":273,"./ui/common/table/table-data":275,"./ui/common/table/table-properties":276,"./vis/layers":279,"./vis/overlays":280,"./vis/vis":282,"./vis/vis/infowindow-template":283,"./vis/vis/layers":284,"./vis/vis/overlay":285,"./vis/vis/overlays":286,"backbone":1,"cdb":140,"cdb.config":138,"cdb.core.Profiler":149,"cdb.core.util":153,"cdb.errors":139,"cdb.log":141,"cdb.templates":142,"jquery":306,"leaflet":63,"lzma":301,"mousewheel":302,"mustache":64,"mwheelIntent":303,"underscore":329}],138:[function(require,module,exports){
+},{"./api/create-layer":133,"./api/create-vis":134,"./api/promise":135,"./api/sql":136,"./core/loader":145,"./core/model":149,"./core/sanitize":151,"./core/template":153,"./core/template-list":152,"./core/view":155,"./geo/geocoder/nokia-geocoder":178,"./geo/geocoder/yahoo-geocoder":179,"./geo/geometry":181,"./geo/gmaps":182,"./geo/leaflet":196,"./geo/map":211,"./geo/map-view":210,"./geo/map/cartodb-layer":212,"./geo/map/gmaps-base-layer":213,"./geo/map/layers":215,"./geo/map/plain-layer":216,"./geo/map/tile-layer":217,"./geo/map/torque-layer":218,"./geo/map/wms-layer":219,"./geo/ui/annotation":221,"./geo/ui/header":224,"./geo/ui/image":225,"./geo/ui/infobox":226,"./geo/ui/infowindow":228,"./geo/ui/infowindow-model":227,"./geo/ui/layer-selector":229,"./geo/ui/layer-view":230,"./geo/ui/legend":236,"./geo/ui/legend-exports":231,"./geo/ui/legend/legend-view-exports":255,"./geo/ui/search/search":259,"./geo/ui/text":262,"./geo/ui/tiles-loader":263,"./geo/ui/tooltip":264,"./geo/ui/zoom/zoom-view":266,"./ui/common/dialog":268,"./ui/common/dropdown":269,"./ui/common/fullscreen/fullscreen-view":271,"./ui/common/notification":272,"./ui/common/table":273,"./ui/common/table/row":275,"./ui/common/table/row-view":274,"./ui/common/table/table-data":276,"./ui/common/table/table-properties":277,"./vis/layers":280,"./vis/overlays":281,"./vis/vis":283,"./vis/vis/infowindow-template":284,"./vis/vis/layers":285,"./vis/vis/overlay":286,"./vis/vis/overlays":287,"backbone":1,"cdb":141,"cdb.config":139,"cdb.core.Profiler":150,"cdb.core.util":154,"cdb.errors":140,"cdb.log":142,"cdb.templates":143,"jquery":306,"leaflet":63,"lzma":301,"mousewheel":302,"mustache":64,"mwheelIntent":303,"underscore":329}],139:[function(require,module,exports){
 var Config = require('./core/config');
 
 var config = new Config();
@@ -32615,11 +32855,11 @@ config.set({
 
 module.exports = config;
 
-},{"./core/config":143}],139:[function(require,module,exports){
+},{"./core/config":144}],140:[function(require,module,exports){
 var ErrorList = require('./core/log/error-list');
 module.exports = new ErrorList();
 
-},{"./core/log/error-list":146}],140:[function(require,module,exports){
+},{"./core/log/error-list":147}],141:[function(require,module,exports){
 // Creates cdb object, mutated in the entry file cartodb.js
 // Used to avoid circular dependencies
 var cdb = {};
@@ -32650,17 +32890,17 @@ cdb.vis = {};
 
 module.exports = cdb;
 
-},{"../package.json":132}],141:[function(require,module,exports){
+},{"../package.json":132}],142:[function(require,module,exports){
 var Log = require('./core/log');
 
 module.exports = new Log({tag: 'cdb'});
 
-},{"./core/log":145}],142:[function(require,module,exports){
+},{"./core/log":146}],143:[function(require,module,exports){
 var TemplateList = require('./core/template-list');
 
 module.exports = new TemplateList();
 
-},{"./core/template-list":151}],143:[function(require,module,exports){
+},{"./core/template-list":152}],144:[function(require,module,exports){
 var Backbone = require('backbone');
 
 /**
@@ -32678,7 +32918,7 @@ var Config = Backbone.Model.extend({
 
 module.exports = Config;
 
-},{"backbone":1}],144:[function(require,module,exports){
+},{"backbone":1}],145:[function(require,module,exports){
 var cdb = require('cdb'); // cdb.DEBUG
 
 var Loader = {
@@ -32754,7 +32994,7 @@ window.vizjson = function(data) {
 
 module.exports = Loader;
 
-},{"cdb":140}],145:[function(require,module,exports){
+},{"cdb":141}],146:[function(require,module,exports){
 var Backbone = require('backbone');
 var cdb = require('cdb'); // cdb.DEBUG
 var errors = require('cdb.errors');
@@ -32804,7 +33044,7 @@ var Log = Backbone.Model.extend({
 
 module.exports = Log;
 
-},{"backbone":1,"cdb":140,"cdb.config":138,"cdb.errors":139}],146:[function(require,module,exports){
+},{"backbone":1,"cdb":141,"cdb.config":139,"cdb.errors":140}],147:[function(require,module,exports){
 var Backbone = require('backbone');
 var ErrorModel = require('./error');
 
@@ -32828,7 +33068,7 @@ var ErrorList = Backbone.Collection.extend({
 
 module.exports = ErrorList;
 
-},{"./error":147,"backbone":1}],147:[function(require,module,exports){
+},{"./error":148,"backbone":1}],148:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var config = require('cdb.config');
@@ -32845,7 +33085,7 @@ var ErrorModel = Backbone.Model.extend({
 
 module.exports = ErrorModel;
 
-},{"backbone":1,"cdb.config":138,"jquery":306}],148:[function(require,module,exports){
+},{"backbone":1,"cdb.config":139,"jquery":306}],149:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
@@ -32928,7 +33168,7 @@ var Model = Backbone.Model.extend({
 
 module.exports = Model;
 
-},{"backbone":1,"jquery":306,"underscore":329}],149:[function(require,module,exports){
+},{"backbone":1,"jquery":306,"underscore":329}],150:[function(require,module,exports){
 /*
 # metrics profiler
 
@@ -33091,7 +33331,7 @@ Profiler.metric = function(name) {
 
 module.exports = Profiler;
 
-},{}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 var htmlCssSanitizer = require('html-css-sanitizer');
 
 /**
@@ -33117,7 +33357,7 @@ htmlCssSanitizer.html = function(inputHtml, optionalSanitizer) {
 
 module.exports = htmlCssSanitizer;
 
-},{"html-css-sanitizer":300}],151:[function(require,module,exports){
+},{"html-css-sanitizer":300}],152:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var log = require('cdb.log');
@@ -33147,7 +33387,7 @@ var TemplateList = Backbone.Collection.extend({
 
 module.exports = TemplateList;
 
-},{"./template":152,"backbone":1,"cdb.log":141,"underscore":329}],152:[function(require,module,exports){
+},{"./template":153,"backbone":1,"cdb.log":142,"underscore":329}],153:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Mustache = require('mustache');
@@ -33242,7 +33482,7 @@ var Template = Backbone.Model.extend({
 
 module.exports = Template;
 
-},{"backbone":1,"cdb.log":141,"mustache":64,"underscore":329}],153:[function(require,module,exports){
+},{"backbone":1,"cdb.log":142,"mustache":64,"underscore":329}],154:[function(require,module,exports){
 var util = {};
 
 util.isCORSSupported = function() {
@@ -33374,7 +33614,7 @@ util.isMobileDevice = function () {
 
 module.exports = util;
 
-},{}],154:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Profiler = require('cdb.core.Profiler');
@@ -33548,7 +33788,7 @@ var View = Backbone.View.extend({
 
 module.exports = View;
 
-},{"backbone":1,"cdb.core.Profiler":149,"cdb.templates":142,"underscore":329}],155:[function(require,module,exports){
+},{"backbone":1,"cdb.core.Profiler":150,"cdb.templates":143,"underscore":329}],156:[function(require,module,exports){
 var _ = require('underscore');
 var DataviewModelBase = require('./dataview-model-base');
 var SearchModel = require('./category-dataview/search-model');
@@ -33830,7 +34070,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./category-dataview/categories-collection":156,"./category-dataview/category-model-range":158,"./category-dataview/search-model":159,"./dataview-model-base":160,"underscore":329}],156:[function(require,module,exports){
+},{"./category-dataview/categories-collection":157,"./category-dataview/category-model-range":159,"./category-dataview/search-model":160,"./dataview-model-base":161,"underscore":329}],157:[function(require,module,exports){
 var Backbone = require('backbone');
 var CategoryItemModel = require('./category-item-model');
 
@@ -33864,7 +34104,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./category-item-model":157,"backbone":1}],157:[function(require,module,exports){
+},{"./category-item-model":158,"backbone":1}],158:[function(require,module,exports){
 var Model = require('../../core/model');
 
 /**
@@ -33880,7 +34120,7 @@ module.exports = Model.extend({
 
 });
 
-},{"../../core/model":148}],158:[function(require,module,exports){
+},{"../../core/model":149}],159:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../core/model');
 
@@ -33927,7 +34167,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":148,"underscore":329}],159:[function(require,module,exports){
+},{"../../core/model":149,"underscore":329}],160:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../core/model');
 var BackboneAbortSync = require('../../util/backbone-abort-sync');
@@ -34041,7 +34281,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":148,"../../util/backbone-abort-sync":277,"./categories-collection":156,"underscore":329}],160:[function(require,module,exports){
+},{"../../core/model":149,"../../util/backbone-abort-sync":278,"./categories-collection":157,"underscore":329}],161:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../core/model');
 var BackboneCancelSync = require('../util/backbone-abort-sync');
@@ -34293,7 +34533,7 @@ module.exports = Model.extend({
   }
 );
 
-},{"../core/model":148,"../util/backbone-abort-sync":277,"../windshaft/filters/bounding-box":291,"underscore":329}],161:[function(require,module,exports){
+},{"../core/model":149,"../util/backbone-abort-sync":278,"../windshaft/filters/bounding-box":291,"underscore":329}],162:[function(require,module,exports){
 var Backbone = require('backbone');
 
 /**
@@ -34315,7 +34555,7 @@ module.exports = Backbone.Collection.extend({
   }
 });
 
-},{"backbone":1}],162:[function(require,module,exports){
+},{"backbone":1}],163:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../core/model');
 var CategoryFilter = require('../windshaft/filters/category');
@@ -34422,7 +34662,7 @@ function _checkProperties (obj, propertiesArray) {
   });
 }
 
-},{"../core/model":148,"../windshaft/filters/category":292,"../windshaft/filters/range":294,"./category-dataview-model":155,"./formula-dataview-model":163,"./histogram-dataview-model":164,"./list-dataview-model":166,"underscore":329}],163:[function(require,module,exports){
+},{"../core/model":149,"../windshaft/filters/category":292,"../windshaft/filters/range":294,"./category-dataview-model":156,"./formula-dataview-model":164,"./histogram-dataview-model":165,"./list-dataview-model":167,"underscore":329}],164:[function(require,module,exports){
 var _ = require('underscore');
 var DataviewModelBase = require('./dataview-model-base');
 
@@ -34467,7 +34707,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":160,"underscore":329}],164:[function(require,module,exports){
+},{"./dataview-model-base":161,"underscore":329}],165:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var DataviewModelBase = require('./dataview-model-base');
@@ -34637,7 +34877,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":160,"./histogram-dataview/histogram-data-model":165,"backbone":1,"underscore":329}],165:[function(require,module,exports){
+},{"./dataview-model-base":161,"./histogram-dataview/histogram-data-model":166,"backbone":1,"underscore":329}],166:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../core/model');
 
@@ -34709,7 +34949,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":148,"underscore":329}],166:[function(require,module,exports){
+},{"../../core/model":149,"underscore":329}],167:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var DataviewModelBase = require('./dataview-model-base');
@@ -34764,7 +35004,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":160,"backbone":1,"underscore":329}],167:[function(require,module,exports){
+},{"./dataview-model-base":161,"backbone":1,"underscore":329}],168:[function(require,module,exports){
 var _ = require('underscore');
 
 /**
@@ -34897,7 +35137,7 @@ CartoDBLayerCommon.prototype = {
 
 module.exports = CartoDBLayerCommon;
 
-},{"underscore":329}],168:[function(require,module,exports){
+},{"underscore":329}],169:[function(require,module,exports){
 var CartoDBLayerGroupBase = require('./cartodb-layer-group-base');
 
 var CartoDBLayerGroupAnonymousMap = CartoDBLayerGroupBase.extend({
@@ -34929,7 +35169,7 @@ var CartoDBLayerGroupAnonymousMap = CartoDBLayerGroupBase.extend({
 
 module.exports = CartoDBLayerGroupAnonymousMap;
 
-},{"./cartodb-layer-group-base":169}],169:[function(require,module,exports){
+},{"./cartodb-layer-group-base":170}],170:[function(require,module,exports){
 var $ = require('jquery');
 var Backbone = require('backbone');
 var util = require('cdb.core.util');
@@ -35035,7 +35275,7 @@ var CartoDBLayerGroupBase = Backbone.Model.extend({
 
 module.exports = CartoDBLayerGroupBase;
 
-},{"backbone":1,"cdb.core.util":153,"jquery":306}],170:[function(require,module,exports){
+},{"backbone":1,"cdb.core.util":154,"jquery":306}],171:[function(require,module,exports){
 var CartoDBLayerGroupBase = require('./cartodb-layer-group-base');
 
 var CartoDBLayerGroupNamedMap = CartoDBLayerGroupBase.extend({
@@ -35054,7 +35294,7 @@ var CartoDBLayerGroupNamedMap = CartoDBLayerGroupBase.extend({
 
 module.exports = CartoDBLayerGroupNamedMap;
 
-},{"./cartodb-layer-group-base":169}],171:[function(require,module,exports){
+},{"./cartodb-layer-group-base":170}],172:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -35150,7 +35390,7 @@ CategoryGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = CategoryGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":173,"underscore":329}],172:[function(require,module,exports){
+},{"./geojson-data-provider-base":174,"underscore":329}],173:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -35192,7 +35432,7 @@ FormulaGeoJSONDataProvider.prototype.getData = function () {
 
 module.exports = FormulaGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":173,"underscore":329}],173:[function(require,module,exports){
+},{"./geojson-data-provider-base":174,"underscore":329}],174:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -35216,7 +35456,7 @@ _.extend(GeoJSONDataProviderBase.prototype, Backbone.Events);
 
 module.exports = GeoJSONDataProviderBase;
 
-},{"backbone":1,"underscore":329}],174:[function(require,module,exports){
+},{"backbone":1,"underscore":329}],175:[function(require,module,exports){
 var HistogramGeoJSONDataProvider = require('./histogram-geojson-data-provider');
 var CategoryGeoJSONDataProvider = require('./category-geojson-data-provider');
 var FormulaGeoJSONDataProvider = require('./formula-geojson-data-provider');
@@ -35250,7 +35490,7 @@ GeoJSONDataProvider.prototype.createDataProviderForDataview = function (dataview
 
 module.exports = GeoJSONDataProvider;
 
-},{"./category-geojson-data-provider":171,"./formula-geojson-data-provider":172,"./histogram-geojson-data-provider":175,"./list-geojson-data-provider":176}],175:[function(require,module,exports){
+},{"./category-geojson-data-provider":172,"./formula-geojson-data-provider":173,"./histogram-geojson-data-provider":176,"./list-geojson-data-provider":177}],176:[function(require,module,exports){
 var d3 = require('d3');
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
@@ -35325,7 +35565,7 @@ HistogramGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = HistogramGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":173,"d3":305,"underscore":329}],176:[function(require,module,exports){
+},{"./geojson-data-provider-base":174,"d3":305,"underscore":329}],177:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -35343,7 +35583,7 @@ ListGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = ListGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":173,"underscore":329}],177:[function(require,module,exports){
+},{"./geojson-data-provider-base":174,"underscore":329}],178:[function(require,module,exports){
 var $ = require('jquery');
 
 /**
@@ -35415,7 +35655,7 @@ var NOKIA = {
 
 module.exports = NOKIA;
 
-},{"jquery":306}],178:[function(require,module,exports){
+},{"jquery":306}],179:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 
@@ -35484,7 +35724,7 @@ var YAHOO = {
 
 module.exports = YAHOO;
 
-},{"jquery":306,"underscore":329}],179:[function(require,module,exports){
+},{"jquery":306,"underscore":329}],180:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -35504,7 +35744,7 @@ _.extend(GeometryView.prototype, Backbone.Events,{
 
 module.exports = GeometryView;
 
-},{"backbone":1,"underscore":329}],180:[function(require,module,exports){
+},{"backbone":1,"underscore":329}],181:[function(require,module,exports){
 var Model = require('../core/model');
 
 /**
@@ -35521,7 +35761,7 @@ var Geometry = Model.extend({
 
 module.exports = Geometry;
 
-},{"../core/model":148}],181:[function(require,module,exports){
+},{"../core/model":149}],182:[function(require,module,exports){
 var gmapsModels = {};
 
 // only add models if google.maps lib is loaded
@@ -35542,7 +35782,7 @@ if (typeof (window.google) !== 'undefined' && typeof (window.google.maps) !== 'u
 
 module.exports = gmapsModels;
 
-},{"./gmaps/gmaps-base-layer-view":183,"./gmaps/gmaps-cartodb-layer-group-view":184,"./gmaps/gmaps-layer-view":187,"./gmaps/gmaps-map-view":188,"./gmaps/gmaps-path-view":189,"./gmaps/gmaps-plain-layer-view":190,"./gmaps/gmaps-point-view":191,"./gmaps/gmaps-tiled-layer-view":192}],182:[function(require,module,exports){
+},{"./gmaps/gmaps-base-layer-view":184,"./gmaps/gmaps-cartodb-layer-group-view":185,"./gmaps/gmaps-layer-view":188,"./gmaps/gmaps-map-view":189,"./gmaps/gmaps-path-view":190,"./gmaps/gmaps-plain-layer-view":191,"./gmaps/gmaps-point-view":192,"./gmaps/gmaps-tiled-layer-view":193}],183:[function(require,module,exports){
 var config = require('cdb.config');
 
 var CartoDBDefaultOptions = {
@@ -35565,7 +35805,7 @@ var CartoDBDefaultOptions = {
 
 module.exports = CartoDBDefaultOptions;
 
-},{"cdb.config":138}],183:[function(require,module,exports){
+},{"cdb.config":139}],184:[function(require,module,exports){
 /* global google */
 var _ = require('underscore');
 var DEFAULT_MAP_STYLE = require('./gmaps-default-map-style');
@@ -35603,9 +35843,11 @@ _.extend(
 
 module.exports = GMapsBaseLayerView;
 
-},{"./gmaps-default-map-style":185,"./gmaps-layer-view":187,"underscore":329}],184:[function(require,module,exports){
+},{"./gmaps-default-map-style":186,"./gmaps-layer-view":188,"underscore":329}],185:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
+require('leaflet');
+// NOTE: Leaflet needs to be required before wax because wax relies on global L internally
 var wax = require('wax.cartodb.js');
 var CartoDBDefaultOptions = require('./cartodb-default-options');
 var Projector = require('./projector');
@@ -35937,7 +36179,7 @@ _.extend(
 
 module.exports = GMapsCartoDBLayerGroupView;
 
-},{"../cartodb-layer-common":167,"./cartodb-default-options":182,"./gmaps-layer-view":187,"./projector":194,"cdb.core.Profiler":149,"underscore":329,"wax.cartodb.js":304}],185:[function(require,module,exports){
+},{"../cartodb-layer-common":168,"./cartodb-default-options":183,"./gmaps-layer-view":188,"./projector":195,"cdb.core.Profiler":150,"leaflet":63,"underscore":329,"wax.cartodb.js":304}],186:[function(require,module,exports){
 var DEFAULT_MAP_STYLE = [{
     stylers: [{
         saturation: -65
@@ -36008,7 +36250,7 @@ var DEFAULT_MAP_STYLE = [{
 
 module.exports = DEFAULT_MAP_STYLE;
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 /* global google */
 var log = require('cdb.log');
 
@@ -36056,7 +36298,7 @@ GMapsLayerViewFactory.prototype.createLayerView = function (layerModel, mapModel
 
 module.exports = GMapsLayerViewFactory;
 
-},{"../leaflet/leaflet-wms-layer-view":207,"./gmaps-base-layer-view":183,"./gmaps-cartodb-layer-group-view":184,"./gmaps-plain-layer-view":190,"./gmaps-tiled-layer-view":192,"./gmaps-torque-layer-view":193,"cdb.log":141}],187:[function(require,module,exports){
+},{"../leaflet/leaflet-wms-layer-view":208,"./gmaps-base-layer-view":184,"./gmaps-cartodb-layer-group-view":185,"./gmaps-plain-layer-view":191,"./gmaps-tiled-layer-view":193,"./gmaps-torque-layer-view":194,"cdb.log":142}],188:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -36130,7 +36372,7 @@ _.extend(GMapsLayerView.prototype, {
 
 module.exports = GMapsLayerView;
 
-},{"backbone":1,"underscore":329}],188:[function(require,module,exports){
+},{"backbone":1,"underscore":329}],189:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 var MapView = require('../map-view');
@@ -36400,7 +36642,7 @@ var GoogleMapsMapView = MapView.extend({
 
 module.exports = GoogleMapsMapView;
 
-},{"../map-view":209,"./gmaps-path-view":189,"./gmaps-point-view":191,"./projector":194,"cdb.log":141,"underscore":329}],189:[function(require,module,exports){
+},{"../map-view":210,"./gmaps-path-view":190,"./gmaps-point-view":192,"./projector":195,"cdb.log":142,"underscore":329}],190:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSON = require('geojson');
 var GeometryView = require('../geometry-view');
@@ -36556,7 +36798,7 @@ PathView.prototype.edit = function(enable) {
 
 module.exports = PathView;
 
-},{"../geometry-view":179,"geojson":298,"underscore":329}],190:[function(require,module,exports){
+},{"../geometry-view":180,"geojson":298,"underscore":329}],191:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
 
@@ -36591,7 +36833,7 @@ _.extend(
 
 module.exports = GMapsPlainLayerView;
 
-},{"./gmaps-layer-view":187,"underscore":329}],191:[function(require,module,exports){
+},{"./gmaps-layer-view":188,"underscore":329}],192:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSON = require('geojson');
 var config = require('cdb.config');
@@ -36679,7 +36921,7 @@ PointView.prototype.edit = function(enable) {
 
 module.exports = PointView;
 
-},{"../geometry-view":179,"cdb.config":138,"geojson":298,"underscore":329}],192:[function(require,module,exports){
+},{"../geometry-view":180,"cdb.config":139,"geojson":298,"underscore":329}],193:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
 
@@ -36722,7 +36964,7 @@ _.extend(
 
 module.exports = GMapsTiledLayerView;
 
-},{"./gmaps-layer-view":187,"underscore":329}],193:[function(require,module,exports){
+},{"./gmaps-layer-view":188,"underscore":329}],194:[function(require,module,exports){
 require('torque.js');
 var _ = require('underscore');
 var torque = require('torque.js');
@@ -36790,7 +37032,7 @@ _.extend(
 
 module.exports = GMapsTorqueLayerView;
 
-},{"../torque-layer-view-base":219,"./gmaps-layer-view":187,"backbone":1,"torque.js":75,"underscore":329}],194:[function(require,module,exports){
+},{"../torque-layer-view-base":220,"./gmaps-layer-view":188,"backbone":1,"torque.js":75,"underscore":329}],195:[function(require,module,exports){
 // helper to get pixel position from latlon
 var Projector = function(map) { this.setMap(map); };
 Projector.prototype = new google.maps.OverlayView();
@@ -36812,7 +37054,7 @@ Projector.prototype.pixelToLatLng = function(point) {
 
 module.exports = Projector;
 
-},{}],195:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports = {
   LeafletLayerView: require('./leaflet/leaflet-layer-view'),
 
@@ -36830,9 +37072,10 @@ module.exports = {
   LeafletMapView: require('./leaflet/leaflet-map-view')
 };
 
-},{"./leaflet/leaflet-cartodb-layer-group-view":196,"./leaflet/leaflet-gmaps-tiled-layer-view":198,"./leaflet/leaflet-layer-view":200,"./leaflet/leaflet-map-view":201,"./leaflet/leaflet-path-view":202,"./leaflet/leaflet-plain-layer-view":203,"./leaflet/leaflet-point-view":204,"./leaflet/leaflet-tiled-layer-view":205,"./leaflet/leaflet-wms-layer-view":207}],196:[function(require,module,exports){
-var wax = require('wax.cartodb.js');
+},{"./leaflet/leaflet-cartodb-layer-group-view":197,"./leaflet/leaflet-gmaps-tiled-layer-view":199,"./leaflet/leaflet-layer-view":201,"./leaflet/leaflet-map-view":202,"./leaflet/leaflet-path-view":203,"./leaflet/leaflet-plain-layer-view":204,"./leaflet/leaflet-point-view":205,"./leaflet/leaflet-tiled-layer-view":206,"./leaflet/leaflet-wms-layer-view":208}],197:[function(require,module,exports){
 var L = require('leaflet');
+// NOTE: Leaflet needs to be required before wax because wax relies on global L internally
+var wax = require('wax.cartodb.js');
 var config = require('cdb.config');
 var Profiler = require('cdb.core.Profiler');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -37153,7 +37396,7 @@ var LeafletCartoDBLayerGroupView = L.TileLayer.extend({
 
 module.exports = LeafletCartoDBLayerGroupView;
 
-},{"../cartodb-layer-common":167,"./leaflet-layer-view":200,"backbone":1,"cdb.config":138,"cdb.core.Profiler":149,"leaflet":63,"underscore":329,"wax.cartodb.js":304}],197:[function(require,module,exports){
+},{"../cartodb-layer-common":168,"./leaflet-layer-view":201,"backbone":1,"cdb.config":139,"cdb.core.Profiler":150,"leaflet":63,"underscore":329,"wax.cartodb.js":304}],198:[function(require,module,exports){
 require('d3.cartodb');// TODO: The 'd3.cartodb' module doens't currently export L.CartoDBd3Layer
 // and it's currently relying on window.L so weed to do the following trick.
 // Check out: https://github.com/CartoDB/d3.cartodb/issues/93 for more info
@@ -37233,7 +37476,7 @@ var LeafletCartoDBVectorLayerGroupView = CartoDBd3Layer.extend({
 
 module.exports = LeafletCartoDBVectorLayerGroupView;
 
-},{"../data-providers/geojson/geojson-data-provider-factory":174,"./leaflet-layer-view":200,"d3.cartodb":53}],198:[function(require,module,exports){
+},{"../data-providers/geojson/geojson-data-provider-factory":175,"./leaflet-layer-view":201,"d3.cartodb":53}],199:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -37294,7 +37537,7 @@ _.extend(LeafletGmapsTiledLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletGmapsTiledLayerView;
 
-},{"./leaflet-layer-view":200,"leaflet":63,"underscore":329}],199:[function(require,module,exports){
+},{"./leaflet-layer-view":201,"leaflet":63,"underscore":329}],200:[function(require,module,exports){
 var log = require('cdb.log');
 var LeafletTiledLayerView = require('./leaflet-tiled-layer-view');
 var LeafletWMSLayerView = require('./leaflet-wms-layer-view');
@@ -37348,7 +37591,7 @@ LeafletLayerViewFactory.prototype.createLayerView = function (layerModel, mapMod
 
 module.exports = LeafletLayerViewFactory;
 
-},{"./leaflet-cartodb-layer-group-view":196,"./leaflet-cartodb-vector-layer-group-view":197,"./leaflet-gmaps-tiled-layer-view":198,"./leaflet-plain-layer-view":203,"./leaflet-tiled-layer-view":205,"./leaflet-torque-layer":206,"./leaflet-wms-layer-view":207,"cdb.log":141}],200:[function(require,module,exports){
+},{"./leaflet-cartodb-layer-group-view":197,"./leaflet-cartodb-vector-layer-group-view":198,"./leaflet-gmaps-tiled-layer-view":199,"./leaflet-plain-layer-view":204,"./leaflet-tiled-layer-view":206,"./leaflet-torque-layer":207,"./leaflet-wms-layer-view":208,"cdb.log":142}],201:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -37394,7 +37637,7 @@ _.extend(LeafletLayerView.prototype, {
 
 module.exports = LeafletLayerView;
 
-},{"backbone":1,"underscore":329}],201:[function(require,module,exports){
+},{"backbone":1,"underscore":329}],202:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var L = require('leaflet');
@@ -37748,7 +37991,7 @@ L.Icon.Default.imagePath = (function () {
 
 module.exports = LeafletMapView;
 
-},{"../../core/sanitize":150,"../../core/view":154,"../map-view":209,"./leaflet-path-view":202,"./leaflet-point-view":204,"jquery":306,"leaflet":63,"underscore":329}],202:[function(require,module,exports){
+},{"../../core/sanitize":151,"../../core/view":155,"../map-view":210,"./leaflet-path-view":203,"./leaflet-point-view":205,"jquery":306,"leaflet":63,"underscore":329}],203:[function(require,module,exports){
  var _ = require('underscore');
  var L = require('leaflet');
  var GeometryView = require('../geometry-view');
@@ -37817,7 +38060,7 @@ PathView.prototype.edit = function(enable) {
 
 module.exports = PathView;
 
-},{"../geometry-view":179,"leaflet":63,"underscore":329}],203:[function(require,module,exports){
+},{"../geometry-view":180,"leaflet":63,"underscore":329}],204:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -37866,7 +38109,7 @@ _.extend(LeafletPlainLayerView.prototype, LeafletLayerView.prototype);
 
 module.exports = LeafletPlainLayerView;
 
-},{"./leaflet-layer-view":200,"leaflet":63,"underscore":329}],204:[function(require,module,exports){
+},{"./leaflet-layer-view":201,"leaflet":63,"underscore":329}],205:[function(require,module,exports){
  var L = require('leaflet');
  var config = require('cdb.config');
  var GeometryView = require('../geometry-view');
@@ -37947,7 +38190,7 @@ PointView.prototype._eventHandler = function(evtType) {
 
 module.exports = PointView;
 
-},{"../geometry-view":179,"cdb.config":138,"leaflet":63}],205:[function(require,module,exports){
+},{"../geometry-view":180,"cdb.config":139,"leaflet":63}],206:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -37993,7 +38236,7 @@ _.extend(LeafletTiledLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletTiledLayerView;
 
-},{"./leaflet-layer-view":200,"leaflet":63,"underscore":329}],206:[function(require,module,exports){
+},{"./leaflet-layer-view":201,"leaflet":63,"underscore":329}],207:[function(require,module,exports){
 /* global L */
 require('torque.js');
 var _ = require('underscore');
@@ -38060,7 +38303,7 @@ _.extend(LeafletTorqueLayer.prototype, TorqueLayerViewBase);
 
 module.exports = LeafletTorqueLayer;
 
-},{"../torque-layer-view-base":219,"./leaflet-layer-view":200,"cdb.core.util":153,"torque.js":75,"underscore":329}],207:[function(require,module,exports){
+},{"../torque-layer-view-base":220,"./leaflet-layer-view":201,"cdb.core.util":154,"torque.js":75,"underscore":329}],208:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view.js');
@@ -38096,7 +38339,7 @@ _.extend(LeafletWMSLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletWMSLayerView;
 
-},{"./leaflet-layer-view.js":200,"leaflet":63,"underscore":329}],208:[function(require,module,exports){
+},{"./leaflet-layer-view.js":201,"leaflet":63,"underscore":329}],209:[function(require,module,exports){
 /* global google */
 var cdb = require('cdb');
 var LeafletLayerViewFactory = require('./leaflet/leaflet-layer-view-factory');
@@ -38133,7 +38376,7 @@ MapViewFactory.prototype.createMapView = function (provider, mapModel, el) {
 
 module.exports = MapViewFactory;
 
-},{"./gmaps/gmaps-layer-view-factory":186,"./leaflet/leaflet-layer-view-factory":199,"cdb":140}],209:[function(require,module,exports){
+},{"./gmaps/gmaps-layer-view-factory":187,"./leaflet/leaflet-layer-view-factory":200,"cdb":141}],210:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 var View = require('../core/view');
@@ -38400,8 +38643,7 @@ var MapView = View.extend({
 
 module.exports = MapView;
 
-},{"../core/view":154,"./cartodb-layer-group-anonymous-map":168,"./cartodb-layer-group-named-map":170,"cdb.log":141,"underscore":329}],210:[function(require,module,exports){
-var $ = require('jquery');
+},{"../core/view":155,"./cartodb-layer-group-anonymous-map":169,"./cartodb-layer-group-named-map":171,"cdb.log":142,"underscore":329}],211:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var Backbone = require('backbone');
@@ -38439,6 +38681,16 @@ var Map = Model.extend({
     this._dataviewsCollection = options.dataviewsCollection;
 
     attrs = attrs || {};
+
+    var center = attrs.center || this.defaults.center;
+    if (typeof center === 'string') {
+      center = JSON.parse(center);
+    }
+    this.set({
+      center: center,
+      original_center: center
+    });
+
     if (attrs.bounds) {
       this.set({
         view_bounds_sw: attrs.bounds[0],
@@ -38449,8 +38701,6 @@ var Map = Model.extend({
       this.unset('bounds');
     } else {
       this.set({
-        center: attrs.center || this.defaults.center,
-        original_center: attrs.center || this.defaults.center,
         zoom: attrs.zoom || this.defaults.zoom
       });
     }
@@ -38871,7 +39121,7 @@ var Map = Model.extend({
 
 module.exports = Map;
 
-},{"../core/model":148,"../core/sanitize":150,"../vis/layers":279,"./map/layers":214,"backbone":1,"cdb.config":138,"cdb.log":141,"jquery":306,"leaflet":63,"underscore":329}],211:[function(require,module,exports){
+},{"../core/model":149,"../core/sanitize":151,"../vis/layers":280,"./map/layers":215,"backbone":1,"cdb.config":139,"cdb.log":142,"leaflet":63,"underscore":329}],212:[function(require,module,exports){
 var _ = require('underscore');
 var config = require('cdb.config');
 var LayerModelBase = require('./layer-model-base');
@@ -38975,7 +39225,7 @@ var CartoDBLayer = LayerModelBase.extend({
 
 module.exports = CartoDBLayer;
 
-},{"./layer-model-base":213,"cdb.config":138,"underscore":329}],212:[function(require,module,exports){
+},{"./layer-model-base":214,"cdb.config":139,"underscore":329}],213:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 var GMapsBaseLayer = LayerModelBase.extend({
@@ -38989,7 +39239,7 @@ var GMapsBaseLayer = LayerModelBase.extend({
 
 module.exports = GMapsBaseLayer;
 
-},{"./layer-model-base":213}],213:[function(require,module,exports){
+},{"./layer-model-base":214}],214:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 
@@ -39099,7 +39349,7 @@ var MapLayer = Model.extend({
 
 module.exports = MapLayer;
 
-},{"../../core/model":148,"cdb":140,"cdb.log":141,"underscore":329}],214:[function(require,module,exports){
+},{"../../core/model":149,"cdb":141,"cdb.log":142,"underscore":329}],215:[function(require,module,exports){
 var Backbone = require('backbone');
 var LayerModelBase = require('./layer-model-base');
 
@@ -39157,7 +39407,7 @@ var Layers = Backbone.Collection.extend({
 
 module.exports = Layers;
 
-},{"./layer-model-base":213,"backbone":1}],215:[function(require,module,exports){
+},{"./layer-model-base":214,"backbone":1}],216:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 /**
@@ -39175,7 +39425,7 @@ var PlainLayer = LayerModelBase.extend({
 
 module.exports = PlainLayer;
 
-},{"./layer-model-base":213}],216:[function(require,module,exports){
+},{"./layer-model-base":214}],217:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 var TileLayer = LayerModelBase.extend({
@@ -39185,7 +39435,7 @@ var TileLayer = LayerModelBase.extend({
 
 module.exports = TileLayer
 
-},{"./layer-model-base":213}],217:[function(require,module,exports){
+},{"./layer-model-base":214}],218:[function(require,module,exports){
 var _ = require('underscore');
 var LayerModelBase = require('./layer-model-base');
 
@@ -39300,7 +39550,7 @@ var TorqueLayer = LayerModelBase.extend({
 
 module.exports = TorqueLayer;
 
-},{"./layer-model-base":213,"underscore":329}],218:[function(require,module,exports){
+},{"./layer-model-base":214,"underscore":329}],219:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 /**
@@ -39320,7 +39570,7 @@ var WMSLayer = LayerModelBase.extend({
 
 module.exports = WMSLayer;
 
-},{"./layer-model-base":213}],219:[function(require,module,exports){
+},{"./layer-model-base":214}],220:[function(require,module,exports){
 var _ = require('underscore');
 
 /**
@@ -39482,7 +39732,7 @@ module.exports = {
   }
 };
 
-},{"underscore":329}],220:[function(require,module,exports){
+},{"underscore":329}],221:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Model = require('../../core/model');
@@ -39844,7 +40094,7 @@ var Annotation = View.extend({
 
 module.exports = Annotation;
 
-},{"../../core/model":148,"../../core/sanitize":150,"../../core/template":152,"../../core/view":154,"jquery":306,"underscore":329}],221:[function(require,module,exports){
+},{"../../core/model":149,"../../core/sanitize":151,"../../core/template":153,"../../core/view":155,"jquery":306,"underscore":329}],222:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -39856,7 +40106,7 @@ __p+='<button type="button" class="CDB-Attribution-button js-button">?</button> 
 return __p;
 };
 
-},{"underscore":329}],222:[function(require,module,exports){
+},{"underscore":329}],223:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var View = require('../../../core/view');
@@ -39944,7 +40194,7 @@ var Attribution = View.extend({
 
 module.exports = Attribution;
 
-},{"../../../core/model":148,"../../../core/sanitize":150,"../../../core/view":154,"./attribution-template.tpl":221,"jquery":306,"underscore":329}],223:[function(require,module,exports){
+},{"../../../core/model":149,"../../../core/sanitize":151,"../../../core/view":155,"./attribution-template.tpl":222,"jquery":306,"underscore":329}],224:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../core/sanitize');
 var View = require('../../core/view');
@@ -40003,7 +40253,7 @@ var Header = View.extend({
 
 module.exports = Header;
 
-},{"../../core/sanitize":150,"../../core/view":154,"underscore":329}],224:[function(require,module,exports){
+},{"../../core/sanitize":151,"../../core/view":155,"underscore":329}],225:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var sanitize = require('../../core/sanitize');
@@ -40093,7 +40343,7 @@ module.exports = Text.extend({
 
 });
 
-},{"../../core/sanitize":150,"./text":261,"jquery":306,"underscore":329}],225:[function(require,module,exports){
+},{"../../core/sanitize":151,"./text":262,"jquery":306,"underscore":329}],226:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 var Template = require('../../core/template');
@@ -40171,7 +40421,7 @@ var InfoBox = View.extend({
 
 module.exports = InfoBox;
 
-},{"../../core/template":152,"../../core/view":154,"underscore":329}],226:[function(require,module,exports){
+},{"../../core/template":153,"../../core/view":155,"underscore":329}],227:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Backbone = require('backbone');
@@ -40381,7 +40631,7 @@ var InfowindowModel = Backbone.Model.extend({
 
 module.exports = InfowindowModel;
 
-},{"backbone":1,"jquery":306,"underscore":329}],227:[function(require,module,exports){
+},{"backbone":1,"jquery":306,"underscore":329}],228:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Ps = require('perfect-scrollbar');
@@ -41095,7 +41345,7 @@ var Infowindow = View.extend({
 
 module.exports = Infowindow;
 
-},{"../../core/sanitize":150,"../../core/template":152,"../../core/util":153,"../../core/view":154,"cdb.templates":142,"clip-path":299,"jquery":306,"perfect-scrollbar":308,"underscore":329}],228:[function(require,module,exports){
+},{"../../core/sanitize":151,"../../core/template":153,"../../core/util":154,"../../core/view":155,"cdb.templates":143,"clip-path":299,"jquery":306,"perfect-scrollbar":308,"underscore":329}],229:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cdb'); // cdb.god, cdb.geo.ui.*
 var Dropdown = require('../../ui/common/dropdown');
@@ -41215,7 +41465,7 @@ var LayerSelector = View.extend({
 
 module.exports = LayerSelector;
 
-},{"../../core/model":148,"../../core/view":154,"../../ui/common/dropdown":268,"./layer-view":229,"cdb":140,"underscore":329}],229:[function(require,module,exports){
+},{"../../core/model":149,"../../core/view":155,"../../ui/common/dropdown":269,"./layer-view":230,"cdb":141,"underscore":329}],230:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -41294,7 +41544,7 @@ var LayerView = View.extend({
 
 module.exports = LayerView;
 
-},{"../../core/view":154,"cdb.templates":142,"underscore":329}],230:[function(require,module,exports){
+},{"../../core/view":155,"cdb.templates":143,"underscore":329}],231:[function(require,module,exports){
 module.exports = {
   LegendItemModel: require('./legend-item-model'),
   LegendItem: require('./legend-item'),
@@ -41314,7 +41564,7 @@ module.exports = {
   StackedLegend: require('./legend/stacked-legend')
 };
 
-},{"./legend-item":232,"./legend-item-model":231,"./legend-items":233,"./legend-model":234,"./legend/base-legend":236,"./legend/bubble-legend":237,"./legend/category-legend":238,"./legend/choropleth-legend":239,"./legend/color-legend":240,"./legend/custom-legend":241,"./legend/debug-legend":242,"./legend/density-legend":243,"./legend/intensity-legend":244,"./legend/none-legend":255,"./legend/stacked-legend":256,"./legends":257}],231:[function(require,module,exports){
+},{"./legend-item":233,"./legend-item-model":232,"./legend-items":234,"./legend-model":235,"./legend/base-legend":237,"./legend/bubble-legend":238,"./legend/category-legend":239,"./legend/choropleth-legend":240,"./legend/color-legend":241,"./legend/custom-legend":242,"./legend/debug-legend":243,"./legend/density-legend":244,"./legend/intensity-legend":245,"./legend/none-legend":256,"./legend/stacked-legend":257,"./legends":258}],232:[function(require,module,exports){
 var Model = require('../../core/model');
 
 var LegendItemModel = Model.extend({
@@ -41329,7 +41579,7 @@ var LegendItemModel = Model.extend({
 
 module.exports = LegendItemModel;
 
-},{"../../core/model":148}],232:[function(require,module,exports){
+},{"../../core/model":149}],233:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -41370,7 +41620,7 @@ var LegendItem = View.extend({
 
 module.exports = LegendItem;
 
-},{"../../core/view":154,"cdb.templates":142,"underscore":329}],233:[function(require,module,exports){
+},{"../../core/view":155,"cdb.templates":143,"underscore":329}],234:[function(require,module,exports){
 var Backbone = require('backbone');
 var LegendItemModel = require('./legend-item-model');
 
@@ -41383,7 +41633,7 @@ var LegendItems = Backbone.Collection.extend({
 
 module.exports = LegendItems;
 
-},{"./legend-item-model":231,"backbone":1}],234:[function(require,module,exports){
+},{"./legend-item-model":232,"backbone":1}],235:[function(require,module,exports){
 var Model = require('../../core/model');
 var LegendItems = require('./legend-items');
 
@@ -41432,7 +41682,7 @@ var LegendModel = Model.extend({
 
 module.exports = LegendModel;
 
-},{"../../core/model":148,"./legend-items":233}],235:[function(require,module,exports){
+},{"../../core/model":149,"./legend-items":234}],236:[function(require,module,exports){
 var _ = require('underscore');
 var LegendModel = require('./legend-model');
 var LegendExports = require('./legend-exports');
@@ -41588,7 +41838,7 @@ var Legend = View.extend({
 
 module.exports = Legend;
 
-},{"../../core/view":154,"./legend-exports":230,"./legend-model":234,"underscore":329}],236:[function(require,module,exports){
+},{"../../core/view":155,"./legend-exports":231,"./legend-model":235,"underscore":329}],237:[function(require,module,exports){
 var $ = require('jquery');
 var View = require('../../../core/view');
 
@@ -41623,7 +41873,7 @@ var BaseLegend = View.extend({
 
 module.exports = BaseLegend;
 
-},{"../../../core/view":154,"jquery":306}],237:[function(require,module,exports){
+},{"../../../core/view":155,"jquery":306}],238:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize.js')
 var BaseLegend = require('./base-legend');
@@ -41697,7 +41947,7 @@ var BubbleLegend = BaseLegend.extend({
 
 module.exports = BubbleLegend;
 
-},{"../../../core/sanitize.js":150,"./base-legend":236,"underscore":329}],238:[function(require,module,exports){
+},{"../../../core/sanitize.js":151,"./base-legend":237,"underscore":329}],239:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -41765,7 +42015,7 @@ var CategoryLegend = BaseLegend.extend({
 
 module.exports = CategoryLegend;
 
-},{"../../../core/sanitize":150,"../legend-item":232,"./base-legend":236,"underscore":329}],239:[function(require,module,exports){
+},{"../../../core/sanitize":151,"../legend-item":233,"./base-legend":237,"underscore":329}],240:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -41854,7 +42104,7 @@ var ChoroplethLegend = BaseLegend.extend({
 
 module.exports = ChoroplethLegend;
 
-},{"../../../core/sanitize":150,"./base-legend":236,"underscore":329}],240:[function(require,module,exports){
+},{"../../../core/sanitize":151,"./base-legend":237,"underscore":329}],241:[function(require,module,exports){
 var _ = require('underscore');
 var BaseLegend = require('./base-legend');
 var LegendItem = require('../legend-item');
@@ -41909,7 +42159,7 @@ var ColorLegend = BaseLegend.extend({
 
 module.exports = ColorLegend;
 
-},{"../legend-item":232,"./base-legend":236,"underscore":329}],241:[function(require,module,exports){
+},{"../legend-item":233,"./base-legend":237,"underscore":329}],242:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize.js')
 var BaseLegend = require('./base-legend');
@@ -41981,13 +42231,13 @@ var CustomLegend = BaseLegend.extend({
 
 module.exports = CustomLegend;
 
-},{"../../../core/sanitize.js":150,"../legend-item":232,"../legend-items":233,"./base-legend":236,"underscore":329}],242:[function(require,module,exports){
+},{"../../../core/sanitize.js":151,"../legend-item":233,"../legend-items":234,"./base-legend":237,"underscore":329}],243:[function(require,module,exports){
 var View = require('../../../core/view');
 
 var DebugLegend = View.extend({ });
 module.exports = DebugLegend
 
-},{"../../../core/view":154}],243:[function(require,module,exports){
+},{"../../../core/view":155}],244:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -42078,7 +42328,7 @@ var DensityLegend = BaseLegend.extend({
 
 module.exports = DensityLegend;
 
-},{"../../../core/sanitize":150,"./base-legend":236,"underscore":329}],244:[function(require,module,exports){
+},{"../../../core/sanitize":151,"./base-legend":237,"underscore":329}],245:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -42225,7 +42475,7 @@ var IntensityLegend = BaseLegend.extend({
 
 module.exports = IntensityLegend;
 
-},{"../../../core/sanitize":150,"./base-legend":236,"underscore":329}],245:[function(require,module,exports){
+},{"../../../core/sanitize":151,"./base-legend":237,"underscore":329}],246:[function(require,module,exports){
 var LegendModel = require('../legend-model');
 var BubbleLegend = require('./bubble-legend');
 
@@ -42269,7 +42519,7 @@ var LegendBubble = BubbleLegend.extend({
 
 module.exports = LegendBubble;
 
-},{"../legend-model":234,"./bubble-legend":237}],246:[function(require,module,exports){
+},{"../legend-model":235,"./bubble-legend":238}],247:[function(require,module,exports){
 var CategoryLegend = require('./category-legend');
 var LegendItems = require('../legend-items');
 var LegendModel = require('../legend-model');
@@ -42311,7 +42561,7 @@ var LegendCategory = CategoryLegend.extend({
 
 module.exports = LegendCategory;
 
-},{"../legend-items":233,"../legend-model":234,"./category-legend":238}],247:[function(require,module,exports){
+},{"../legend-items":234,"../legend-model":235,"./category-legend":239}],248:[function(require,module,exports){
 var _ = require('underscore');
 var ChoroplethLegend = require('./choropleth-legend');
 var LegendModel = require('../legend-model');
@@ -42372,7 +42622,7 @@ var LegendChoropleth = ChoroplethLegend.extend({
 
 module.exports = LegendChoropleth;
 
-},{"../legend-model":234,"./choropleth-legend":239,"underscore":329}],248:[function(require,module,exports){
+},{"../legend-model":235,"./choropleth-legend":240,"underscore":329}],249:[function(require,module,exports){
 var LegendCategory = require('./legend-category');
 
 /**
@@ -42381,7 +42631,7 @@ var LegendCategory = require('./legend-category');
 var LegendColor = LegendCategory.extend({ });
 module.exports = LegendColor;
 
-},{"./legend-category":246}],249:[function(require,module,exports){
+},{"./legend-category":247}],250:[function(require,module,exports){
 var CustomLegend = require('./custom-legend');
 var LegendItems = require('../legend-items');
 var LegendModel = require('../legend-model');
@@ -42421,7 +42671,7 @@ var LegendCustom = CustomLegend.extend({
 
 module.exports = LegendCustom;
 
-},{"../legend-items":233,"../legend-model":234,"./custom-legend":241}],250:[function(require,module,exports){
+},{"../legend-items":234,"../legend-model":235,"./custom-legend":242}],251:[function(require,module,exports){
 var _ = require('underscore');
 var DensityLegend = require('./density-legend');
 var LegendModel = require('../legend-model');
@@ -42482,7 +42732,7 @@ var LegendDensity = DensityLegend.extend({
 
 module.exports = LegendDensity;
 
-},{"../legend-model":234,"./density-legend":243,"underscore":329}],251:[function(require,module,exports){
+},{"../legend-model":235,"./density-legend":244,"underscore":329}],252:[function(require,module,exports){
 var IntensityLegend = require('./intensity-legend');
 var LegendModel = require('../legend-model');
 
@@ -42532,14 +42782,14 @@ var LegendIntensity = IntensityLegend.extend({
 
 module.exports = LegendIntensity;
 
-},{"../legend-model":234,"./intensity-legend":244}],252:[function(require,module,exports){
+},{"../legend-model":235,"./intensity-legend":245}],253:[function(require,module,exports){
 var View = require('../../../core/view');
 
 var LegendNone = View.extend({ });
 
 module.exports = LegendNone;
 
-},{"../../../core/view":154}],253:[function(require,module,exports){
+},{"../../../core/view":155}],254:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cdb'); // cdb.geo.ui.Legend.*
 var Legends = require('../legends');
@@ -42640,7 +42890,7 @@ var LegendStacked = StackedLegend.extend({
 
 module.exports = LegendStacked;
 
-},{"../legend-model":234,"../legends":257,"./stacked-legend":256,"cdb":140,"underscore":329}],254:[function(require,module,exports){
+},{"../legend-model":235,"../legends":258,"./stacked-legend":257,"cdb":141,"underscore":329}],255:[function(require,module,exports){
 var Legend = {};
 Legend.Bubble = require('./legend-bubble');
 Legend.Category = require('./legend-category');
@@ -42654,14 +42904,14 @@ Legend.Stacked = require('./legend-stacked');
 
 module.exports = Legend;
 
-},{"./legend-bubble":245,"./legend-category":246,"./legend-choropleth":247,"./legend-color":248,"./legend-custom":249,"./legend-density":250,"./legend-intensity":251,"./legend-none":252,"./legend-stacked":253}],255:[function(require,module,exports){
+},{"./legend-bubble":246,"./legend-category":247,"./legend-choropleth":248,"./legend-color":249,"./legend-custom":250,"./legend-density":251,"./legend-intensity":252,"./legend-none":253,"./legend-stacked":254}],256:[function(require,module,exports){
 var BaseLegend = require('./base-legend');
 
 var NoneLegend  = BaseLegend.extend({ });
 
 module.exports = NoneLegend;
 
-},{"./base-legend":236}],256:[function(require,module,exports){
+},{"./base-legend":237}],257:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var View = require('../../../core/view');
@@ -42756,7 +43006,7 @@ var StackedLegend = View.extend({
 
 module.exports = StackedLegend;
 
-},{"../../../core/view":154,"jquery":306,"underscore":329}],257:[function(require,module,exports){
+},{"../../../core/view":155,"jquery":306,"underscore":329}],258:[function(require,module,exports){
 var Backbone = require('backbone');
 var LegendModel = require('./legend-model');
 
@@ -42764,7 +43014,7 @@ module.exports = Backbone.Collection.extend({
   model: LegendModel
 });
 
-},{"./legend-model":234,"backbone":1}],258:[function(require,module,exports){
+},{"./legend-model":235,"backbone":1}],259:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../../core/view');
 var NOKIA = require('../../../geo/geocoder/nokia-geocoder');
@@ -42989,7 +43239,7 @@ var Search = View.extend({
 
 module.exports = Search;
 
-},{"../../../core/view":154,"../../../geo/geocoder/nokia-geocoder":177,"../../../geo/geometry":180,"../../../geo/ui/infowindow":227,"../../../geo/ui/infowindow-model":226,"./search_infowindow_template.tpl":259,"./search_template.tpl":260,"underscore":329}],259:[function(require,module,exports){
+},{"../../../core/view":155,"../../../geo/geocoder/nokia-geocoder":178,"../../../geo/geometry":181,"../../../geo/ui/infowindow":228,"../../../geo/ui/infowindow-model":227,"./search_infowindow_template.tpl":260,"./search_template.tpl":261,"underscore":329}],260:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -43001,7 +43251,7 @@ __p+='<div class="CDB-infowindow CDB-infowindow--light js-infowindow"> <div clas
 return __p;
 };
 
-},{"underscore":329}],260:[function(require,module,exports){
+},{"underscore":329}],261:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -43011,7 +43261,7 @@ __p+='<div class="CDB-Overlay"> <div class="CDB-Search-inner"> <form class="js-f
 return __p;
 };
 
-},{"underscore":329}],261:[function(require,module,exports){
+},{"underscore":329}],262:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 var sanitize = require('../../core/sanitize');
@@ -43204,7 +43454,7 @@ var Text = View.extend({
 
 module.exports = Text;
 
-},{"../../core/sanitize":150,"../../core/view":154,"jquery":306,"underscore":329}],262:[function(require,module,exports){
+},{"../../core/sanitize":151,"../../core/view":155,"jquery":306,"underscore":329}],263:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 
@@ -43256,7 +43506,7 @@ var TilesLoader = View.extend({
 
 module.exports = TilesLoader;
 
-},{"../../core/view":154,"underscore":329}],263:[function(require,module,exports){
+},{"../../core/view":155,"underscore":329}],264:[function(require,module,exports){
 var _ = require('underscore');
 var InfoBox = require('./infobox');
 var sanitize = require('../../core/sanitize');
@@ -43472,7 +43722,7 @@ var Tooltip = InfoBox.extend({
 
 module.exports = Tooltip;
 
-},{"../../core/sanitize":150,"./infobox":225,"./infowindow-model":226,"underscore":329}],264:[function(require,module,exports){
+},{"../../core/sanitize":151,"./infobox":226,"./infowindow-model":227,"underscore":329}],265:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -43482,7 +43732,7 @@ __p+='<div class="CDB-Overlay"> <button class="CDB-Zoom-action CDB-Zoom-action--
 return __p;
 };
 
-},{"underscore":329}],265:[function(require,module,exports){
+},{"underscore":329}],266:[function(require,module,exports){
 var View = require('../../../core/view');
 var template = require('./zoom-template.tpl');
 
@@ -43547,12 +43797,12 @@ module.exports = View.extend({
 
 });
 
-},{"../../../core/view":154,"./zoom-template.tpl":264}],266:[function(require,module,exports){
+},{"../../../core/view":155,"./zoom-template.tpl":265}],267:[function(require,module,exports){
 var cdb = require('./cartodb.js');
 
 module.exports = cdb;
 
-},{"./cartodb.js":137}],267:[function(require,module,exports){
+},{"./cartodb.js":138}],268:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var templates = require('cdb.templates');
@@ -43724,7 +43974,7 @@ module.exports = View.extend({
 
 });
 
-},{"../../core/view":154,"cdb.templates":142,"jquery":306,"underscore":329}],268:[function(require,module,exports){
+},{"../../core/view":155,"cdb.templates":143,"jquery":306,"underscore":329}],269:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cdb');
 var _ = require('underscore');
@@ -43883,7 +44133,7 @@ var Dropdown = View.extend({
 
 module.exports = Dropdown;
 
-},{"../../core/view":154,"cdb":140,"cdb.templates":142,"jquery":306,"underscore":329}],269:[function(require,module,exports){
+},{"../../core/view":155,"cdb":141,"cdb.templates":143,"jquery":306,"underscore":329}],270:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -43895,7 +44145,7 @@ __p+='<a href="'+
 return __p;
 };
 
-},{"underscore":329}],270:[function(require,module,exports){
+},{"underscore":329}],271:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var log = require('cdb.log');
@@ -44015,7 +44265,7 @@ var FullScreen = View.extend({
 
 module.exports = FullScreen;
 
-},{"../../../core/view":154,"./fullscreen-template.tpl":269,"cdb.log":141,"jquery":306,"underscore":329}],271:[function(require,module,exports){
+},{"../../../core/view":155,"./fullscreen-template.tpl":270,"cdb.log":142,"jquery":306,"underscore":329}],272:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -44102,7 +44352,7 @@ var Notification = View.extend({
 
 module.exports = Notification;
 
-},{"../../core/view":154,"cdb.templates":142,"underscore":329}],272:[function(require,module,exports){
+},{"../../core/view":155,"cdb.templates":143,"underscore":329}],273:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var View = require('../../core/view');
@@ -44411,7 +44661,7 @@ var Table = View.extend({
 
 module.exports = Table;
 
-},{"../../core/view":154,"./table/row-view":273,"jquery":306,"underscore":329}],273:[function(require,module,exports){
+},{"../../core/view":155,"./table/row-view":274,"jquery":306,"underscore":329}],274:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../../core/view');
 
@@ -44511,7 +44761,7 @@ var RowView = View.extend({
 
 module.exports = RowView;
 
-},{"../../../core/view":154,"underscore":329}],274:[function(require,module,exports){
+},{"../../../core/view":155,"underscore":329}],275:[function(require,module,exports){
 var Model = require('../../../core/model');
 
 /**
@@ -44522,7 +44772,7 @@ var Row = Model.extend({
 
 module.exports = Row;
 
-},{"../../../core/model":148}],275:[function(require,module,exports){
+},{"../../../core/model":149}],276:[function(require,module,exports){
 var Backbone = require('backbone');
 var Row = require('./row');
 
@@ -44556,7 +44806,7 @@ var TableData = Backbone.Collection.extend({
 
 module.exports = TableData;
 
-},{"./row":274,"backbone":1}],276:[function(require,module,exports){
+},{"./row":275,"backbone":1}],277:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../../core/model');
 
@@ -44578,7 +44828,7 @@ var TableProperties = Model.extend({
 
 module.exports = TableProperties;
 
-},{"../../../core/model":148,"underscore":329}],277:[function(require,module,exports){
+},{"../../../core/model":149,"underscore":329}],278:[function(require,module,exports){
 var Backbone = require('backbone');
 
 /**
@@ -44597,7 +44847,7 @@ module.exports = function (method, model, options) {
   return this._xhr;
 };
 
-},{"backbone":1}],278:[function(require,module,exports){
+},{"backbone":1}],279:[function(require,module,exports){
 var _ = require('underscore');
 var Overlay = require('./vis/overlay');
 var InfowindowModel = require('../geo/ui/infowindow-model');
@@ -44713,7 +44963,7 @@ InfowindowManager.prototype._bindFeatureClickEvent = function (layerView) {
 
 module.exports = InfowindowManager;
 
-},{"../geo/ui/infowindow-model":226,"./vis/overlay":285,"underscore":329}],279:[function(require,module,exports){
+},{"../geo/ui/infowindow-model":227,"./vis/overlay":286,"underscore":329}],280:[function(require,module,exports){
 var Layers = require('./vis/layers');
 var TileLayer = require('../geo/map/tile-layer');
 var WMSLayer = require('../geo/map/wms-layer');
@@ -44833,7 +45083,7 @@ function normalizeOptions (data, options) {
 
 module.exports = Layers;
 
-},{"../geo/map/cartodb-layer":211,"../geo/map/gmaps-base-layer":212,"../geo/map/plain-layer":215,"../geo/map/tile-layer":216,"../geo/map/torque-layer":217,"../geo/map/wms-layer":218,"./vis/layers":284}],280:[function(require,module,exports){
+},{"../geo/map/cartodb-layer":212,"../geo/map/gmaps-base-layer":213,"../geo/map/plain-layer":216,"../geo/map/tile-layer":217,"../geo/map/torque-layer":218,"../geo/map/wms-layer":219,"./vis/layers":285}],281:[function(require,module,exports){
 var _ = require('underscore');
 var Overlay = require('./vis/overlay');
 var Model = require('../core/model');
@@ -45130,10 +45380,10 @@ Overlay.register('search', function (data, vis) {
 
 // tooltip
 Overlay.register('tooltip', function (data, vis) {
-  if (!data.layer && vis.getLayers().length <= 1) {
+  if (!data.layer && vis.getLayerViews().length <= 1) {
     throw new Error('layer is null');
   }
-  data.layer = data.layer || vis.getLayers()[1];
+  data.layer = data.layer || vis.getLayerViews()[1];
   data.layer.setInteraction(true);
   data.mapView = vis.mapView;
   return new Tooltip(data);
@@ -45141,7 +45391,7 @@ Overlay.register('tooltip', function (data, vis) {
 
 Overlay.register('infobox', function (data, vis) {
   var layer;
-  var layers = vis.getLayers();
+  var layers = vis.getLayerViews();
   if (!data.layer) {
     if (layers.length > 1) {
       layer = layers[1];
@@ -45157,7 +45407,7 @@ Overlay.register('infobox', function (data, vis) {
 
 });
 
-},{"../core/model":148,"../core/template":152,"../geo/ui/annotation":220,"../geo/ui/attribution/attribution-view":222,"../geo/ui/header":223,"../geo/ui/infobox":225,"../geo/ui/infowindow":227,"../geo/ui/infowindow-model":226,"../geo/ui/layer-selector":228,"../geo/ui/search/search":258,"../geo/ui/text":261,"../geo/ui/tiles-loader":262,"../geo/ui/tooltip":263,"../geo/ui/zoom/zoom-view":265,"../ui/common/fullscreen/fullscreen-view":270,"./vis/overlay":285,"underscore":329}],281:[function(require,module,exports){
+},{"../core/model":149,"../core/template":153,"../geo/ui/annotation":221,"../geo/ui/attribution/attribution-view":223,"../geo/ui/header":224,"../geo/ui/infobox":226,"../geo/ui/infowindow":228,"../geo/ui/infowindow-model":227,"../geo/ui/layer-selector":229,"../geo/ui/search/search":259,"../geo/ui/text":262,"../geo/ui/tiles-loader":263,"../geo/ui/tooltip":264,"../geo/ui/zoom/zoom-view":266,"../ui/common/fullscreen/fullscreen-view":271,"./vis/overlay":286,"underscore":329}],282:[function(require,module,exports){
 var Tooltip = require('../geo/ui/tooltip');
 
 /**
@@ -45239,13 +45489,12 @@ TooltipManager.prototype._bindFeatureOverEvent = function (layerView) {
 
 module.exports = TooltipManager;
 
-},{"../geo/ui/tooltip":263}],282:[function(require,module,exports){
+},{"../geo/ui/tooltip":264}],283:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var $ = require('jquery');
 var log = require('cdb.log');
 var util = require('cdb.core.util');
-var Loader = require('../core/loader');
 var View = require('../core/view');
 var StackedLegend = require('../geo/ui/legend/stacked-legend');
 var Map = require('../geo/map');
@@ -45267,8 +45516,6 @@ var WindshaftClient = require('../windshaft/client');
 var WindshaftLayerGroupConfig = require('../windshaft/layergroup-config');
 var WindshaftNamedMapConfig = require('../windshaft/namedmap-config');
 var WindshaftMap = require('../windshaft/windshaft-map');
-var VizJSON = require('./vizjson');
-var util = require('cdb.core.util');
 
 /**
  * Visualization creation
@@ -45283,6 +45530,14 @@ var Vis = View.extend({
       this.mapView = this.options.mapView;
       this.map = this.mapView.map;
     }
+  },
+
+  error: function (fn) {
+    return this.bind('error', fn);
+  },
+
+  done: function (fn) {
+    return this.bind('done', fn);
   },
 
   _addLegends: function (legends) {
@@ -45305,7 +45560,7 @@ var Vis = View.extend({
     var layers = [];
 
     // flatten layers (except baselayer)
-    var layers = _.map(this.getLayers().slice(1), function (layer) {
+    var layers = _.map(this.getLayerViews().slice(1), function (layer) {
       if (layer.getSubLayers) {
         return layer.getSubLayers();
       }
@@ -45425,31 +45680,8 @@ var Vis = View.extend({
     });
   },
 
-  load: function (data, options) {
-    if (typeof (data) === 'string') {
-      var url = data;
-      Loader.get(url, function (data) {
-        if (data) {
-          this.load(data, options);
-        } else {
-          this.throwError('error fetching viz.json file');
-        }
-      }.bind(this));
-
-      return;
-    }
-
-    var DEFAULT_OPTIONS = {
-      tiles_loader: true,
-      loaderControl: true,
-      infowindow: true,
-      tooltip: true,
-      time_slider: true
-    };
-
-    options = _.defaults(options || {}, DEFAULT_OPTIONS);
-    var vizjson = new VizJSON(data);
-    this._applyOptionsToVizJSON(vizjson, options);
+  load: function (vizjson, options) {
+    options = options || {};
 
     this._dataviewsCollection = new DataviewCollection();
 
@@ -45486,10 +45718,6 @@ var Vis = View.extend({
     // Create the Map
 
     var allowDragging = util.isMobileDevice() || vizjson.hasZoomOverlay() || vizjson.scrollwheel;
-    var center = vizjson.center;
-    if (typeof (center) === 'string') {
-      center = $.parseJSON(center);
-    }
 
     var mapConfig = {
       title: vizjson.title,
@@ -45498,7 +45726,7 @@ var Vis = View.extend({
       minZoom: vizjson.minZoom,
       legends: vizjson.legends,
       bounds: vizjson.bounds,
-      center: center,
+      center: vizjson.center,
       zoom: vizjson.zoom,
       scrollwheel: !!this.scrollwheel,
       drag: allowDragging,
@@ -45562,7 +45790,7 @@ var Vis = View.extend({
 
     // Create the Layer Models and set them on hte map
     this.https = (window && window.location.protocol && window.location.protocol === 'https:') || !!vizjson.https || !!options.https;
-    var layerModels = this._newLayerModels(data, this.map);
+    var layerModels = this._newLayerModels(vizjson, this.map);
 
     var infowindowManager = new InfowindowManager(this);
     infowindowManager.manage(this.mapView, this.map);
@@ -45573,7 +45801,7 @@ var Vis = View.extend({
     // Create the collection of Overlays
     var overlaysCollection = new Backbone.Collection();
     overlaysCollection.bind('reset', function (overlays) {
-      this._addOverlays(overlays, data, options);
+      this._addOverlays(overlays, vizjson, options);
     }, this);
     overlaysCollection.reset(vizjson.overlays);
 
@@ -45585,10 +45813,6 @@ var Vis = View.extend({
       windshaftMap: windshaftMap
     });
 
-    if (!options.skipMapInstantiation) {
-      this.instantiateMap();
-    }
-
     // Lastly: reset the layer models on the map
     this.map.layers.reset(layerModels);
 
@@ -45596,67 +45820,6 @@ var Vis = View.extend({
     window.vis = this;
 
     return this;
-  },
-
-  _applyOptionsToVizJSON: function (vizjson, options) {
-    vizjson.scrollwheel = options.scrollwheel || vizjson.scrollwheel;
-
-    if (!options.tiles_loader || !options.loaderControl) {
-      vizjson.removeLoaderOverlay();
-    }
-
-    if (options.searchControl === true) {
-      vizjson.addSearchOverlay();
-    } else if (options.searchControl === false) {
-      vizjson.removeSearchOverlay();
-    }
-
-    if ((options.title && vizjson.title) || (options.description && vizjson.description)) {
-      vizjson.addHeaderOverlay(options.title, options.description, options.shareable);
-    }
-
-    if (options.layer_selector) {
-      vizjson.addLayerSelectorOverlay();
-    }
-
-    if (options.zoomControl !== undefined && !options.zoomControl) {
-      vizjson.removeZoomOverlay();
-    }
-
-    // if bounds are present zoom and center will not taken into account
-    var zoom = parseInt(options.zoom, 10);
-    if (!isNaN(zoom)) {
-      vizjson.setZoom(zoom);
-    }
-
-    // Center coordinates?
-    var center_lat = parseFloat(options.center_lat);
-    var center_lon = parseFloat(options.center_lon);
-    if (!isNaN(center_lat) && !isNaN(center_lon)) {
-      vizjson.setCenter([center_lat, center_lon]);
-    }
-
-    // Center object
-    if (options.center !== undefined) {
-      vizjson.setCenter(options.center);
-    }
-
-    // Bounds?
-    var sw_lat = parseFloat(options.sw_lat);
-    var sw_lon = parseFloat(options.sw_lon);
-    var ne_lat = parseFloat(options.ne_lat);
-    var ne_lon = parseFloat(options.ne_lon);
-
-    if (!isNaN(sw_lat) && !isNaN(sw_lon) && !isNaN(ne_lat) && !isNaN(ne_lon)) {
-      vizjson.setBounds([
-        [ sw_lat, sw_lon ],
-        [ ne_lat, ne_lon ]
-      ]);
-    }
-
-    if (options.gmaps_base_type) {
-      vizjson.enforceGMapsBaseLayer(options.gmaps_base_type, options.gmaps_style);
-    }
   },
 
   /**
@@ -45855,29 +46018,36 @@ var Vis = View.extend({
     });
   },
 
-  error: function (fn) {
-    return this.bind('error', fn);
-  },
-
-  done: function (fn) {
-    return this.bind('done', fn);
-  },
-
   // public methods
-  //
 
-  // get the native map used behind the scenes
+  /**
+   * @return the native map used behind the scenes {L.Map} or {google.maps.Map}
+   */
   getNativeMap: function () {
     return this.mapView.getNativeMap();
   },
 
   // returns an array of layers
-  // TODO: Rename to getLayerViews
-  getLayers: function () {
+  getLayerViews: function () {
     var self = this;
     return _.compact(this.map.layers.map(function (layer) {
       return self.mapView.getLayerViewByLayerCid(layer.cid);
     }));
+  },
+
+  /**
+   * @return Array of {LayerModel}
+   */
+  getLayers: function() {
+    return _.clone(this.map.layers.models);
+  },
+  
+  /**
+   * @param {Integer} index Layer index (including base layer if present)
+   * @return {LayerModel}
+   */
+  getLayer: function(index) {
+    return this.map.layers.at(index);
   },
 
   getOverlays: function () {
@@ -46008,7 +46178,7 @@ var Vis = View.extend({
 
 module.exports = Vis;
 
-},{"../core/loader":144,"../core/template":152,"../core/view":154,"../dataviews/dataviews-collection":161,"../dataviews/dataviews-factory":162,"../geo/map":210,"../geo/map-view-factory":208,"../geo/ui/infowindow":227,"../geo/ui/infowindow-model":226,"../geo/ui/legend":235,"../geo/ui/legend-model":234,"../geo/ui/legend/stacked-legend":256,"../windshaft/client":288,"../windshaft/config":289,"../windshaft/layergroup-config":295,"../windshaft/namedmap-config":296,"../windshaft/windshaft-map":297,"./infowindow-manager":278,"./tooltip-manager":281,"./vis/infowindow-template":283,"./vis/layers":284,"./vis/overlay":285,"./vizjson":287,"backbone":1,"cdb.core.util":153,"cdb.log":141,"jquery":306,"underscore":329}],283:[function(require,module,exports){
+},{"../core/template":153,"../core/view":155,"../dataviews/dataviews-collection":162,"../dataviews/dataviews-factory":163,"../geo/map":211,"../geo/map-view-factory":209,"../geo/ui/infowindow":228,"../geo/ui/infowindow-model":227,"../geo/ui/legend":236,"../geo/ui/legend-model":235,"../geo/ui/legend/stacked-legend":257,"../windshaft/client":288,"../windshaft/config":289,"../windshaft/layergroup-config":295,"../windshaft/namedmap-config":296,"../windshaft/windshaft-map":297,"./infowindow-manager":279,"./tooltip-manager":282,"./vis/infowindow-template":284,"./vis/layers":285,"./vis/overlay":286,"backbone":1,"cdb.core.util":154,"cdb.log":142,"jquery":306,"underscore":329}],284:[function(require,module,exports){
 var INFOWINDOW_TEMPLATE = {
   light: [
     '<div class="cartodb-popup v2">',
@@ -46033,7 +46203,7 @@ var INFOWINDOW_TEMPLATE = {
 
 module.exports = INFOWINDOW_TEMPLATE;
 
-},{}],284:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 
@@ -46062,7 +46232,7 @@ var Layers = {
 
 module.exports = Layers;
 
-},{"cdb.log":141,"underscore":329}],285:[function(require,module,exports){
+},{"cdb.log":142,"underscore":329}],286:[function(require,module,exports){
 var log = require('cdb.log');
 
 /**
@@ -46103,7 +46273,7 @@ var Overlay = {
 
 module.exports = Overlay;
 
-},{"cdb.log":141}],286:[function(require,module,exports){
+},{"cdb.log":142}],287:[function(require,module,exports){
 var Backbone = require('backbone');
 
 var Overlays = Backbone.Collection.extend({
@@ -46113,153 +46283,7 @@ var Overlays = Backbone.Collection.extend({
 
 module.exports = Overlays;
 
-},{"backbone":1}],287:[function(require,module,exports){
-var _ = require('underscore');
-var log = require('cdb.log');
-
-var GMAPS_BASE_LAYER_TYPES = ['roadmap', 'gray_roadmap', 'dark_roadmap', 'hybrid', 'satellite', 'terrain'];
-
-var VizJSON = function (vizjson) {
-  _.each(Object.keys(vizjson), function (property) {
-    this[property] = vizjson[property];
-  }, this);
-
-  this.overlays = this.overlays || [];
-  this.layers = this.layers || [];
-
-  this._addAttributionOverlay();
-};
-
-VizJSON.OVERLAY_TYPES = {
-  ZOOM: 'zoom',
-  ATTRIBUTION: 'attribution',
-  LOADER: 'loader',
-  SEARCH: 'search',
-  HEADER: 'header',
-  LAYER_SELECTOR: 'layer_selector'
-};
-
-VizJSON.MAP_PROVIDER_TYPES = {
-  GMAPS: 'googlemaps',
-  LEAFLET: 'leaflet'
-};
-
-VizJSON.prototype.hasZoomOverlay = function () {
-  return this.hasOverlay(VizJSON.OVERLAY_TYPES.ZOOM);
-};
-
-VizJSON.prototype.hasOverlay = function (overlayType) {
-  return _.isObject(this.getOverlayByType(overlayType));
-};
-
-VizJSON.prototype.getOverlayByType = function (overlayType) {
-  return _.find(this.overlays, function (overlay) {
-    return overlay.type === overlayType;
-  });
-};
-
-VizJSON.prototype.addHeaderOverlay = function (showTitle, showDescription, isShareable) {
-  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.HEADER)) {
-    this.overlays.unshift({
-      type: VizJSON.OVERLAY_TYPES.HEADER,
-      order: 1,
-      shareable: isShareable,
-      url: this.url,
-      options: {
-        extra: {
-          title: this.title,
-          description: this.description,
-          show_title: showTitle,
-          show_description: showDescription
-        }
-      }
-    });
-  }
-};
-
-VizJSON.prototype.addLayerSelectorOverlay = function () {
-  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.LAYER_SELECTOR)) {
-    this.overlays.push({
-      type: VizJSON.OVERLAY_TYPES.LAYER_SELECTOR
-    });
-  }
-};
-
-VizJSON.prototype.addSearchOverlay = function () {
-  if (!this.hasOverlay(VizJSON.OVERLAY_TYPES.SEARCH)) {
-    this.overlays.push({
-      type: VizJSON.OVERLAY_TYPES.SEARCH,
-      order: 3
-    });
-  }
-};
-
-VizJSON.prototype.removeOverlay = function (overlayType) {
-  for (var i = 0; i < this.overlays.length; ++i) {
-    if (this.overlays[i].type === overlayType) {
-      this.overlays.splice(i, 1);
-      return;
-    }
-  }
-};
-
-VizJSON.prototype.removeLoaderOverlay = function () {
-  this.removeOverlay(VizJSON.OVERLAY_TYPES.LOADER);
-};
-
-VizJSON.prototype.removeZoomOverlay = function () {
-  this.removeOverlay(VizJSON.OVERLAY_TYPES.ZOOM);
-};
-
-VizJSON.prototype.removeSearchOverlay = function () {
-  this.removeOverlay(VizJSON.OVERLAY_TYPES.SEARCH);
-};
-
-VizJSON.prototype._addAttributionOverlay = function () {
-  this.overlays.push({
-    type: VizJSON.OVERLAY_TYPES.ATTRIBUTION
-  });
-};
-
-VizJSON.prototype.enforceGMapsBaseLayer = function (gmapsBaseType, gmapsStyle) {
-  var isGmapsBaseTypeValid = _.contains(GMAPS_BASE_LAYER_TYPES, gmapsBaseType);
-  if (this.map_provider === VizJSON.MAP_PROVIDER_TYPES.LEAFLET && isGmapsBaseTypeValid) {
-    if (this.layers) {
-      this.layers[0].options.type = 'GMapsBase';
-      this.layers[0].options.base_type = gmapsBaseType;
-      this.layers[0].options.name = gmapsBaseType;
-
-      if (gmapsStyle) {
-        this.layers[0].options.style = typeof gmapsStyle === 'string' ? JSON.parse(gmapsStyle) : gmapsStyle;
-      }
-
-      this.map_provider = VizJSON.MAP_PROVIDER_TYPES.GMAPS;
-      this.layers[0].options.attribution = ''; // GMaps has its own attribution
-    } else {
-      log.error('No base map loaded. Using Leaflet.');
-    }
-  } else {
-    log.error('GMaps base_type "' + gmapsBaseType + ' is not supported. Using leaflet.');
-  }
-};
-
-VizJSON.prototype.setZoom = function (zoom) {
-  this.zoom = zoom;
-  this.bounds = null;
-};
-
-VizJSON.prototype.setCenter = function (center) {
-  this.center = center;
-  this.bounds = null;
-};
-
-VizJSON.prototype.setBounds = function (bounds) {
-  this.bounds = bounds;
-};
-
-module.exports = VizJSON;
-
-},{"cdb.log":141,"underscore":329}],288:[function(require,module,exports){
+},{"backbone":1}],288:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var LZMA = require('lzma');
@@ -46395,7 +46419,7 @@ WindshaftClient.prototype._jsonpCallbackName = function (payload) {
 
 module.exports = WindshaftClient;
 
-},{"../core/util":153,"jquery":306,"lzma":301,"underscore":329}],289:[function(require,module,exports){
+},{"../core/util":154,"jquery":306,"lzma":301,"underscore":329}],289:[function(require,module,exports){
 module.exports = {
   MAPS_API_BASE_URL: 'api/v1/map'
 };
@@ -46419,7 +46443,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":148}],291:[function(require,module,exports){
+},{"../../core/model":149}],291:[function(require,module,exports){
 var Model = require('../../core/model');
 
 module.exports = Model.extend({
@@ -46446,7 +46470,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":148}],292:[function(require,module,exports){
+},{"../../core/model":149}],292:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var WindshaftFilterBase = require('./base');
@@ -84703,11 +84727,105 @@ module.exports = function (element) {
 }.call(this));
 
 },{}],330:[function(require,module,exports){
+module.exports={
+  "name": "cartodb-deep-insights.js",
+  "version": "0.0.1",
+  "description": "CartoDB Deep Insights JS library",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CartoDB/deep-insights.js.git"
+  },
+  "author": {
+    "name": "CartoDB",
+    "url": "http://cartodb.com/",
+    "email": "wadus@cartodb.com"
+  },
+  "contributors": [
+    "Javier Álvarez <jmedina@cartodb.com>",
+    "Javier Arce <javierarce@cartodb.com>",
+    "Javier Santana <jsantana@cartodb.com>",
+    "Raul Ochoa <rochoa@cartodb.com>",
+    "Nicklas Gummesson <nicklas@cartodb.com>",
+    "Pablo Alonso <pablo@cartodb.com>",
+    "Antonio Santiago Pérez <asantiago@cartodb.com>"
+  ],
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "backbone": "1.2.3",
+    "cartodb.js": "CartoDB/cartodb.js#v4",
+    "d3": "3.5.8",
+    "jquery": "2.1.4",
+    "jstify": "0.12.0",
+    "moment": "2.10.6",
+    "perfect-scrollbar": "0.6.7",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "browserify": "11.2.0",
+    "browserify-resolutions": "1.0.6",
+    "cartoassets": "CartoDB/CartoAssets#master",
+    "grunt": "0.4.5",
+    "grunt-aws": "^0.4.0",
+    "grunt-browserify": "4.0.1",
+    "grunt-contrib-clean": "0.7.0",
+    "grunt-contrib-concat": "0.5.1",
+    "grunt-contrib-connect": "0.11.2",
+    "grunt-contrib-copy": "0.8.2",
+    "grunt-contrib-cssmin": "0.14.0",
+    "grunt-contrib-imagemin": "1.0.0",
+    "grunt-contrib-jasmine": "0.9.2",
+    "grunt-contrib-uglify": "0.11.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-exorcise": "2.1.0",
+    "grunt-gh-pages": "1.0.0",
+    "grunt-sass": "1.1.0",
+    "load-grunt-tasks": "3.3.0",
+    "semistandard": "7.0.4",
+    "source-map-support": "0.4.0",
+    "time-grunt": "1.2.2",
+    "watchify": "3.6.1",
+    "grunt-fastly": "~0.1.3"
+  },
+  "browserify": {
+    "transform": [
+      "jstify"
+    ]
+  },
+  "main": "src/index.js",
+  "semistandard": {
+    "globals": [
+      "alert",
+      "cartodb",
+      "cdb",
+      "jasmine",
+      "describe",
+      "xdescribe",
+      "beforeEach",
+      "afterEach",
+      "spyOn",
+      "it",
+      "xit",
+      "expect"
+    ],
+    "ignore": [
+      "/*.js",
+      "/dist",
+      "/examples",
+      "/grunt-tasks",
+      "/styleguide",
+      "/themes",
+      "/vendor"
+    ]
+  }
+}
+
+},{}],331:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
-var DashboardView = require('./dashboard-view');
-var WidgetsCollection = require('./widgets/widgets-collection');
-var WidgetsService = require('./widgets-service');
+var Dashboard = require('./dashboard');
+var DashboardView = require('../dashboard-view');
+var WidgetsCollection = require('../widgets/widgets-collection');
+var WidgetsService = require('../widgets-service');
 
 /**
  * Translates a vizJSON v3 datastructure into a working dashboard which will be rendered in given selector.
@@ -84720,7 +84838,7 @@ var WidgetsService = require('./widgets-service');
  *   dashboardView: root (backbone) view of the dashboard
  *   vis: the instantiated vis map, same result as given from cdb.createVis()
  */
-module.exports = function (selector, vizJSON, opts) {
+var createDashboard = function (selector, vizJSON, opts, callback) {
   var dashboardEl = document.querySelector(selector);
   if (!dashboardEl) throw new Error('no element found with selector ' + selector);
 
@@ -84786,16 +84904,137 @@ module.exports = function (selector, vizJSON, opts) {
     vis.centerMapToOrigin();
   }
 
-  vis.instantiateMap();
+  vis.done(function () {
+    callback && callback(null, {
+      dashboardView: dashboardView,
+      widgets: widgetsService,
+      vis: vis
+    });
+  });
 
-  return {
-    dashboardView: dashboardView,
-    widgets: widgetsService,
-    vis: vis
-  };
+  vis.error(function (error) {
+    callback && callback(error);
+  });
+
+  vis.instantiateMap();
 };
 
-},{"./dashboard-view":336,"./widgets-service":340,"./widgets/widgets-collection":413,"cartodb.js":266,"underscore":329}],331:[function(require,module,exports){
+module.exports = function (selector, vizJSON, opts, callback) {
+  var args = arguments;
+  var fn = args[args.length - 1];
+
+  if (_.isFunction(fn)) {
+    callback = fn;
+  }
+
+  function _load (vizJSON) {
+    createDashboard(selector, vizJSON, opts, function (error, dashboard) {
+      if (error) {
+        throw new Error('Error creating dashboard: ' + error);
+      }
+      callback && callback(null, new Dashboard(dashboard));
+    });
+  }
+
+  if (typeof vizJSON === 'string') {
+    cdb.core.Loader.get(vizJSON, function (data) {
+      if (data) {
+        _load(data, opts);
+      } else {
+        callback && callback(new Error('error fetching viz.json file'));
+      }
+    });
+  } else {
+    _load(vizJSON, opts);
+  }
+};
+
+},{"../dashboard-view":338,"../widgets-service":342,"../widgets/widgets-collection":415,"./dashboard":332,"cartodb.js":267,"underscore":329}],332:[function(require,module,exports){
+function Dashboard (dashboard) {
+  this._dashboard = dashboard;
+}
+
+Dashboard.prototype = {
+
+  /**
+   * @return {Map} the map used in the dashboard
+   */
+  getMap: function () {
+    return this._dashboard.vis;
+  },
+
+  /**
+   * @return {Array} of widgets in the dashboard
+   */
+  getWidgets: function () {
+    return this._dashboard.widgets.getList();
+  },
+
+  /**
+   * @param {Integer} id - widget id
+   * @return a widget object
+   */
+  getWidget: function (id) {
+    return this._dashboard.widgets.get(id);
+  },
+
+  /**
+   * Create a category widget.
+   * @param {Object} widgetAttrs - attributes for the new widget
+   * @param {string} widgetAttrs.id - id (required)
+   * @param {string} widgetAttrs.title - title (required)
+   * @param {number} widgetAttrs.order - index of the widget (optional)
+   * @param ...
+   * @return {CategoryWidget} The new widget
+   */
+  createCategoryWidget: function (widgetAttrs, layer) {
+    return this._dashboard.widgets.createCategoryModel(widgetAttrs, layer);
+  },
+
+  /**
+   * Create a histogram widget
+   * @param {Object} widgetAttrs - attributes for the new widget
+   * @param {string} widgetAttrs.id - id (required)
+   * @param {string} widgetAttrs.title - title (required)
+   * @param {number} widgetAttrs.order - index of the widget (optional)
+   * @param ...
+   * @return {HistogramWidget} The new widget
+   */
+  createHistogramWidget: function (widgetAttrs, layer) {
+    return this._dashboard.widgets.createHistogramModel(widgetAttrs, layer);
+  },
+
+  /**
+   * Create a formula widget
+   * @param {Object} widgetAttrs - attributes for the new widget
+   * @param {string} widgetAttrs.id - id (required)
+   * @param {string} widgetAttrs.title - title (required)
+   * @param {number} widgetAttrs.order - index of the widget (optional)
+   * @param ...
+   * @return {FormulaWidget} The new widget
+   */
+  createFormulaWidget: function (widgetAttrs, layer) {
+    return this._dashboard.widgets.createFormulaModel(widgetAttrs, layer);
+  },
+
+  /**
+   * Create a timesier es widget
+   * @param {Object} widgetAttrs - attributes for the new widget
+   * @param {string} widgetAttrs.id - id (required)
+   * @param {string} widgetAttrs.title - title (required)
+   * @param {number} widgetAttrs.order - index of the widget (optional)
+   * @param ...
+   * @return {TimeSeriesWidget} The new widget
+   */
+  createTimeSeriesWidget: function (widgetAttrs, layer) {
+    return this._dashboard.widgets.createTimeSeriesModel(widgetAttrs, layer);
+  }
+
+};
+
+module.exports = Dashboard;
+
+},{}],333:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var WidgetViewFactory = require('./widgets/widget-view-factory');
@@ -84874,7 +85113,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./widgets/time-series/content-view":388,"./widgets/time-series/torque-content-view":393,"./widgets/widget-view-factory":411,"cartodb.js":266,"underscore":329}],332:[function(require,module,exports){
+},{"./widgets/time-series/content-view":390,"./widgets/time-series/torque-content-view":395,"./widgets/widget-view-factory":413,"cartodb.js":267,"underscore":329}],334:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./dashboard-menu-view.tpl');
 var moment = require('moment');
@@ -84907,7 +85146,7 @@ var DashboardMenuView = cdb.core.View.extend({
 
 module.exports = DashboardMenuView;
 
-},{"./dashboard-menu-view.tpl":333,"cartodb.js":266,"moment":307}],333:[function(require,module,exports){
+},{"./dashboard-menu-view.tpl":335,"cartodb.js":267,"moment":307}],335:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -84929,7 +85168,7 @@ __p+='<div class="CDB-Dashboard-menuContainer"> <div class="CDB-Dashboard-menuIn
 return __p;
 };
 
-},{"underscore":329}],334:[function(require,module,exports){
+},{"underscore":329}],336:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Ps = require('perfect-scrollbar');
@@ -85081,7 +85320,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./dashboard-sidebar.tpl":335,"./widgets/category/content-view":345,"./widgets/formula/content-view":370,"./widgets/histogram/content-view":374,"./widgets/list/content-view":381,"./widgets/widget-view-factory":411,"cartodb.js":266,"jquery":306,"perfect-scrollbar":308,"underscore":329}],335:[function(require,module,exports){
+},{"./dashboard-sidebar.tpl":337,"./widgets/category/content-view":347,"./widgets/formula/content-view":372,"./widgets/histogram/content-view":376,"./widgets/list/content-view":383,"./widgets/widget-view-factory":413,"cartodb.js":267,"jquery":306,"perfect-scrollbar":308,"underscore":329}],337:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85091,7 +85330,7 @@ __p+='<div class="CDB-Widget-canvasInner js-container"></div>';
 return __p;
 };
 
-},{"underscore":329}],336:[function(require,module,exports){
+},{"underscore":329}],338:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./dashboard.tpl');
 var DashboardBelowMapView = require('./dashboard-below-map-view');
@@ -85147,7 +85386,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./dashboard-below-map-view":331,"./dashboard-menu-view":332,"./dashboard-sidebar-view":334,"./dashboard.tpl":337,"cartodb.js":266}],337:[function(require,module,exports){
+},{"./dashboard-below-map-view":333,"./dashboard-menu-view":334,"./dashboard-sidebar-view":336,"./dashboard.tpl":339,"cartodb.js":267}],339:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85157,7 +85396,7 @@ __p+='<div class="CDB-Dashboard-mapWrapper js-map-wrapper"> <div class="CDB-Map-
 return __p;
 };
 
-},{"underscore":329}],338:[function(require,module,exports){
+},{"underscore":329}],340:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 
@@ -85205,16 +85444,17 @@ format.formatValue = function (value) {
 
 module.exports = format;
 
-},{"d3":305,"underscore":329}],339:[function(require,module,exports){
+},{"d3":305,"underscore":329}],341:[function(require,module,exports){
 var cdb = require('cartodb.js');
 
 cdb.deepInsights = {
-  createDashboard: require('./create-dashboard')
+  VERSION: require('../package.json').version,
+  createDashboard: require('./api/create-dashboard')
 };
 
 module.exports = cdb;
 
-},{"./create-dashboard":330,"cartodb.js":266}],340:[function(require,module,exports){
+},{"../package.json":330,"./api/create-dashboard":331,"cartodb.js":267}],342:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetModel = require('./widgets/widget-model');
 var CategoryWidgetModel = require('./widgets/category/category-widget-model');
@@ -85230,6 +85470,10 @@ var WidgetsService = function (widgetsCollection, dataviews) {
 
 WidgetsService.prototype.get = function (id) {
   return this._widgetsCollection.get(id);
+};
+
+WidgetsService.prototype.getList = function () {
+  return this._widgetsCollection.models;
 };
 
 /**
@@ -85373,7 +85617,7 @@ function _checkProperties (obj, propertiesArray) {
 
 module.exports = WidgetsService;
 
-},{"./widgets/category/category-widget-model":343,"./widgets/histogram/histogram-widget-model":378,"./widgets/widget-model":409,"underscore":329}],341:[function(require,module,exports){
+},{"./widgets/category/category-widget-model":345,"./widgets/histogram/histogram-widget-model":380,"./widgets/widget-model":411,"underscore":329}],343:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 var cdb = require('cartodb.js');
@@ -85495,7 +85739,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"cartodb.js":266,"d3":305,"underscore":329}],342:[function(require,module,exports){
+},{"cartodb.js":267,"d3":305,"underscore":329}],344:[function(require,module,exports){
 var _ = require('underscore');
 var colors = ['#2CA095', '#E5811B', '#4A4DBA', '#AD2BAD', '#559030', '#E1C221']; // Demo colors
 var defaultColor = '#CCC';
@@ -85558,7 +85802,7 @@ CategoryColors.prototype.getCategoryByColor = function (color) {
 
 module.exports = CategoryColors;
 
-},{"underscore":329}],343:[function(require,module,exports){
+},{"underscore":329}],345:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetModel = require('../widget-model');
 var CategoryColors = require('./category-colors');
@@ -85698,7 +85942,7 @@ module.exports = WidgetModel.extend({
 
 });
 
-},{"../widget-model":409,"./category-colors":342,"./locked-categories-collection":355,"underscore":329}],344:[function(require,module,exports){
+},{"../widget-model":411,"./category-colors":344,"./locked-categories-collection":357,"underscore":329}],346:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85708,7 +85952,7 @@ __p+='<div class="CDB-Widget-header js-header"></div> <div class="CDB-Widget-con
 return __p;
 };
 
-},{"underscore":329}],345:[function(require,module,exports){
+},{"underscore":329}],347:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var SearchTitleView = require('./title/search-title-view');
 var CategoryOptionsView = require('./options/options-view');
@@ -85806,7 +86050,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./content-template.tpl":344,"./list/items-view":352,"./list/search-items-view":354,"./options/options-view":357,"./paginator/paginator-view":359,"./paginator/search-paginator-view":361,"./stats/stats-view":364,"./title/search-title-view":366,"cartodb.js":266}],346:[function(require,module,exports){
+},{"./content-template.tpl":346,"./list/items-view":354,"./list/search-items-view":356,"./options/options-view":359,"./paginator/paginator-view":361,"./paginator/search-paginator-view":363,"./stats/stats-view":366,"./title/search-title-view":368,"cartodb.js":267}],348:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85836,7 +86080,7 @@ __p+='<button type="button" class="CDB-Widget-listItemInner CDB-Widget-listButto
 return __p;
 };
 
-},{"underscore":329}],347:[function(require,module,exports){
+},{"underscore":329}],349:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85866,7 +86110,7 @@ __p+='<div class="CDB-Widget-listItemInner '+
 return __p;
 };
 
-},{"underscore":329}],348:[function(require,module,exports){
+},{"underscore":329}],350:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var formatter = require('../../../../formatter');
 var clickableTemplate = require('./item-clickable-template.tpl');
@@ -85926,7 +86170,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../../../formatter":338,"./item-clickable-template.tpl":346,"./item-unclickable-template.tpl":347,"cartodb.js":266}],349:[function(require,module,exports){
+},{"../../../../formatter":340,"./item-clickable-template.tpl":348,"./item-unclickable-template.tpl":349,"cartodb.js":267}],351:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -85954,7 +86198,7 @@ __p+='<button type="button" class="CDB-Widget-listItemInner CDB-Widget-listItemI
 return __p;
 };
 
-},{"underscore":329}],350:[function(require,module,exports){
+},{"underscore":329}],352:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var formatter = require('../../../../formatter');
 var template = require('./search-item-clickable-template.tpl');
@@ -86010,7 +86254,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../../../formatter":338,"./search-item-clickable-template.tpl":349,"cartodb.js":266}],351:[function(require,module,exports){
+},{"../../../../formatter":340,"./search-item-clickable-template.tpl":351,"cartodb.js":267}],353:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86020,7 +86264,7 @@ __p+='<li class="CDB-Widget-listItem CDB-Widget-listItem--fake"></li> <li class=
 return __p;
 };
 
-},{"underscore":329}],352:[function(require,module,exports){
+},{"underscore":329}],354:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -86148,7 +86392,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./item/item-view":348,"./items-placeholder-template.tpl":351,"cartodb.js":266,"jquery":306,"underscore":329}],353:[function(require,module,exports){
+},{"./item/item-view":350,"./items-placeholder-template.tpl":353,"cartodb.js":267,"jquery":306,"underscore":329}],355:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86160,7 +86404,7 @@ __p+='<li class="CDB-Widget-listItem"> <h4 class="CDB-Text CDB-Size-large">No re
 return __p;
 };
 
-},{"underscore":329}],354:[function(require,module,exports){
+},{"underscore":329}],356:[function(require,module,exports){
 var $ = require('jquery');
 var CategoryItemsView = require('./items-view');
 var WidgetSearchCategoryItemView = require('./item/search-item-view');
@@ -86243,7 +86487,7 @@ module.exports = CategoryItemsView.extend({
 
 });
 
-},{"./item/search-item-view":350,"./items-view":352,"./search-items-no-results-template.tpl":353,"jquery":306}],355:[function(require,module,exports){
+},{"./item/search-item-view":352,"./items-view":354,"./search-items-no-results-template.tpl":355,"jquery":306}],357:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -86294,7 +86538,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"backbone":1,"underscore":329}],356:[function(require,module,exports){
+},{"backbone":1,"underscore":329}],358:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86336,7 +86580,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],357:[function(require,module,exports){
+},{"underscore":329}],359:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./options-template.tpl');
 
@@ -86413,7 +86657,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./options-template.tpl":356,"cartodb.js":266}],358:[function(require,module,exports){
+},{"./options-template.tpl":358,"cartodb.js":267}],360:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86441,7 +86685,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],359:[function(require,module,exports){
+},{"underscore":329}],361:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -86557,7 +86801,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./paginator-template.tpl":358,"cartodb.js":266,"jquery":306,"underscore":329}],360:[function(require,module,exports){
+},{"./paginator-template.tpl":360,"cartodb.js":267,"jquery":306,"underscore":329}],362:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86581,7 +86825,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],361:[function(require,module,exports){
+},{"underscore":329}],363:[function(require,module,exports){
 var PaginatorView = require('./paginator-view');
 var searchTemplate = require('./search-paginator-template.tpl');
 
@@ -86623,7 +86867,7 @@ module.exports = PaginatorView.extend({
 
 });
 
-},{"./paginator-view":359,"./search-paginator-template.tpl":360}],362:[function(require,module,exports){
+},{"./paginator-view":361,"./search-paginator-template.tpl":362}],364:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86635,7 +86879,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":329}],363:[function(require,module,exports){
+},{"underscore":329}],365:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86663,7 +86907,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],364:[function(require,module,exports){
+},{"underscore":329}],366:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var formatter = require('../../../formatter');
@@ -86767,7 +87011,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../../formatter":338,"../../animate-values":341,"./cats-template.tpl":362,"./stats-template.tpl":363,"cartodb.js":266,"underscore":329}],365:[function(require,module,exports){
+},{"../../../formatter":340,"../../animate-values":343,"./cats-template.tpl":364,"./stats-template.tpl":365,"cartodb.js":267,"underscore":329}],367:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86801,7 +87045,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],366:[function(require,module,exports){
+},{"underscore":329}],368:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var cdb = require('cartodb.js');
@@ -86960,7 +87204,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../dropdown/widget-dropdown-view":368,"../../widget-tooltip-view":410,"./search-title-template.tpl":365,"cartodb.js":266,"jquery":306,"underscore":329}],367:[function(require,module,exports){
+},{"../../dropdown/widget-dropdown-view":370,"../../widget-tooltip-view":412,"./search-title-template.tpl":367,"cartodb.js":267,"jquery":306,"underscore":329}],369:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -86974,7 +87218,7 @@ __p+=' </ul>';
 return __p;
 };
 
-},{"underscore":329}],368:[function(require,module,exports){
+},{"underscore":329}],370:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -87115,7 +87359,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./template.tpl":367,"cartodb.js":266,"jquery":306,"underscore":329}],369:[function(require,module,exports){
+},{"./template.tpl":369,"cartodb.js":267,"jquery":306,"underscore":329}],371:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -87131,7 +87375,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":329}],370:[function(require,module,exports){
+},{"underscore":329}],372:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 var cdb = require('cartodb.js');
@@ -87235,7 +87479,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":338,"../animate-values.js":341,"../dropdown/widget-dropdown-view":368,"./animation-template.tpl":369,"./template.tpl":371,"cartodb.js":266,"d3":305,"underscore":329}],371:[function(require,module,exports){
+},{"../../formatter":340,"../animate-values.js":343,"../dropdown/widget-dropdown-view":370,"./animation-template.tpl":371,"./template.tpl":373,"cartodb.js":267,"d3":305,"underscore":329}],373:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -87285,7 +87529,7 @@ __p+=' </div>';
 return __p;
 };
 
-},{"underscore":329}],372:[function(require,module,exports){
+},{"underscore":329}],374:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -87299,7 +87543,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":329}],373:[function(require,module,exports){
+},{"underscore":329}],375:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var d3 = require('d3');
@@ -87828,7 +88072,7 @@ module.exports = cdb.core.View.extend({
     }
 
     if (this.options.type === 'time') {
-      this.xAxisScale = d3.time.scale().domain([data[0].start * 1000, data[data.length - 1].end * 1000]).nice().range([0, this.chartWidth()]);
+      this.xAxisScale = d3.time.scale().domain([data[0].start * 1000, data[data.length - 1].end * 1000]).range([0, this.chartWidth()]);
     } else {
       this.xAxisScale = d3.scale.linear().range([data[0].start, data[data.length - 1].end]).domain([0, this.chartWidth()]);
     }
@@ -88432,7 +88676,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../formatter":338,"cartodb.js":266,"d3":305,"jquery":306,"underscore":329}],374:[function(require,module,exports){
+},{"../../formatter":340,"cartodb.js":267,"d3":305,"jquery":306,"underscore":329}],376:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var formatter = require('../../formatter');
@@ -88875,7 +89119,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../formatter":338,"../animate-values.js":341,"../dropdown/widget-dropdown-view":368,"./animation-template.tpl":372,"./chart":373,"./content.tpl":375,"./histogram-title-view":377,"./placeholder.tpl":379,"cartodb.js":266,"underscore":329}],375:[function(require,module,exports){
+},{"../../formatter":340,"../animate-values.js":343,"../dropdown/widget-dropdown-view":370,"./animation-template.tpl":374,"./chart":375,"./content.tpl":377,"./histogram-title-view":379,"./placeholder.tpl":381,"cartodb.js":267,"underscore":329}],377:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -88889,7 +89133,7 @@ __p+=' </div> <div class="CDB-Widget-content CDB-Widget-content--histogram js-co
 return __p;
 };
 
-},{"underscore":329}],376:[function(require,module,exports){
+},{"underscore":329}],378:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -88909,7 +89153,7 @@ __p+='<div class="CDB-Widget-title CDB-Widget-contentSpaced"> <h3 class="CDB-Tex
 return __p;
 };
 
-},{"underscore":329}],377:[function(require,module,exports){
+},{"underscore":329}],379:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var TooltipView = require('../widget-tooltip-view');
@@ -88972,7 +89216,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../widget-tooltip-view":410,"./histogram-title-template.tpl":376,"cartodb.js":266,"jquery":306}],378:[function(require,module,exports){
+},{"../widget-tooltip-view":412,"./histogram-title-template.tpl":378,"cartodb.js":267,"jquery":306}],380:[function(require,module,exports){
 var WidgetModel = require('../widget-model');
 
 /**
@@ -88991,7 +89235,7 @@ module.exports = WidgetModel.extend({
 
 });
 
-},{"../widget-model":409}],379:[function(require,module,exports){
+},{"../widget-model":411}],381:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89007,7 +89251,7 @@ __p+=' </ul>';
 return __p;
 };
 
-},{"underscore":329}],380:[function(require,module,exports){
+},{"underscore":329}],382:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89023,7 +89267,7 @@ __p+='<div class="CDB-Widget-header"> <div class="CDB-Widget-title CDB-Widget-co
 return __p;
 };
 
-},{"underscore":329}],381:[function(require,module,exports){
+},{"underscore":329}],383:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var format = require('../../formatter');
@@ -89104,7 +89348,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":338,"./content-template.tpl":380,"./edges-view":382,"./items-view":385,"./paginator-view":386,"./placeholder-template.tpl":387,"cartodb.js":266,"underscore":329}],382:[function(require,module,exports){
+},{"../../formatter":340,"./content-template.tpl":382,"./edges-view":384,"./items-view":387,"./paginator-view":388,"./placeholder-template.tpl":389,"cartodb.js":267,"underscore":329}],384:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 
@@ -89162,7 +89406,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":266,"underscore":329}],383:[function(require,module,exports){
+},{"cartodb.js":267,"underscore":329}],385:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89218,7 +89462,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":329}],384:[function(require,module,exports){
+},{"underscore":329}],386:[function(require,module,exports){
 var _ = require('underscore');
 var format = require('../../formatter');
 var cdb = require('cartodb.js');
@@ -89297,7 +89541,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":338,"./item-template.tpl":383,"cartodb.js":266,"underscore":329}],385:[function(require,module,exports){
+},{"../../formatter":340,"./item-template.tpl":385,"cartodb.js":267,"underscore":329}],387:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var WidgetListItemView = require('./item-view');
 
@@ -89342,7 +89586,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./item-view":384,"cartodb.js":266}],386:[function(require,module,exports){
+},{"./item-view":386,"cartodb.js":267}],388:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -89447,7 +89691,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":266,"jquery":306,"underscore":329}],387:[function(require,module,exports){
+},{"cartodb.js":267,"jquery":306,"underscore":329}],389:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89457,7 +89701,7 @@ __p+='<ul class="CDB-Widget-list CDB-Widget-list--withBorders"> <li class="CDB-W
 return __p;
 };
 
-},{"underscore":329}],388:[function(require,module,exports){
+},{"underscore":329}],390:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var placeholderTemplate = require('./placeholder.tpl');
@@ -89521,7 +89765,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./histogram-view":389,"./placeholder.tpl":390,"cartodb.js":266,"underscore":329}],389:[function(require,module,exports){
+},{"./histogram-view":391,"./placeholder.tpl":392,"cartodb.js":267,"underscore":329}],391:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var HistogramChartView = require('../histogram/chart');
@@ -89629,7 +89873,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../histogram/chart":373,"./time-series-header-view":391,"cartodb.js":266,"jquery":306}],390:[function(require,module,exports){
+},{"../histogram/chart":375,"./time-series-header-view":393,"cartodb.js":267,"jquery":306}],392:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89653,7 +89897,7 @@ __p+=' </div> </div>';
 return __p;
 };
 
-},{"underscore":329}],391:[function(require,module,exports){
+},{"underscore":329}],393:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./time-series-header.tpl');
 var d3 = require('d3');
@@ -89706,7 +89950,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./time-series-header.tpl":392,"cartodb.js":266,"d3":305}],392:[function(require,module,exports){
+},{"./time-series-header.tpl":394,"cartodb.js":267,"d3":305}],394:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89724,7 +89968,7 @@ __p+='<div> <p class="CDB-Text CDB-Size-large u-iBlock"> Selected from </p> <p c
 return __p;
 };
 
-},{"underscore":329}],393:[function(require,module,exports){
+},{"underscore":329}],395:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var torqueTemplate = require('./torque-template.tpl');
@@ -89800,7 +90044,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./placeholder.tpl":390,"./torque-header-view":396,"./torque-histogram-view":397,"./torque-template.tpl":402,"cartodb.js":266,"underscore":329}],394:[function(require,module,exports){
+},{"./placeholder.tpl":392,"./torque-header-view":398,"./torque-histogram-view":399,"./torque-template.tpl":404,"cartodb.js":267,"underscore":329}],396:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./torque-controls.tpl');
 
@@ -89843,7 +90087,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-controls.tpl":395,"cartodb.js":266}],395:[function(require,module,exports){
+},{"./torque-controls.tpl":397,"cartodb.js":267}],397:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -89855,7 +90099,7 @@ __p+='<div class="CDB-Widget-controlButtonContent"> <i class="'+
 return __p;
 };
 
-},{"underscore":329}],396:[function(require,module,exports){
+},{"underscore":329}],398:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var TorqueControlsView = require('./torque-controls-view');
 var TorqueTimeInfoView = require('./torque-time-info-view');
@@ -89914,7 +90158,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-controls-view":394,"./torque-render-range-info-view":398,"./torque-reset-render-range-view":400,"./torque-time-info-view":403,"cartodb.js":266}],397:[function(require,module,exports){
+},{"./torque-controls-view":396,"./torque-render-range-info-view":400,"./torque-reset-render-range-view":402,"./torque-time-info-view":405,"cartodb.js":267}],399:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var HistogramChartView = require('../histogram/chart');
@@ -90067,7 +90311,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../histogram/chart":373,"./torque-time-slider-view":405,"cartodb.js":266,"jquery":306}],398:[function(require,module,exports){
+},{"../histogram/chart":375,"./torque-time-slider-view":407,"cartodb.js":267,"jquery":306}],400:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var d3 = require('d3');
 var template = require('./torque-render-range-info.tpl');
@@ -90107,7 +90351,6 @@ module.exports = cdb.core.View.extend({
 
     this._scale = d3.time.scale()
       .domain([data[0].start * 1000, data[data.length - 1].end * 1000])
-      .nice()
       .range([start, end]);
 
     // for format rules see https://github.com/mbostock/d3/wiki/Time-Formatting
@@ -90116,7 +90359,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-render-range-info.tpl":399,"cartodb.js":266,"d3":305}],399:[function(require,module,exports){
+},{"./torque-render-range-info.tpl":401,"cartodb.js":267,"d3":305}],401:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -90134,7 +90377,7 @@ __p+='<p class="CDB-Text CDB-Size-large u-iBlock"> Selected from </p> <p class="
 return __p;
 };
 
-},{"underscore":329}],400:[function(require,module,exports){
+},{"underscore":329}],402:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./torque-reset-render-range.tpl');
 
@@ -90161,7 +90404,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-reset-render-range.tpl":401,"cartodb.js":266}],401:[function(require,module,exports){
+},{"./torque-reset-render-range.tpl":403,"cartodb.js":267}],403:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -90171,7 +90414,7 @@ __p+='<button class="CDB-Text CDB-Size-small u-upperCase u-actionTextColor CDB-W
 return __p;
 };
 
-},{"underscore":329}],402:[function(require,module,exports){
+},{"underscore":329}],404:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -90181,7 +90424,7 @@ __p+='<div class="CDB-Widget-header CDB-Widget-header--timeSeries js-header"></d
 return __p;
 };
 
-},{"underscore":329}],403:[function(require,module,exports){
+},{"underscore":329}],405:[function(require,module,exports){
 var d3 = require('d3');
 var cdb = require('cartodb.js');
 var template = require('./torque-time-info.tpl');
@@ -90218,7 +90461,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-time-info.tpl":404,"cartodb.js":266,"d3":305}],404:[function(require,module,exports){
+},{"./torque-time-info.tpl":406,"cartodb.js":267,"d3":305}],406:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -90232,7 +90475,7 @@ __p+='<p class="CDB-Text CDB-Size-large u-iBlock"> '+
 return __p;
 };
 
-},{"underscore":329}],405:[function(require,module,exports){
+},{"underscore":329}],407:[function(require,module,exports){
 var d3 = require('d3');
 var cdb = require('cartodb.js');
 
@@ -90255,22 +90498,7 @@ module.exports = cdb.core.View.extend({
     this._chartView = this.options.chartView;
     this._torqueLayerModel = this.options.torqueLayerModel;
 
-    this._torqueLayerModel.bind('change:start change:end', this._updateChartandTimeslider, this);
-    this._torqueLayerModel.bind('change:step', this._onChangeStep, this);
-    this._torqueLayerModel.bind('change:steps', this._updateChartandTimeslider, this);
-
-    this.add_related_model(this._torqueLayerModel);
-
-    this._chartView.model.bind('change:width', this._updateChartandTimeslider, this);
-    this._chartView.model.bind('change:height', this._onChangeChartHeight, this);
-    this.add_related_model(this._chartView.model);
-
-    this._dataviewModel.on('change:bins', this._updateChartandTimeslider, this);
-    this.add_related_model(this._dataviewModel);
-
-    this._dataviewModel.filter.on('change:min change:max', this._onFilterMinMaxChange, this);
-    this.add_related_model(this._dataviewModel.filter);
-
+    this._initBinds();
     this._updateXScale();
   },
 
@@ -90296,6 +90524,24 @@ module.exports = cdb.core.View.extend({
     this.setElement(d3el.node());
 
     return this;
+  },
+
+  _initBinds: function () {
+    this._torqueLayerModel.bind('change:start change:end', this._updateChartandTimeslider, this);
+    this._torqueLayerModel.bind('change:step', this._onChangeStep, this);
+    this._torqueLayerModel.bind('change:steps', this._updateChartandTimeslider, this);
+
+    this.add_related_model(this._torqueLayerModel);
+
+    this._chartView.model.bind('change:width', this._updateChartandTimeslider, this);
+    this._chartView.model.bind('change:height', this._onChangeChartHeight, this);
+    this.add_related_model(this._chartView.model);
+
+    this._dataviewModel.on('change:bins', this._updateChartandTimeslider, this);
+    this.add_related_model(this._dataviewModel);
+
+    this._dataviewModel.filter.on('change:min change:max', this._onFilterMinMaxChange, this);
+    this.add_related_model(this._dataviewModel.filter);
   },
 
   clean: function () {
@@ -90392,7 +90638,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"cartodb.js":266,"d3":305}],406:[function(require,module,exports){
+},{"cartodb.js":267,"d3":305}],408:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -90402,7 +90648,7 @@ __p+='<button class="CDB-Widget-button CDB-Widget-errorButton js-refresh"> <span
 return __p;
 };
 
-},{"underscore":329}],407:[function(require,module,exports){
+},{"underscore":329}],409:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./widget-error-template.tpl');
 
@@ -90450,7 +90696,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./widget-error-template.tpl":406,"cartodb.js":266}],408:[function(require,module,exports){
+},{"./widget-error-template.tpl":408,"cartodb.js":267}],410:[function(require,module,exports){
 var cdb = require('cartodb.js');
 
 /**
@@ -90490,7 +90736,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":266}],409:[function(require,module,exports){
+},{"cartodb.js":267}],411:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 
@@ -90534,7 +90780,7 @@ module.exports = cdb.core.Model.extend({
   }
 });
 
-},{"cartodb.js":266,"underscore":329}],410:[function(require,module,exports){
+},{"cartodb.js":267,"underscore":329}],412:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var _ = require('underscore');
 
@@ -90595,7 +90841,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":266,"underscore":329}],411:[function(require,module,exports){
+},{"cartodb.js":267,"underscore":329}],413:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetView = require('./widget-view');
 
@@ -90647,7 +90893,7 @@ WidgetViewFactory.prototype.createWidgetView = function (widget) {
 
 module.exports = WidgetViewFactory;
 
-},{"./widget-view":412,"underscore":329}],412:[function(require,module,exports){
+},{"./widget-view":414,"underscore":329}],414:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var WidgetLoaderView = require('./widget-loader-view');
 var WidgetErrorView = require('./widget-error-view');
@@ -90664,10 +90910,7 @@ module.exports = cdb.core.View.extend({
   },
 
   initialize: function () {
-    if (this.model.dataviewModel) {
-      this.model.dataviewModel.layer.bind('change:visible', this._onChangeLayerVisible, this);
-      this.listenTo(this.model, 'destroy', this.clean);
-    }
+    this.listenTo(this.model, 'destroy', this.clean);
   },
 
   render: function () {
@@ -90683,29 +90926,16 @@ module.exports = cdb.core.View.extend({
     }
 
     this._appendView(this.options.contentView);
-
-    // Show or hide the widget depending on the layer visibility
-    this._setVisible(this.model.dataviewModel.layer.get('visible'));
-
     return this;
   },
 
   _appendView: function (view) {
     this.$el.append(view.render().el);
     this.addView(view);
-  },
-
-  _setVisible: function (visible) {
-    this.$el.toggle(visible);
-  },
-
-  _onChangeLayerVisible: function (layer) {
-    // !! to force a boolean value, so only a true value actually shows the view
-    this._setVisible(!!layer.get('visible'));
   }
 });
 
-},{"./widget-error-view":407,"./widget-loader-view":408,"cartodb.js":266}],413:[function(require,module,exports){
+},{"./widget-error-view":409,"./widget-loader-view":410,"cartodb.js":267}],415:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -90741,6 +90971,6 @@ module.exports = Backbone.Collection.extend({
   }
 });
 
-},{"backbone":1,"underscore":329}]},{},[339])(339)
+},{"backbone":1,"underscore":329}]},{},[341])(341)
 });
 //# sourceMappingURL=deep-insights.uncompressed.map
