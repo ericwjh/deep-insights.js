@@ -21,13 +21,15 @@ WidgetsService.prototype.getList = function () {
 
 /**
  * @param {Object} attrs
- * @param {String} attrs.title Title rendered on the widget view
- * @param {String} attrs.column Name of column to use to aggregate
- * @param {String} attrs.aggregation Name of aggregation operation to apply to get categories
+ * @param {String} attrs.title - Title rendered on the widget view
+ * @param {String} attrs.column - Name of column to use to aggregate
+ * @param {String} attrs.aggregation - Name of aggregation operation to apply to get categories
  *   can be any of ['sum', 'count']. Default is 'count'
- * @param {String} attrs.aggregation_column column to be used for the aggregation operation
+ * @param {String} attrs.aggregation_column - column to be used for the aggregation operation
  *  it only applies for sum operations.
- * @param {Object} layer Instance of a layer model (cartodb.js)
+ * @param {String} attrs.sourceId - id of an analysis node that will act as the source of the
+ *   underlying dataview
+ * @param {Object} layer - Instance of a layer model (cartodb.js)
  * @return {CategoryWidgetModel}
  */
 WidgetsService.prototype.createCategoryModel = function (attrs, layer) {
@@ -49,10 +51,12 @@ WidgetsService.prototype.createCategoryModel = function (attrs, layer) {
 
 /**
  * @param {Object} attrs
- * @param {String} attrs.title Title rendered on the widget view
- * @param {String} attrs.column Name of column
- * @param {Number} attrs.bins Count of bins
- * @param {Object} layer Instance of a layer model (cartodb.js)
+ * @param {String} attrs.title - Title rendered on the widget view
+ * @param {String} attrs.column - Name of column
+ * @param {Number} attrs.bins - Count of bins
+ * @param {String} attrs.sourceId - id of an analysis node that will act as the source of the
+ *   underlying dataview
+ * @param {Object} layer - Instance of a layer model (cartodb.js)
  * @return {WidgetModel}
  */
 WidgetsService.prototype.createHistogramModel = function (attrs, layer) {
@@ -75,10 +79,12 @@ WidgetsService.prototype.createHistogramModel = function (attrs, layer) {
 
 /**
  * @param {Object} attrs
- * @param {String} attrs.title Title rendered on the widget view
- * @param {String} attrs.column Name of column
- * @param {String} attrs.operation Name of operation to use, can be any of ['min', 'max', 'avg', 'sum']
- * @param {Object} layer Instance of a layer model (cartodb.js)
+ * @param {String} attrs.title - Title rendered on the widget view
+ * @param {String} attrs.column - Name of column
+ * @param {String} attrs.operation - Name of operation to use, can be any of ['min', 'max', 'avg', 'sum']
+ * @param {String} attrs.sourceId - id of an analysis node that will act as the source of the
+ *   underlying dataview
+ * @param {Object} layer - Instance of a layer model (cartodb.js)
  * @return {CategoryWidgetModel}
  */
 WidgetsService.prototype.createFormulaModel = function (attrs, layer) {
@@ -101,10 +107,12 @@ WidgetsService.prototype.createFormulaModel = function (attrs, layer) {
 
 /**
  * @param {Object} attrs
- * @param {String} attrs.title Title rendered on the widget view
- * @param {Array} attrs.columns Names of columns
- * @param {Number} attrs.bins Count of bins
- * @param {Object} layer Instance of a layer model (cartodb.js)
+ * @param {String} attrs.title - Title rendered on the widget view
+ * @param {Array} attrs.columns - Names of columns
+ * @param {Number} attrs.bins - Count of bins
+ * @param {String} attrs.sourceId - id of an analysis node that will act as the source of the
+ *   underlying dataview
+ * @param {Object} layer - Instance of a layer model (cartodb.js)
  * @return {WidgetModel}
  */
 WidgetsService.prototype.createListModel = function (attrs, layer) {
@@ -127,9 +135,11 @@ WidgetsService.prototype.createListModel = function (attrs, layer) {
 
 /**
  * @param {Object} attrs
- * @param {String} attrs.column Name of column that contains
- * @param {Object} layer Instance of a layer model (cartodb.js)
+ * @param {String} attrs.column - Name of column that contains
+ * @param {String} attrs.sourceId - id of an analysis node that will act as the source of the
+ *   underlying dataview
  * @param {Number} bins
+ * @param {Object} layer -Instance of a layer model (cartodb.js)
  * @return {WidgetModel}
  */
 WidgetsService.prototype.createTimeSeriesModel = function (attrs, layer) {
