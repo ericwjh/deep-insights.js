@@ -2594,8 +2594,8 @@ versions.latest = versions["0.4.0"];
 module.exports = versions;
 
 },{"./0.1.0/reference.json":6,"./0.2.0/reference.json":7,"./0.3.0/reference.json":8,"./0.4.0/reference.json":9}],11:[function(require,module,exports){
-module.exports = require(322);
-},{"dup":322}],12:[function(require,module,exports){
+module.exports = require(321);
+},{"dup":321}],12:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -29365,7 +29365,7 @@ function stylize(str, style) {
 
 }).call(this,require('_process'),"/../../../repo/cartodb.js/node_modules/torque.js/node_modules/carto/lib/carto")
 
-},{"../../package.json":102,"./functions":65,"./parser":67,"./renderer":68,"./renderer_js":69,"./torque-reference":70,"./tree":71,"./tree/call":72,"./tree/color":73,"./tree/comment":74,"./tree/definition":75,"./tree/dimension":76,"./tree/element":77,"./tree/expression":78,"./tree/field":79,"./tree/filter":80,"./tree/filterset":81,"./tree/fontset":82,"./tree/frame_offset":83,"./tree/imagefilter":84,"./tree/invalid":85,"./tree/keyword":86,"./tree/layer":87,"./tree/literal":88,"./tree/operation":89,"./tree/quoted":90,"./tree/reference":91,"./tree/rule":92,"./tree/ruleset":93,"./tree/selector":94,"./tree/style":95,"./tree/url":96,"./tree/value":97,"./tree/variable":98,"./tree/zoom":99,"_process":407,"fs":399,"path":406,"util":409}],67:[function(require,module,exports){
+},{"../../package.json":102,"./functions":65,"./parser":67,"./renderer":68,"./renderer_js":69,"./torque-reference":70,"./tree":71,"./tree/call":72,"./tree/color":73,"./tree/comment":74,"./tree/definition":75,"./tree/dimension":76,"./tree/element":77,"./tree/expression":78,"./tree/field":79,"./tree/filter":80,"./tree/filterset":81,"./tree/fontset":82,"./tree/frame_offset":83,"./tree/imagefilter":84,"./tree/invalid":85,"./tree/keyword":86,"./tree/layer":87,"./tree/literal":88,"./tree/operation":89,"./tree/quoted":90,"./tree/reference":91,"./tree/rule":92,"./tree/ruleset":93,"./tree/selector":94,"./tree/style":95,"./tree/url":96,"./tree/value":97,"./tree/variable":98,"./tree/zoom":99,"_process":406,"fs":398,"path":405,"util":408}],67:[function(require,module,exports){
 (function (global){
 var carto = exports,
     tree = require('./tree'),
@@ -33273,7 +33273,7 @@ tree.Definition.prototype.toJS = function(env) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":71,"assert":400,"underscore":101}],76:[function(require,module,exports){
+},{"../tree":71,"assert":399,"underscore":101}],76:[function(require,module,exports){
 (function (global){
 (function(tree) {
 var _ = global._ || require('underscore');
@@ -35012,7 +35012,7 @@ refs.map(function(version) {
 
 }).call(this,"/../../../repo/cartodb.js/node_modules/torque.js/node_modules/carto/node_modules/mapnik-reference")
 
-},{"fs":399,"path":406}],101:[function(require,module,exports){
+},{"fs":398,"path":405}],101:[function(require,module,exports){
 module.exports = require(103);
 },{"dup":103}],102:[function(require,module,exports){
 module.exports={
@@ -37303,7 +37303,7 @@ module.exports = function(map, layer, options, callback) {
   return promise;
 };
 
-},{"../core/loader":121,"../geo/map":187,"../vis/vis":261,"../vis/vis/layers":263,"./promise":111,"cdb":117,"leaflet":13,"underscore":103}],110:[function(require,module,exports){
+},{"../core/loader":121,"../geo/map":186,"../vis/vis":260,"../vis/vis/layers":262,"./promise":111,"cdb":117,"leaflet":13,"underscore":103}],110:[function(require,module,exports){
 var _ = require('underscore');
 var VisView = require('../vis/vis-view');
 var VisModel = require('../vis/vis');
@@ -37437,7 +37437,7 @@ var applyOptionsToVizJSON = function (vizjson, options) {
 
 module.exports = createVis;
 
-},{"../core/loader":121,"../vis/vis":261,"../vis/vis-view":260,"./vizjson":113,"underscore":103}],111:[function(require,module,exports){
+},{"../core/loader":121,"../vis/vis":260,"../vis/vis-view":259,"./vizjson":113,"underscore":103}],111:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -38426,7 +38426,7 @@ require('./vis/layers'); // Layers.register calls
 
 module.exports = cdb;
 
-},{"./api/create-layer":109,"./api/create-vis":110,"./api/promise":111,"./api/sql":112,"./core/loader":121,"./core/model":125,"./core/sanitize":127,"./core/template":129,"./core/template-list":128,"./core/view":131,"./geo/geocoder/nokia-geocoder":154,"./geo/geocoder/yahoo-geocoder":155,"./geo/geometry":157,"./geo/gmaps":158,"./geo/leaflet":172,"./geo/map":187,"./geo/map-view":186,"./geo/map/cartodb-layer":188,"./geo/map/gmaps-base-layer":189,"./geo/map/layers":191,"./geo/map/plain-layer":192,"./geo/map/tile-layer":193,"./geo/map/torque-layer":194,"./geo/map/wms-layer":195,"./geo/ui/annotation":197,"./geo/ui/header":200,"./geo/ui/image":201,"./geo/ui/infobox":202,"./geo/ui/infowindow":204,"./geo/ui/infowindow-model":203,"./geo/ui/layer-selector":205,"./geo/ui/layer-view":206,"./geo/ui/legend":212,"./geo/ui/legend-exports":207,"./geo/ui/legend/legend-view-exports":231,"./geo/ui/search/search":235,"./geo/ui/text":238,"./geo/ui/tiles-loader":239,"./geo/ui/tooltip":240,"./geo/ui/zoom/zoom-view":242,"./ui/common/dialog":244,"./ui/common/dropdown":245,"./ui/common/fullscreen/fullscreen-view":247,"./ui/common/notification":248,"./ui/common/table":249,"./ui/common/table/row":251,"./ui/common/table/row-view":250,"./ui/common/table/table-data":252,"./ui/common/table/table-properties":253,"./vis/layers":256,"./vis/overlays":258,"./vis/vis":261,"./vis/vis/infowindow-template":262,"./vis/vis/layers":263,"./vis/vis/overlay":264,"./vis/vis/overlays":265,"backbone":2,"cdb":117,"cdb.config":115,"cdb.core.Profiler":126,"cdb.core.util":130,"cdb.errors":116,"cdb.log":118,"cdb.templates":119,"jquery":12,"leaflet":13,"lzma":278,"mousewheel":279,"mustache":14,"mwheelIntent":280,"underscore":103}],115:[function(require,module,exports){
+},{"./api/create-layer":109,"./api/create-vis":110,"./api/promise":111,"./api/sql":112,"./core/loader":121,"./core/model":125,"./core/sanitize":127,"./core/template":129,"./core/template-list":128,"./core/view":131,"./geo/geocoder/nokia-geocoder":153,"./geo/geocoder/yahoo-geocoder":154,"./geo/geometry":156,"./geo/gmaps":157,"./geo/leaflet":171,"./geo/map":186,"./geo/map-view":185,"./geo/map/cartodb-layer":187,"./geo/map/gmaps-base-layer":188,"./geo/map/layers":190,"./geo/map/plain-layer":191,"./geo/map/tile-layer":192,"./geo/map/torque-layer":193,"./geo/map/wms-layer":194,"./geo/ui/annotation":196,"./geo/ui/header":199,"./geo/ui/image":200,"./geo/ui/infobox":201,"./geo/ui/infowindow":203,"./geo/ui/infowindow-model":202,"./geo/ui/layer-selector":204,"./geo/ui/layer-view":205,"./geo/ui/legend":211,"./geo/ui/legend-exports":206,"./geo/ui/legend/legend-view-exports":230,"./geo/ui/search/search":234,"./geo/ui/text":237,"./geo/ui/tiles-loader":238,"./geo/ui/tooltip":239,"./geo/ui/zoom/zoom-view":241,"./ui/common/dialog":243,"./ui/common/dropdown":244,"./ui/common/fullscreen/fullscreen-view":246,"./ui/common/notification":247,"./ui/common/table":248,"./ui/common/table/row":250,"./ui/common/table/row-view":249,"./ui/common/table/table-data":251,"./ui/common/table/table-properties":252,"./vis/layers":255,"./vis/overlays":257,"./vis/vis":260,"./vis/vis/infowindow-template":261,"./vis/vis/layers":262,"./vis/vis/overlay":263,"./vis/vis/overlays":264,"backbone":2,"cdb":117,"cdb.config":115,"cdb.core.Profiler":126,"cdb.core.util":130,"cdb.errors":116,"cdb.log":118,"cdb.templates":119,"jquery":12,"leaflet":13,"lzma":277,"mousewheel":278,"mustache":14,"mwheelIntent":279,"underscore":103}],115:[function(require,module,exports){
 var Config = require('./core/config');
 
 var config = new Config();
@@ -38939,7 +38939,7 @@ htmlCssSanitizer.html = function(inputHtml, optionalSanitizer) {
 
 module.exports = htmlCssSanitizer;
 
-},{"html-css-sanitizer":277}],128:[function(require,module,exports){
+},{"html-css-sanitizer":276}],128:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var log = require('cdb.log');
@@ -39875,7 +39875,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":125,"../../util/backbone-abort-sync":254,"./categories-collection":133,"underscore":103}],137:[function(require,module,exports){
+},{"../../core/model":125,"../../util/backbone-abort-sync":253,"./categories-collection":133,"underscore":103}],137:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../core/model');
 var BackboneCancelSync = require('../util/backbone-abort-sync');
@@ -40124,29 +40124,7 @@ module.exports = Model.extend({
   }
 );
 
-},{"../core/model":125,"../util/backbone-abort-sync":254,"../windshaft/filters/bounding-box":270,"underscore":103}],138:[function(require,module,exports){
-var Backbone = require('backbone');
-
-/**
- * Collection of Dataviews
- */
-module.exports = Backbone.Collection.extend({
-  initialize: function () {
-    // If a histogram model applies the histogram sizes, rest should remove/disable
-    // the sizes applied before.
-    this.bind('change:histogram_sizes', function (m, isSizesApplied) {
-      if (isSizesApplied) {
-        this.each(function (mdl) {
-          if (mdl !== m && mdl.get('histogram_sizes')) {
-            mdl.set('histogram_sizes', false);
-          }
-        });
-      }
-    }, this);
-  }
-});
-
-},{"backbone":2}],139:[function(require,module,exports){
+},{"../core/model":125,"../util/backbone-abort-sync":253,"../windshaft/filters/bounding-box":269,"underscore":103}],138:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../core/model');
 var CategoryFilter = require('../windshaft/filters/category');
@@ -40256,7 +40234,7 @@ function _checkProperties (obj, propertiesArray) {
   });
 }
 
-},{"../core/model":125,"../windshaft/filters/category":271,"../windshaft/filters/range":272,"./category-dataview-model":132,"./formula-dataview-model":140,"./histogram-dataview-model":141,"./list-dataview-model":143,"underscore":103}],140:[function(require,module,exports){
+},{"../core/model":125,"../windshaft/filters/category":270,"../windshaft/filters/range":271,"./category-dataview-model":132,"./formula-dataview-model":139,"./histogram-dataview-model":140,"./list-dataview-model":142,"underscore":103}],139:[function(require,module,exports){
 var _ = require('underscore');
 var DataviewModelBase = require('./dataview-model-base');
 
@@ -40302,7 +40280,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":137,"underscore":103}],141:[function(require,module,exports){
+},{"./dataview-model-base":137,"underscore":103}],140:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var DataviewModelBase = require('./dataview-model-base');
@@ -40446,11 +40424,6 @@ module.exports = DataviewModelBase.extend({
 
   _onChangeBinds: function () {
     DataviewModelBase.prototype._onChangeBinds.call(this);
-    this.bind('change:histogram_sizes', function (mdl, isSizesApplied, d) {
-      if (isSizesApplied) {
-        this.trigger('histogram_sizes', this);
-      }
-    }, this);
   },
 
   _fetchAndResetFilter: function () {
@@ -40470,7 +40443,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":137,"./histogram-dataview/histogram-data-model":142,"backbone":2,"underscore":103}],142:[function(require,module,exports){
+},{"./dataview-model-base":137,"./histogram-dataview/histogram-data-model":141,"backbone":2,"underscore":103}],141:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../core/model');
 
@@ -40548,7 +40521,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":125,"underscore":103}],143:[function(require,module,exports){
+},{"../../core/model":125,"underscore":103}],142:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var DataviewModelBase = require('./dataview-model-base');
@@ -40604,7 +40577,7 @@ module.exports = DataviewModelBase.extend({
   }
 );
 
-},{"./dataview-model-base":137,"backbone":2,"underscore":103}],144:[function(require,module,exports){
+},{"./dataview-model-base":137,"backbone":2,"underscore":103}],143:[function(require,module,exports){
 var _ = require('underscore');
 
 /**
@@ -40737,7 +40710,7 @@ CartoDBLayerCommon.prototype = {
 
 module.exports = CartoDBLayerCommon;
 
-},{"underscore":103}],145:[function(require,module,exports){
+},{"underscore":103}],144:[function(require,module,exports){
 var CartoDBLayerGroupBase = require('./cartodb-layer-group-base');
 
 var CartoDBLayerGroupAnonymousMap = CartoDBLayerGroupBase.extend({
@@ -40769,7 +40742,7 @@ var CartoDBLayerGroupAnonymousMap = CartoDBLayerGroupBase.extend({
 
 module.exports = CartoDBLayerGroupAnonymousMap;
 
-},{"./cartodb-layer-group-base":146}],146:[function(require,module,exports){
+},{"./cartodb-layer-group-base":145}],145:[function(require,module,exports){
 var $ = require('jquery');
 var Backbone = require('backbone');
 var util = require('cdb.core.util');
@@ -40882,7 +40855,7 @@ var CartoDBLayerGroupBase = Backbone.Model.extend({
 
 module.exports = CartoDBLayerGroupBase;
 
-},{"backbone":2,"cdb.core.util":130,"jquery":12}],147:[function(require,module,exports){
+},{"backbone":2,"cdb.core.util":130,"jquery":12}],146:[function(require,module,exports){
 var CartoDBLayerGroupBase = require('./cartodb-layer-group-base');
 
 var CartoDBLayerGroupNamedMap = CartoDBLayerGroupBase.extend({
@@ -40901,7 +40874,7 @@ var CartoDBLayerGroupNamedMap = CartoDBLayerGroupBase.extend({
 
 module.exports = CartoDBLayerGroupNamedMap;
 
-},{"./cartodb-layer-group-base":146}],148:[function(require,module,exports){
+},{"./cartodb-layer-group-base":145}],147:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -40997,7 +40970,7 @@ CategoryGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = CategoryGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":150,"underscore":103}],149:[function(require,module,exports){
+},{"./geojson-data-provider-base":149,"underscore":103}],148:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -41039,7 +41012,7 @@ FormulaGeoJSONDataProvider.prototype.getData = function () {
 
 module.exports = FormulaGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":150,"underscore":103}],150:[function(require,module,exports){
+},{"./geojson-data-provider-base":149,"underscore":103}],149:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -41063,7 +41036,7 @@ _.extend(GeoJSONDataProviderBase.prototype, Backbone.Events);
 
 module.exports = GeoJSONDataProviderBase;
 
-},{"backbone":2,"underscore":103}],151:[function(require,module,exports){
+},{"backbone":2,"underscore":103}],150:[function(require,module,exports){
 var HistogramGeoJSONDataProvider = require('./histogram-geojson-data-provider');
 var CategoryGeoJSONDataProvider = require('./category-geojson-data-provider');
 var FormulaGeoJSONDataProvider = require('./formula-geojson-data-provider');
@@ -41097,7 +41070,7 @@ GeoJSONDataProvider.prototype.createDataProviderForDataview = function (dataview
 
 module.exports = GeoJSONDataProvider;
 
-},{"./category-geojson-data-provider":148,"./formula-geojson-data-provider":149,"./histogram-geojson-data-provider":152,"./list-geojson-data-provider":153}],152:[function(require,module,exports){
+},{"./category-geojson-data-provider":147,"./formula-geojson-data-provider":148,"./histogram-geojson-data-provider":151,"./list-geojson-data-provider":152}],151:[function(require,module,exports){
 var d3 = require('d3');
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
@@ -41172,7 +41145,7 @@ HistogramGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = HistogramGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":150,"d3":11,"underscore":103}],153:[function(require,module,exports){
+},{"./geojson-data-provider-base":149,"d3":11,"underscore":103}],152:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSONDataProviderBase = require('./geojson-data-provider-base');
 
@@ -41190,7 +41163,7 @@ ListGeoJSONDataProvider.prototype.applyFilter = function (filter) {
 
 module.exports = ListGeoJSONDataProvider;
 
-},{"./geojson-data-provider-base":150,"underscore":103}],154:[function(require,module,exports){
+},{"./geojson-data-provider-base":149,"underscore":103}],153:[function(require,module,exports){
 var $ = require('jquery');
 
 /**
@@ -41262,7 +41235,7 @@ var NOKIA = {
 
 module.exports = NOKIA;
 
-},{"jquery":12}],155:[function(require,module,exports){
+},{"jquery":12}],154:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 
@@ -41331,7 +41304,7 @@ var YAHOO = {
 
 module.exports = YAHOO;
 
-},{"jquery":12,"underscore":103}],156:[function(require,module,exports){
+},{"jquery":12,"underscore":103}],155:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -41351,7 +41324,7 @@ _.extend(GeometryView.prototype, Backbone.Events,{
 
 module.exports = GeometryView;
 
-},{"backbone":2,"underscore":103}],157:[function(require,module,exports){
+},{"backbone":2,"underscore":103}],156:[function(require,module,exports){
 var Model = require('../core/model');
 
 /**
@@ -41368,7 +41341,7 @@ var Geometry = Model.extend({
 
 module.exports = Geometry;
 
-},{"../core/model":125}],158:[function(require,module,exports){
+},{"../core/model":125}],157:[function(require,module,exports){
 var gmapsModels = {};
 
 // only add models if google.maps lib is loaded
@@ -41389,7 +41362,7 @@ if (typeof (window.google) !== 'undefined' && typeof (window.google.maps) !== 'u
 
 module.exports = gmapsModels;
 
-},{"./gmaps/gmaps-base-layer-view":160,"./gmaps/gmaps-cartodb-layer-group-view":161,"./gmaps/gmaps-layer-view":164,"./gmaps/gmaps-map-view":165,"./gmaps/gmaps-path-view":166,"./gmaps/gmaps-plain-layer-view":167,"./gmaps/gmaps-point-view":168,"./gmaps/gmaps-tiled-layer-view":169}],159:[function(require,module,exports){
+},{"./gmaps/gmaps-base-layer-view":159,"./gmaps/gmaps-cartodb-layer-group-view":160,"./gmaps/gmaps-layer-view":163,"./gmaps/gmaps-map-view":164,"./gmaps/gmaps-path-view":165,"./gmaps/gmaps-plain-layer-view":166,"./gmaps/gmaps-point-view":167,"./gmaps/gmaps-tiled-layer-view":168}],158:[function(require,module,exports){
 var config = require('cdb.config');
 
 var CartoDBDefaultOptions = {
@@ -41412,7 +41385,7 @@ var CartoDBDefaultOptions = {
 
 module.exports = CartoDBDefaultOptions;
 
-},{"cdb.config":115}],160:[function(require,module,exports){
+},{"cdb.config":115}],159:[function(require,module,exports){
 /* global google */
 var _ = require('underscore');
 var DEFAULT_MAP_STYLE = require('./gmaps-default-map-style');
@@ -41450,7 +41423,7 @@ _.extend(
 
 module.exports = GMapsBaseLayerView;
 
-},{"./gmaps-default-map-style":162,"./gmaps-layer-view":164,"underscore":103}],161:[function(require,module,exports){
+},{"./gmaps-default-map-style":161,"./gmaps-layer-view":163,"underscore":103}],160:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
 require('leaflet');
@@ -41786,7 +41759,7 @@ _.extend(
 
 module.exports = GMapsCartoDBLayerGroupView;
 
-},{"../cartodb-layer-common":144,"./cartodb-default-options":159,"./gmaps-layer-view":164,"./projector":171,"cdb.core.Profiler":126,"leaflet":13,"underscore":103,"wax.cartodb.js":281}],162:[function(require,module,exports){
+},{"../cartodb-layer-common":143,"./cartodb-default-options":158,"./gmaps-layer-view":163,"./projector":170,"cdb.core.Profiler":126,"leaflet":13,"underscore":103,"wax.cartodb.js":280}],161:[function(require,module,exports){
 var DEFAULT_MAP_STYLE = [{
     stylers: [{
         saturation: -65
@@ -41857,7 +41830,7 @@ var DEFAULT_MAP_STYLE = [{
 
 module.exports = DEFAULT_MAP_STYLE;
 
-},{}],163:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /* global google */
 var log = require('cdb.log');
 
@@ -41905,7 +41878,7 @@ GMapsLayerViewFactory.prototype.createLayerView = function (layerModel, mapModel
 
 module.exports = GMapsLayerViewFactory;
 
-},{"../leaflet/leaflet-wms-layer-view":184,"./gmaps-base-layer-view":160,"./gmaps-cartodb-layer-group-view":161,"./gmaps-plain-layer-view":167,"./gmaps-tiled-layer-view":169,"./gmaps-torque-layer-view":170,"cdb.log":118}],164:[function(require,module,exports){
+},{"../leaflet/leaflet-wms-layer-view":183,"./gmaps-base-layer-view":159,"./gmaps-cartodb-layer-group-view":160,"./gmaps-plain-layer-view":166,"./gmaps-tiled-layer-view":168,"./gmaps-torque-layer-view":169,"cdb.log":118}],163:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -41979,7 +41952,7 @@ _.extend(GMapsLayerView.prototype, {
 
 module.exports = GMapsLayerView;
 
-},{"backbone":2,"underscore":103}],165:[function(require,module,exports){
+},{"backbone":2,"underscore":103}],164:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 var MapView = require('../map-view');
@@ -42249,7 +42222,7 @@ var GoogleMapsMapView = MapView.extend({
 
 module.exports = GoogleMapsMapView;
 
-},{"../map-view":186,"./gmaps-path-view":166,"./gmaps-point-view":168,"./projector":171,"cdb.log":118,"underscore":103}],166:[function(require,module,exports){
+},{"../map-view":185,"./gmaps-path-view":165,"./gmaps-point-view":167,"./projector":170,"cdb.log":118,"underscore":103}],165:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSON = require('geojson');
 var GeometryView = require('../geometry-view');
@@ -42405,7 +42378,7 @@ PathView.prototype.edit = function(enable) {
 
 module.exports = PathView;
 
-},{"../geometry-view":156,"geojson":275,"underscore":103}],167:[function(require,module,exports){
+},{"../geometry-view":155,"geojson":274,"underscore":103}],166:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
 
@@ -42440,7 +42413,7 @@ _.extend(
 
 module.exports = GMapsPlainLayerView;
 
-},{"./gmaps-layer-view":164,"underscore":103}],168:[function(require,module,exports){
+},{"./gmaps-layer-view":163,"underscore":103}],167:[function(require,module,exports){
 var _ = require('underscore');
 var GeoJSON = require('geojson');
 var config = require('cdb.config');
@@ -42528,7 +42501,7 @@ PointView.prototype.edit = function(enable) {
 
 module.exports = PointView;
 
-},{"../geometry-view":156,"cdb.config":115,"geojson":275,"underscore":103}],169:[function(require,module,exports){
+},{"../geometry-view":155,"cdb.config":115,"geojson":274,"underscore":103}],168:[function(require,module,exports){
 var _ = require('underscore');
 var GMapsLayerView = require('./gmaps-layer-view');
 
@@ -42571,7 +42544,7 @@ _.extend(
 
 module.exports = GMapsTiledLayerView;
 
-},{"./gmaps-layer-view":164,"underscore":103}],170:[function(require,module,exports){
+},{"./gmaps-layer-view":163,"underscore":103}],169:[function(require,module,exports){
 require('torque.js');
 var _ = require('underscore');
 var torque = require('torque.js');
@@ -42639,7 +42612,7 @@ _.extend(
 
 module.exports = GMapsTorqueLayerView;
 
-},{"../torque-layer-view-base":196,"./gmaps-layer-view":164,"backbone":2,"torque.js":46,"underscore":103}],171:[function(require,module,exports){
+},{"../torque-layer-view-base":195,"./gmaps-layer-view":163,"backbone":2,"torque.js":46,"underscore":103}],170:[function(require,module,exports){
 // helper to get pixel position from latlon
 var Projector = function(map) { this.setMap(map); };
 Projector.prototype = new google.maps.OverlayView();
@@ -42661,7 +42634,7 @@ Projector.prototype.pixelToLatLng = function(point) {
 
 module.exports = Projector;
 
-},{}],172:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports = {
   LeafletLayerView: require('./leaflet/leaflet-layer-view'),
 
@@ -42679,7 +42652,7 @@ module.exports = {
   LeafletMapView: require('./leaflet/leaflet-map-view')
 };
 
-},{"./leaflet/leaflet-cartodb-layer-group-view":173,"./leaflet/leaflet-gmaps-tiled-layer-view":175,"./leaflet/leaflet-layer-view":177,"./leaflet/leaflet-map-view":178,"./leaflet/leaflet-path-view":179,"./leaflet/leaflet-plain-layer-view":180,"./leaflet/leaflet-point-view":181,"./leaflet/leaflet-tiled-layer-view":182,"./leaflet/leaflet-wms-layer-view":184}],173:[function(require,module,exports){
+},{"./leaflet/leaflet-cartodb-layer-group-view":172,"./leaflet/leaflet-gmaps-tiled-layer-view":174,"./leaflet/leaflet-layer-view":176,"./leaflet/leaflet-map-view":177,"./leaflet/leaflet-path-view":178,"./leaflet/leaflet-plain-layer-view":179,"./leaflet/leaflet-point-view":180,"./leaflet/leaflet-tiled-layer-view":181,"./leaflet/leaflet-wms-layer-view":183}],172:[function(require,module,exports){
 var L = require('leaflet');
 // NOTE: Leaflet needs to be required before wax because wax relies on global L internally
 var wax = require('wax.cartodb.js');
@@ -43003,7 +42976,7 @@ var LeafletCartoDBLayerGroupView = L.TileLayer.extend({
 
 module.exports = LeafletCartoDBLayerGroupView;
 
-},{"../cartodb-layer-common":144,"./leaflet-layer-view":177,"backbone":2,"cdb.config":115,"cdb.core.Profiler":126,"leaflet":13,"underscore":103,"wax.cartodb.js":281}],174:[function(require,module,exports){
+},{"../cartodb-layer-common":143,"./leaflet-layer-view":176,"backbone":2,"cdb.config":115,"cdb.core.Profiler":126,"leaflet":13,"underscore":103,"wax.cartodb.js":280}],173:[function(require,module,exports){
 require('d3.cartodb');// TODO: The 'd3.cartodb' module doens't currently export L.CartoDBd3Layer
 // and it's currently relying on window.L so weed to do the following trick.
 // Check out: https://github.com/CartoDB/d3.cartodb/issues/93 for more info
@@ -43083,7 +43056,7 @@ var LeafletCartoDBVectorLayerGroupView = CartoDBd3Layer.extend({
 
 module.exports = LeafletCartoDBVectorLayerGroupView;
 
-},{"../data-providers/geojson/geojson-data-provider-factory":151,"./leaflet-layer-view":177,"d3.cartodb":388}],175:[function(require,module,exports){
+},{"../data-providers/geojson/geojson-data-provider-factory":150,"./leaflet-layer-view":176,"d3.cartodb":387}],174:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -43144,7 +43117,7 @@ _.extend(LeafletGmapsTiledLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletGmapsTiledLayerView;
 
-},{"./leaflet-layer-view":177,"leaflet":13,"underscore":103}],176:[function(require,module,exports){
+},{"./leaflet-layer-view":176,"leaflet":13,"underscore":103}],175:[function(require,module,exports){
 var log = require('cdb.log');
 var LeafletTiledLayerView = require('./leaflet-tiled-layer-view');
 var LeafletWMSLayerView = require('./leaflet-wms-layer-view');
@@ -43198,7 +43171,7 @@ LeafletLayerViewFactory.prototype.createLayerView = function (layerModel, mapMod
 
 module.exports = LeafletLayerViewFactory;
 
-},{"./leaflet-cartodb-layer-group-view":173,"./leaflet-cartodb-vector-layer-group-view":174,"./leaflet-gmaps-tiled-layer-view":175,"./leaflet-plain-layer-view":180,"./leaflet-tiled-layer-view":182,"./leaflet-torque-layer":183,"./leaflet-wms-layer-view":184,"cdb.log":118}],177:[function(require,module,exports){
+},{"./leaflet-cartodb-layer-group-view":172,"./leaflet-cartodb-vector-layer-group-view":173,"./leaflet-gmaps-tiled-layer-view":174,"./leaflet-plain-layer-view":179,"./leaflet-tiled-layer-view":181,"./leaflet-torque-layer":182,"./leaflet-wms-layer-view":183,"cdb.log":118}],176:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -43244,7 +43217,7 @@ _.extend(LeafletLayerView.prototype, {
 
 module.exports = LeafletLayerView;
 
-},{"backbone":2,"underscore":103}],178:[function(require,module,exports){
+},{"backbone":2,"underscore":103}],177:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var L = require('leaflet');
@@ -43598,7 +43571,7 @@ L.Icon.Default.imagePath = (function () {
 
 module.exports = LeafletMapView;
 
-},{"../../core/sanitize":127,"../../core/view":131,"../map-view":186,"./leaflet-path-view":179,"./leaflet-point-view":181,"jquery":12,"leaflet":13,"underscore":103}],179:[function(require,module,exports){
+},{"../../core/sanitize":127,"../../core/view":131,"../map-view":185,"./leaflet-path-view":178,"./leaflet-point-view":180,"jquery":12,"leaflet":13,"underscore":103}],178:[function(require,module,exports){
  var _ = require('underscore');
  var L = require('leaflet');
  var GeometryView = require('../geometry-view');
@@ -43667,7 +43640,7 @@ PathView.prototype.edit = function(enable) {
 
 module.exports = PathView;
 
-},{"../geometry-view":156,"leaflet":13,"underscore":103}],180:[function(require,module,exports){
+},{"../geometry-view":155,"leaflet":13,"underscore":103}],179:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -43716,7 +43689,7 @@ _.extend(LeafletPlainLayerView.prototype, LeafletLayerView.prototype);
 
 module.exports = LeafletPlainLayerView;
 
-},{"./leaflet-layer-view":177,"leaflet":13,"underscore":103}],181:[function(require,module,exports){
+},{"./leaflet-layer-view":176,"leaflet":13,"underscore":103}],180:[function(require,module,exports){
  var L = require('leaflet');
  var config = require('cdb.config');
  var GeometryView = require('../geometry-view');
@@ -43797,7 +43770,7 @@ PointView.prototype._eventHandler = function(evtType) {
 
 module.exports = PointView;
 
-},{"../geometry-view":156,"cdb.config":115,"leaflet":13}],182:[function(require,module,exports){
+},{"../geometry-view":155,"cdb.config":115,"leaflet":13}],181:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view');
@@ -43843,7 +43816,7 @@ _.extend(LeafletTiledLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletTiledLayerView;
 
-},{"./leaflet-layer-view":177,"leaflet":13,"underscore":103}],183:[function(require,module,exports){
+},{"./leaflet-layer-view":176,"leaflet":13,"underscore":103}],182:[function(require,module,exports){
 /* global L */
 require('torque.js');
 var _ = require('underscore');
@@ -43910,7 +43883,7 @@ _.extend(LeafletTorqueLayer.prototype, TorqueLayerViewBase);
 
 module.exports = LeafletTorqueLayer;
 
-},{"../torque-layer-view-base":196,"./leaflet-layer-view":177,"cdb.core.util":130,"torque.js":46,"underscore":103}],184:[function(require,module,exports){
+},{"../torque-layer-view-base":195,"./leaflet-layer-view":176,"cdb.core.util":130,"torque.js":46,"underscore":103}],183:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var LeafletLayerView = require('./leaflet-layer-view.js');
@@ -43946,7 +43919,7 @@ _.extend(LeafletWMSLayerView.prototype, LeafletLayerView.prototype, {
 
 module.exports = LeafletWMSLayerView;
 
-},{"./leaflet-layer-view.js":177,"leaflet":13,"underscore":103}],185:[function(require,module,exports){
+},{"./leaflet-layer-view.js":176,"leaflet":13,"underscore":103}],184:[function(require,module,exports){
 /* global google */
 var cdb = require('cdb');
 var LeafletLayerViewFactory = require('./leaflet/leaflet-layer-view-factory');
@@ -43984,7 +43957,7 @@ MapViewFactory.prototype.createMapView = function (provider, mapModel, el, layer
 
 module.exports = MapViewFactory;
 
-},{"./gmaps/gmaps-layer-view-factory":163,"./leaflet/leaflet-layer-view-factory":176,"cdb":117}],186:[function(require,module,exports){
+},{"./gmaps/gmaps-layer-view-factory":162,"./leaflet/leaflet-layer-view-factory":175,"cdb":117}],185:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 var View = require('../core/view');
@@ -44231,7 +44204,7 @@ var MapView = View.extend({
 
 module.exports = MapView;
 
-},{"../core/view":131,"cdb.log":118,"underscore":103}],187:[function(require,module,exports){
+},{"../core/view":131,"cdb.log":118,"underscore":103}],186:[function(require,module,exports){
 var _ = require('underscore');
 var L = require('leaflet');
 var Backbone = require('backbone');
@@ -44707,7 +44680,7 @@ var Map = Model.extend({
 
 module.exports = Map;
 
-},{"../core/model":125,"../core/sanitize":127,"../vis/layers":256,"./map/layers":191,"backbone":2,"cdb.config":115,"cdb.log":118,"leaflet":13,"underscore":103}],188:[function(require,module,exports){
+},{"../core/model":125,"../core/sanitize":127,"../vis/layers":255,"./map/layers":190,"backbone":2,"cdb.config":115,"cdb.log":118,"leaflet":13,"underscore":103}],187:[function(require,module,exports){
 var _ = require('underscore');
 var config = require('cdb.config');
 var LayerModelBase = require('./layer-model-base');
@@ -44724,7 +44697,17 @@ var CartoDBLayer = LayerModelBase.extend({
     options = options || {};
 
     this._map = options.map;
-    this.bind('change:visible change:sql change:cartocss change:source', this._reloadMap, this);
+    if (attrs && attrs.cartocss) {
+      this.set('initialStyle', attrs.cartocss);
+    }
+    this.bind('change:visible change:sql change:source', this._reloadMap, this);
+    this.bind('change:cartocss', this._onCartoCSSChanged);
+  },
+
+  _onCartoCSSChanged: function (layer, cartocss) {
+    if (!layer._dataProvider) {
+      layer._reloadMap();
+    }
   },
 
   _reloadMap: function () {
@@ -44733,12 +44716,25 @@ var CartoDBLayer = LayerModelBase.extend({
     });
   },
 
+  restoreCartoCSS: function () {
+    this.set('cartocss', this.get('initialStyle'));
+  },
+
   hasInteraction: function () {
     return this.isVisible() && (this.containInfowindow() || this.containTooltip());
   },
 
   isVisible: function () {
     return this.get('visible');
+  },
+
+  getGeometryType: function () {
+    if (this._dataProvider) {
+      var index = this._dataProvider._layerIndex;
+      var sublayer = this._dataProvider._vectorLayerView.renderers[index];
+      return sublayer.inferGeometryType();
+    }
+    return null;
   },
 
   getTooltipFieldNames: function () {
@@ -44811,7 +44807,7 @@ var CartoDBLayer = LayerModelBase.extend({
 
 module.exports = CartoDBLayer;
 
-},{"./layer-model-base":190,"cdb.config":115,"underscore":103}],189:[function(require,module,exports){
+},{"./layer-model-base":189,"cdb.config":115,"underscore":103}],188:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 var GMapsBaseLayer = LayerModelBase.extend({
@@ -44825,7 +44821,7 @@ var GMapsBaseLayer = LayerModelBase.extend({
 
 module.exports = GMapsBaseLayer;
 
-},{"./layer-model-base":190}],190:[function(require,module,exports){
+},{"./layer-model-base":189}],189:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 
@@ -44939,7 +44935,7 @@ var MapLayer = Model.extend({
 
 module.exports = MapLayer;
 
-},{"../../core/model":125,"cdb":117,"cdb.log":118,"underscore":103}],191:[function(require,module,exports){
+},{"../../core/model":125,"cdb":117,"cdb.log":118,"underscore":103}],190:[function(require,module,exports){
 var Backbone = require('backbone');
 var LayerModelBase = require('./layer-model-base');
 
@@ -44997,7 +44993,7 @@ var Layers = Backbone.Collection.extend({
 
 module.exports = Layers;
 
-},{"./layer-model-base":190,"backbone":2}],192:[function(require,module,exports){
+},{"./layer-model-base":189,"backbone":2}],191:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 /**
@@ -45015,7 +45011,7 @@ var PlainLayer = LayerModelBase.extend({
 
 module.exports = PlainLayer;
 
-},{"./layer-model-base":190}],193:[function(require,module,exports){
+},{"./layer-model-base":189}],192:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 var TileLayer = LayerModelBase.extend({
@@ -45025,7 +45021,7 @@ var TileLayer = LayerModelBase.extend({
 
 module.exports = TileLayer
 
-},{"./layer-model-base":190}],194:[function(require,module,exports){
+},{"./layer-model-base":189}],193:[function(require,module,exports){
 var _ = require('underscore');
 var LayerModelBase = require('./layer-model-base');
 
@@ -45147,7 +45143,7 @@ var TorqueLayer = LayerModelBase.extend({
 
 module.exports = TorqueLayer;
 
-},{"./layer-model-base":190,"underscore":103}],195:[function(require,module,exports){
+},{"./layer-model-base":189,"underscore":103}],194:[function(require,module,exports){
 var LayerModelBase = require('./layer-model-base');
 
 /**
@@ -45167,7 +45163,7 @@ var WMSLayer = LayerModelBase.extend({
 
 module.exports = WMSLayer;
 
-},{"./layer-model-base":190}],196:[function(require,module,exports){
+},{"./layer-model-base":189}],195:[function(require,module,exports){
 var _ = require('underscore');
 
 /**
@@ -45329,7 +45325,7 @@ module.exports = {
   }
 };
 
-},{"underscore":103}],197:[function(require,module,exports){
+},{"underscore":103}],196:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Model = require('../../core/model');
@@ -45691,7 +45687,7 @@ var Annotation = View.extend({
 
 module.exports = Annotation;
 
-},{"../../core/model":125,"../../core/sanitize":127,"../../core/template":129,"../../core/view":131,"jquery":12,"underscore":103}],198:[function(require,module,exports){
+},{"../../core/model":125,"../../core/sanitize":127,"../../core/template":129,"../../core/view":131,"jquery":12,"underscore":103}],197:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -45703,7 +45699,7 @@ __p+='<button type="button" class="CDB-Attribution-button js-button">?</button> 
 return __p;
 };
 
-},{"underscore":103}],199:[function(require,module,exports){
+},{"underscore":103}],198:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var View = require('../../../core/view');
@@ -45791,7 +45787,7 @@ var Attribution = View.extend({
 
 module.exports = Attribution;
 
-},{"../../../core/model":125,"../../../core/sanitize":127,"../../../core/view":131,"./attribution-template.tpl":198,"jquery":12,"underscore":103}],200:[function(require,module,exports){
+},{"../../../core/model":125,"../../../core/sanitize":127,"../../../core/view":131,"./attribution-template.tpl":197,"jquery":12,"underscore":103}],199:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../core/sanitize');
 var View = require('../../core/view');
@@ -45850,7 +45846,7 @@ var Header = View.extend({
 
 module.exports = Header;
 
-},{"../../core/sanitize":127,"../../core/view":131,"underscore":103}],201:[function(require,module,exports){
+},{"../../core/sanitize":127,"../../core/view":131,"underscore":103}],200:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var sanitize = require('../../core/sanitize');
@@ -45940,7 +45936,7 @@ module.exports = Text.extend({
 
 });
 
-},{"../../core/sanitize":127,"./text":238,"jquery":12,"underscore":103}],202:[function(require,module,exports){
+},{"../../core/sanitize":127,"./text":237,"jquery":12,"underscore":103}],201:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 var Template = require('../../core/template');
@@ -46018,7 +46014,7 @@ var InfoBox = View.extend({
 
 module.exports = InfoBox;
 
-},{"../../core/template":129,"../../core/view":131,"underscore":103}],203:[function(require,module,exports){
+},{"../../core/template":129,"../../core/view":131,"underscore":103}],202:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Backbone = require('backbone');
@@ -46228,7 +46224,7 @@ var InfowindowModel = Backbone.Model.extend({
 
 module.exports = InfowindowModel;
 
-},{"backbone":2,"jquery":12,"underscore":103}],204:[function(require,module,exports){
+},{"backbone":2,"jquery":12,"underscore":103}],203:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Ps = require('perfect-scrollbar');
@@ -46942,7 +46938,7 @@ var Infowindow = View.extend({
 
 module.exports = Infowindow;
 
-},{"../../core/sanitize":127,"../../core/template":129,"../../core/util":130,"../../core/view":131,"cdb.templates":119,"clip-path":276,"jquery":12,"perfect-scrollbar":15,"underscore":103}],205:[function(require,module,exports){
+},{"../../core/sanitize":127,"../../core/template":129,"../../core/util":130,"../../core/view":131,"cdb.templates":119,"clip-path":275,"jquery":12,"perfect-scrollbar":15,"underscore":103}],204:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cdb'); // cdb.god, cdb.geo.ui.*
 var Dropdown = require('../../ui/common/dropdown');
@@ -47062,7 +47058,7 @@ var LayerSelector = View.extend({
 
 module.exports = LayerSelector;
 
-},{"../../core/model":125,"../../core/view":131,"../../ui/common/dropdown":245,"./layer-view":206,"cdb":117,"underscore":103}],206:[function(require,module,exports){
+},{"../../core/model":125,"../../core/view":131,"../../ui/common/dropdown":244,"./layer-view":205,"cdb":117,"underscore":103}],205:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -47141,7 +47137,7 @@ var LayerView = View.extend({
 
 module.exports = LayerView;
 
-},{"../../core/view":131,"cdb.templates":119,"underscore":103}],207:[function(require,module,exports){
+},{"../../core/view":131,"cdb.templates":119,"underscore":103}],206:[function(require,module,exports){
 module.exports = {
   LegendItemModel: require('./legend-item-model'),
   LegendItem: require('./legend-item'),
@@ -47161,7 +47157,7 @@ module.exports = {
   StackedLegend: require('./legend/stacked-legend')
 };
 
-},{"./legend-item":209,"./legend-item-model":208,"./legend-items":210,"./legend-model":211,"./legend/base-legend":213,"./legend/bubble-legend":214,"./legend/category-legend":215,"./legend/choropleth-legend":216,"./legend/color-legend":217,"./legend/custom-legend":218,"./legend/debug-legend":219,"./legend/density-legend":220,"./legend/intensity-legend":221,"./legend/none-legend":232,"./legend/stacked-legend":233,"./legends":234}],208:[function(require,module,exports){
+},{"./legend-item":208,"./legend-item-model":207,"./legend-items":209,"./legend-model":210,"./legend/base-legend":212,"./legend/bubble-legend":213,"./legend/category-legend":214,"./legend/choropleth-legend":215,"./legend/color-legend":216,"./legend/custom-legend":217,"./legend/debug-legend":218,"./legend/density-legend":219,"./legend/intensity-legend":220,"./legend/none-legend":231,"./legend/stacked-legend":232,"./legends":233}],207:[function(require,module,exports){
 var Model = require('../../core/model');
 
 var LegendItemModel = Model.extend({
@@ -47176,7 +47172,7 @@ var LegendItemModel = Model.extend({
 
 module.exports = LegendItemModel;
 
-},{"../../core/model":125}],209:[function(require,module,exports){
+},{"../../core/model":125}],208:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -47217,7 +47213,7 @@ var LegendItem = View.extend({
 
 module.exports = LegendItem;
 
-},{"../../core/view":131,"cdb.templates":119,"underscore":103}],210:[function(require,module,exports){
+},{"../../core/view":131,"cdb.templates":119,"underscore":103}],209:[function(require,module,exports){
 var Backbone = require('backbone');
 var LegendItemModel = require('./legend-item-model');
 
@@ -47230,7 +47226,7 @@ var LegendItems = Backbone.Collection.extend({
 
 module.exports = LegendItems;
 
-},{"./legend-item-model":208,"backbone":2}],211:[function(require,module,exports){
+},{"./legend-item-model":207,"backbone":2}],210:[function(require,module,exports){
 var Model = require('../../core/model');
 var LegendItems = require('./legend-items');
 
@@ -47279,7 +47275,7 @@ var LegendModel = Model.extend({
 
 module.exports = LegendModel;
 
-},{"../../core/model":125,"./legend-items":210}],212:[function(require,module,exports){
+},{"../../core/model":125,"./legend-items":209}],211:[function(require,module,exports){
 var _ = require('underscore');
 var LegendModel = require('./legend-model');
 var LegendExports = require('./legend-exports');
@@ -47435,7 +47431,7 @@ var Legend = View.extend({
 
 module.exports = Legend;
 
-},{"../../core/view":131,"./legend-exports":207,"./legend-model":211,"underscore":103}],213:[function(require,module,exports){
+},{"../../core/view":131,"./legend-exports":206,"./legend-model":210,"underscore":103}],212:[function(require,module,exports){
 var $ = require('jquery');
 var View = require('../../../core/view');
 
@@ -47470,7 +47466,7 @@ var BaseLegend = View.extend({
 
 module.exports = BaseLegend;
 
-},{"../../../core/view":131,"jquery":12}],214:[function(require,module,exports){
+},{"../../../core/view":131,"jquery":12}],213:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize.js')
 var BaseLegend = require('./base-legend');
@@ -47544,7 +47540,7 @@ var BubbleLegend = BaseLegend.extend({
 
 module.exports = BubbleLegend;
 
-},{"../../../core/sanitize.js":127,"./base-legend":213,"underscore":103}],215:[function(require,module,exports){
+},{"../../../core/sanitize.js":127,"./base-legend":212,"underscore":103}],214:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -47612,7 +47608,7 @@ var CategoryLegend = BaseLegend.extend({
 
 module.exports = CategoryLegend;
 
-},{"../../../core/sanitize":127,"../legend-item":209,"./base-legend":213,"underscore":103}],216:[function(require,module,exports){
+},{"../../../core/sanitize":127,"../legend-item":208,"./base-legend":212,"underscore":103}],215:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -47701,7 +47697,7 @@ var ChoroplethLegend = BaseLegend.extend({
 
 module.exports = ChoroplethLegend;
 
-},{"../../../core/sanitize":127,"./base-legend":213,"underscore":103}],217:[function(require,module,exports){
+},{"../../../core/sanitize":127,"./base-legend":212,"underscore":103}],216:[function(require,module,exports){
 var _ = require('underscore');
 var BaseLegend = require('./base-legend');
 var LegendItem = require('../legend-item');
@@ -47756,7 +47752,7 @@ var ColorLegend = BaseLegend.extend({
 
 module.exports = ColorLegend;
 
-},{"../legend-item":209,"./base-legend":213,"underscore":103}],218:[function(require,module,exports){
+},{"../legend-item":208,"./base-legend":212,"underscore":103}],217:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize.js')
 var BaseLegend = require('./base-legend');
@@ -47828,13 +47824,13 @@ var CustomLegend = BaseLegend.extend({
 
 module.exports = CustomLegend;
 
-},{"../../../core/sanitize.js":127,"../legend-item":209,"../legend-items":210,"./base-legend":213,"underscore":103}],219:[function(require,module,exports){
+},{"../../../core/sanitize.js":127,"../legend-item":208,"../legend-items":209,"./base-legend":212,"underscore":103}],218:[function(require,module,exports){
 var View = require('../../../core/view');
 
 var DebugLegend = View.extend({ });
 module.exports = DebugLegend
 
-},{"../../../core/view":131}],220:[function(require,module,exports){
+},{"../../../core/view":131}],219:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -47925,7 +47921,7 @@ var DensityLegend = BaseLegend.extend({
 
 module.exports = DensityLegend;
 
-},{"../../../core/sanitize":127,"./base-legend":213,"underscore":103}],221:[function(require,module,exports){
+},{"../../../core/sanitize":127,"./base-legend":212,"underscore":103}],220:[function(require,module,exports){
 var _ = require('underscore');
 var sanitize = require('../../../core/sanitize');
 var BaseLegend = require('./base-legend');
@@ -48072,7 +48068,7 @@ var IntensityLegend = BaseLegend.extend({
 
 module.exports = IntensityLegend;
 
-},{"../../../core/sanitize":127,"./base-legend":213,"underscore":103}],222:[function(require,module,exports){
+},{"../../../core/sanitize":127,"./base-legend":212,"underscore":103}],221:[function(require,module,exports){
 var LegendModel = require('../legend-model');
 var BubbleLegend = require('./bubble-legend');
 
@@ -48116,7 +48112,7 @@ var LegendBubble = BubbleLegend.extend({
 
 module.exports = LegendBubble;
 
-},{"../legend-model":211,"./bubble-legend":214}],223:[function(require,module,exports){
+},{"../legend-model":210,"./bubble-legend":213}],222:[function(require,module,exports){
 var CategoryLegend = require('./category-legend');
 var LegendItems = require('../legend-items');
 var LegendModel = require('../legend-model');
@@ -48158,7 +48154,7 @@ var LegendCategory = CategoryLegend.extend({
 
 module.exports = LegendCategory;
 
-},{"../legend-items":210,"../legend-model":211,"./category-legend":215}],224:[function(require,module,exports){
+},{"../legend-items":209,"../legend-model":210,"./category-legend":214}],223:[function(require,module,exports){
 var _ = require('underscore');
 var ChoroplethLegend = require('./choropleth-legend');
 var LegendModel = require('../legend-model');
@@ -48219,7 +48215,7 @@ var LegendChoropleth = ChoroplethLegend.extend({
 
 module.exports = LegendChoropleth;
 
-},{"../legend-model":211,"./choropleth-legend":216,"underscore":103}],225:[function(require,module,exports){
+},{"../legend-model":210,"./choropleth-legend":215,"underscore":103}],224:[function(require,module,exports){
 var LegendCategory = require('./legend-category');
 
 /**
@@ -48228,7 +48224,7 @@ var LegendCategory = require('./legend-category');
 var LegendColor = LegendCategory.extend({ });
 module.exports = LegendColor;
 
-},{"./legend-category":223}],226:[function(require,module,exports){
+},{"./legend-category":222}],225:[function(require,module,exports){
 var CustomLegend = require('./custom-legend');
 var LegendItems = require('../legend-items');
 var LegendModel = require('../legend-model');
@@ -48268,7 +48264,7 @@ var LegendCustom = CustomLegend.extend({
 
 module.exports = LegendCustom;
 
-},{"../legend-items":210,"../legend-model":211,"./custom-legend":218}],227:[function(require,module,exports){
+},{"../legend-items":209,"../legend-model":210,"./custom-legend":217}],226:[function(require,module,exports){
 var _ = require('underscore');
 var DensityLegend = require('./density-legend');
 var LegendModel = require('../legend-model');
@@ -48329,7 +48325,7 @@ var LegendDensity = DensityLegend.extend({
 
 module.exports = LegendDensity;
 
-},{"../legend-model":211,"./density-legend":220,"underscore":103}],228:[function(require,module,exports){
+},{"../legend-model":210,"./density-legend":219,"underscore":103}],227:[function(require,module,exports){
 var IntensityLegend = require('./intensity-legend');
 var LegendModel = require('../legend-model');
 
@@ -48379,14 +48375,14 @@ var LegendIntensity = IntensityLegend.extend({
 
 module.exports = LegendIntensity;
 
-},{"../legend-model":211,"./intensity-legend":221}],229:[function(require,module,exports){
+},{"../legend-model":210,"./intensity-legend":220}],228:[function(require,module,exports){
 var View = require('../../../core/view');
 
 var LegendNone = View.extend({ });
 
 module.exports = LegendNone;
 
-},{"../../../core/view":131}],230:[function(require,module,exports){
+},{"../../../core/view":131}],229:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cdb'); // cdb.geo.ui.Legend.*
 var Legends = require('../legends');
@@ -48487,7 +48483,7 @@ var LegendStacked = StackedLegend.extend({
 
 module.exports = LegendStacked;
 
-},{"../legend-model":211,"../legends":234,"./stacked-legend":233,"cdb":117,"underscore":103}],231:[function(require,module,exports){
+},{"../legend-model":210,"../legends":233,"./stacked-legend":232,"cdb":117,"underscore":103}],230:[function(require,module,exports){
 var Legend = {};
 Legend.Bubble = require('./legend-bubble');
 Legend.Category = require('./legend-category');
@@ -48501,14 +48497,14 @@ Legend.Stacked = require('./legend-stacked');
 
 module.exports = Legend;
 
-},{"./legend-bubble":222,"./legend-category":223,"./legend-choropleth":224,"./legend-color":225,"./legend-custom":226,"./legend-density":227,"./legend-intensity":228,"./legend-none":229,"./legend-stacked":230}],232:[function(require,module,exports){
+},{"./legend-bubble":221,"./legend-category":222,"./legend-choropleth":223,"./legend-color":224,"./legend-custom":225,"./legend-density":226,"./legend-intensity":227,"./legend-none":228,"./legend-stacked":229}],231:[function(require,module,exports){
 var BaseLegend = require('./base-legend');
 
 var NoneLegend  = BaseLegend.extend({ });
 
 module.exports = NoneLegend;
 
-},{"./base-legend":213}],233:[function(require,module,exports){
+},{"./base-legend":212}],232:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var View = require('../../../core/view');
@@ -48603,7 +48599,7 @@ var StackedLegend = View.extend({
 
 module.exports = StackedLegend;
 
-},{"../../../core/view":131,"jquery":12,"underscore":103}],234:[function(require,module,exports){
+},{"../../../core/view":131,"jquery":12,"underscore":103}],233:[function(require,module,exports){
 var Backbone = require('backbone');
 var LegendModel = require('./legend-model');
 
@@ -48611,7 +48607,7 @@ module.exports = Backbone.Collection.extend({
   model: LegendModel
 });
 
-},{"./legend-model":211,"backbone":2}],235:[function(require,module,exports){
+},{"./legend-model":210,"backbone":2}],234:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../../core/view');
 var NOKIA = require('../../../geo/geocoder/nokia-geocoder');
@@ -48836,7 +48832,7 @@ var Search = View.extend({
 
 module.exports = Search;
 
-},{"../../../core/view":131,"../../../geo/geocoder/nokia-geocoder":154,"../../../geo/geometry":157,"../../../geo/ui/infowindow":204,"../../../geo/ui/infowindow-model":203,"./search_infowindow_template.tpl":236,"./search_template.tpl":237,"underscore":103}],236:[function(require,module,exports){
+},{"../../../core/view":131,"../../../geo/geocoder/nokia-geocoder":153,"../../../geo/geometry":156,"../../../geo/ui/infowindow":203,"../../../geo/ui/infowindow-model":202,"./search_infowindow_template.tpl":235,"./search_template.tpl":236,"underscore":103}],235:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -48848,7 +48844,7 @@ __p+='<div class="CDB-infowindow CDB-infowindow--light js-infowindow"> <div clas
 return __p;
 };
 
-},{"underscore":103}],237:[function(require,module,exports){
+},{"underscore":103}],236:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -48858,7 +48854,7 @@ __p+='<div class="CDB-Overlay"> <div class="CDB-Search-inner"> <form class="js-f
 return __p;
 };
 
-},{"underscore":103}],238:[function(require,module,exports){
+},{"underscore":103}],237:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 var sanitize = require('../../core/sanitize');
@@ -49051,7 +49047,7 @@ var Text = View.extend({
 
 module.exports = Text;
 
-},{"../../core/sanitize":127,"../../core/view":131,"jquery":12,"underscore":103}],239:[function(require,module,exports){
+},{"../../core/sanitize":127,"../../core/view":131,"jquery":12,"underscore":103}],238:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../core/view');
 
@@ -49103,7 +49099,7 @@ var TilesLoader = View.extend({
 
 module.exports = TilesLoader;
 
-},{"../../core/view":131,"underscore":103}],240:[function(require,module,exports){
+},{"../../core/view":131,"underscore":103}],239:[function(require,module,exports){
 var _ = require('underscore');
 var InfoBox = require('./infobox');
 var sanitize = require('../../core/sanitize');
@@ -49319,7 +49315,7 @@ var Tooltip = InfoBox.extend({
 
 module.exports = Tooltip;
 
-},{"../../core/sanitize":127,"./infobox":202,"./infowindow-model":203,"underscore":103}],241:[function(require,module,exports){
+},{"../../core/sanitize":127,"./infobox":201,"./infowindow-model":202,"underscore":103}],240:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -49329,7 +49325,7 @@ __p+='<div class="CDB-Overlay"> <button class="CDB-Zoom-action CDB-Zoom-action--
 return __p;
 };
 
-},{"underscore":103}],242:[function(require,module,exports){
+},{"underscore":103}],241:[function(require,module,exports){
 var View = require('../../../core/view');
 var template = require('./zoom-template.tpl');
 
@@ -49394,12 +49390,12 @@ module.exports = View.extend({
 
 });
 
-},{"../../../core/view":131,"./zoom-template.tpl":241}],243:[function(require,module,exports){
+},{"../../../core/view":131,"./zoom-template.tpl":240}],242:[function(require,module,exports){
 var cdb = require('./cartodb.js');
 
 module.exports = cdb;
 
-},{"./cartodb.js":114}],244:[function(require,module,exports){
+},{"./cartodb.js":114}],243:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var templates = require('cdb.templates');
@@ -49571,7 +49567,7 @@ module.exports = View.extend({
 
 });
 
-},{"../../core/view":131,"cdb.templates":119,"jquery":12,"underscore":103}],245:[function(require,module,exports){
+},{"../../core/view":131,"cdb.templates":119,"jquery":12,"underscore":103}],244:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cdb');
 var _ = require('underscore');
@@ -49730,7 +49726,7 @@ var Dropdown = View.extend({
 
 module.exports = Dropdown;
 
-},{"../../core/view":131,"cdb":117,"cdb.templates":119,"jquery":12,"underscore":103}],246:[function(require,module,exports){
+},{"../../core/view":131,"cdb":117,"cdb.templates":119,"jquery":12,"underscore":103}],245:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -49742,7 +49738,7 @@ __p+='<a href="'+
 return __p;
 };
 
-},{"underscore":103}],247:[function(require,module,exports){
+},{"underscore":103}],246:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var log = require('cdb.log');
@@ -49862,7 +49858,7 @@ var FullScreen = View.extend({
 
 module.exports = FullScreen;
 
-},{"../../../core/view":131,"./fullscreen-template.tpl":246,"cdb.log":118,"jquery":12,"underscore":103}],248:[function(require,module,exports){
+},{"../../../core/view":131,"./fullscreen-template.tpl":245,"cdb.log":118,"jquery":12,"underscore":103}],247:[function(require,module,exports){
 var _ = require('underscore');
 var templates = require('cdb.templates');
 var View = require('../../core/view');
@@ -49949,7 +49945,7 @@ var Notification = View.extend({
 
 module.exports = Notification;
 
-},{"../../core/view":131,"cdb.templates":119,"underscore":103}],249:[function(require,module,exports){
+},{"../../core/view":131,"cdb.templates":119,"underscore":103}],248:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var View = require('../../core/view');
@@ -50258,7 +50254,7 @@ var Table = View.extend({
 
 module.exports = Table;
 
-},{"../../core/view":131,"./table/row-view":250,"jquery":12,"underscore":103}],250:[function(require,module,exports){
+},{"../../core/view":131,"./table/row-view":249,"jquery":12,"underscore":103}],249:[function(require,module,exports){
 var _ = require('underscore');
 var View = require('../../../core/view');
 
@@ -50358,7 +50354,7 @@ var RowView = View.extend({
 
 module.exports = RowView;
 
-},{"../../../core/view":131,"underscore":103}],251:[function(require,module,exports){
+},{"../../../core/view":131,"underscore":103}],250:[function(require,module,exports){
 var Model = require('../../../core/model');
 
 /**
@@ -50369,7 +50365,7 @@ var Row = Model.extend({
 
 module.exports = Row;
 
-},{"../../../core/model":125}],252:[function(require,module,exports){
+},{"../../../core/model":125}],251:[function(require,module,exports){
 var Backbone = require('backbone');
 var Row = require('./row');
 
@@ -50403,7 +50399,7 @@ var TableData = Backbone.Collection.extend({
 
 module.exports = TableData;
 
-},{"./row":251,"backbone":2}],253:[function(require,module,exports){
+},{"./row":250,"backbone":2}],252:[function(require,module,exports){
 var _ = require('underscore');
 var Model = require('../../../core/model');
 
@@ -50425,7 +50421,7 @@ var TableProperties = Model.extend({
 
 module.exports = TableProperties;
 
-},{"../../../core/model":125,"underscore":103}],254:[function(require,module,exports){
+},{"../../../core/model":125,"underscore":103}],253:[function(require,module,exports){
 var Backbone = require('backbone');
 
 /**
@@ -50444,7 +50440,7 @@ module.exports = function (method, model, options) {
   return this._xhr;
 };
 
-},{"backbone":2}],255:[function(require,module,exports){
+},{"backbone":2}],254:[function(require,module,exports){
 var _ = require('underscore');
 var Overlay = require('./vis/overlay');
 var InfowindowModel = require('../geo/ui/infowindow-model');
@@ -50560,7 +50556,7 @@ InfowindowManager.prototype._bindFeatureClickEvent = function (layerView) {
 
 module.exports = InfowindowManager;
 
-},{"../geo/ui/infowindow-model":203,"./vis/overlay":264,"underscore":103}],256:[function(require,module,exports){
+},{"../geo/ui/infowindow-model":202,"./vis/overlay":263,"underscore":103}],255:[function(require,module,exports){
 var Layers = require('./vis/layers');
 var TileLayer = require('../geo/map/tile-layer');
 var WMSLayer = require('../geo/map/wms-layer');
@@ -50680,7 +50676,7 @@ function normalizeOptions (data, options) {
 
 module.exports = Layers;
 
-},{"../geo/map/cartodb-layer":188,"../geo/map/gmaps-base-layer":189,"../geo/map/plain-layer":192,"../geo/map/tile-layer":193,"../geo/map/torque-layer":194,"../geo/map/wms-layer":195,"./vis/layers":263}],257:[function(require,module,exports){
+},{"../geo/map/cartodb-layer":187,"../geo/map/gmaps-base-layer":188,"../geo/map/plain-layer":191,"../geo/map/tile-layer":192,"../geo/map/torque-layer":193,"../geo/map/wms-layer":194,"./vis/layers":262}],256:[function(require,module,exports){
 var _ = require('underscore');
 
 /**
@@ -50773,7 +50769,7 @@ ModelUpdater.prototype._getProtocol = function () {
 
 module.exports = ModelUpdater;
 
-},{"underscore":103}],258:[function(require,module,exports){
+},{"underscore":103}],257:[function(require,module,exports){
 var _ = require('underscore');
 var Overlay = require('./vis/overlay');
 var Model = require('../core/model');
@@ -51097,7 +51093,7 @@ Overlay.register('infobox', function (data, vis) {
 
 });
 
-},{"../core/model":125,"../core/template":129,"../geo/ui/annotation":197,"../geo/ui/attribution/attribution-view":199,"../geo/ui/header":200,"../geo/ui/infobox":202,"../geo/ui/infowindow":204,"../geo/ui/infowindow-model":203,"../geo/ui/layer-selector":205,"../geo/ui/search/search":235,"../geo/ui/text":238,"../geo/ui/tiles-loader":239,"../geo/ui/tooltip":240,"../geo/ui/zoom/zoom-view":242,"../ui/common/fullscreen/fullscreen-view":247,"./vis/overlay":264,"underscore":103}],259:[function(require,module,exports){
+},{"../core/model":125,"../core/template":129,"../geo/ui/annotation":196,"../geo/ui/attribution/attribution-view":198,"../geo/ui/header":199,"../geo/ui/infobox":201,"../geo/ui/infowindow":203,"../geo/ui/infowindow-model":202,"../geo/ui/layer-selector":204,"../geo/ui/search/search":234,"../geo/ui/text":237,"../geo/ui/tiles-loader":238,"../geo/ui/tooltip":239,"../geo/ui/zoom/zoom-view":241,"../ui/common/fullscreen/fullscreen-view":246,"./vis/overlay":263,"underscore":103}],258:[function(require,module,exports){
 var Tooltip = require('../geo/ui/tooltip');
 
 /**
@@ -51179,7 +51175,7 @@ TooltipManager.prototype._bindFeatureOverEvent = function (layerView) {
 
 module.exports = TooltipManager;
 
-},{"../geo/ui/tooltip":240}],260:[function(require,module,exports){
+},{"../geo/ui/tooltip":239}],259:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var $ = require('jquery');
@@ -51198,7 +51194,6 @@ var Layers = require('./vis/layers');
 var Overlay = require('./vis/overlay');
 var INFOWINDOW_TEMPLATE = require('./vis/infowindow-template');
 var DataviewsFactory = require('../dataviews/dataviews-factory');
-var DataviewCollection = require('../dataviews/dataviews-collection');
 var InfowindowManager = require('./infowindow-manager');
 var TooltipManager = require('./tooltip-manager');
 var WindshaftConfig = require('../windshaft/config');
@@ -51218,7 +51213,7 @@ var AnalysisPoller = require('../analysis/analysis-poller');
 var Vis = View.extend({
   initialize: function () {
     this.overlays = [];
-    this._dataviewsCollection = new DataviewCollection();
+    this._dataviewsCollection = new Backbone.Collection();
     this._layersCollection = new LayersCollection();
     this._analysisCollection = new Backbone.Collection();
     this._analysisPoller = new AnalysisPoller();
@@ -51927,7 +51922,7 @@ var Vis = View.extend({
 
 module.exports = Vis;
 
-},{"../analysis/analysis-factory":105,"../analysis/analysis-poller":107,"../core/template":129,"../core/view":131,"../dataviews/dataviews-collection":138,"../dataviews/dataviews-factory":139,"../geo/cartodb-layer-group-anonymous-map":145,"../geo/cartodb-layer-group-named-map":147,"../geo/map":187,"../geo/map-view-factory":185,"../geo/map/layers":191,"../geo/ui/infowindow":204,"../geo/ui/infowindow-model":203,"../geo/ui/legend":212,"../geo/ui/legend-model":211,"../geo/ui/legend/stacked-legend":233,"../windshaft/anonymous-map":266,"../windshaft/client":267,"../windshaft/config":268,"../windshaft/named-map":274,"./infowindow-manager":255,"./model-updater":257,"./tooltip-manager":259,"./vis/infowindow-template":262,"./vis/layers":263,"./vis/overlay":264,"backbone":2,"cdb.core.util":130,"cdb.log":118,"jquery":12,"underscore":103}],261:[function(require,module,exports){
+},{"../analysis/analysis-factory":105,"../analysis/analysis-poller":107,"../core/template":129,"../core/view":131,"../dataviews/dataviews-factory":138,"../geo/cartodb-layer-group-anonymous-map":144,"../geo/cartodb-layer-group-named-map":146,"../geo/map":186,"../geo/map-view-factory":184,"../geo/map/layers":190,"../geo/ui/infowindow":203,"../geo/ui/infowindow-model":202,"../geo/ui/legend":211,"../geo/ui/legend-model":210,"../geo/ui/legend/stacked-legend":232,"../windshaft/anonymous-map":265,"../windshaft/client":266,"../windshaft/config":267,"../windshaft/named-map":273,"./infowindow-manager":254,"./model-updater":256,"./tooltip-manager":258,"./vis/infowindow-template":261,"./vis/layers":262,"./vis/overlay":263,"backbone":2,"cdb.core.util":130,"cdb.log":118,"jquery":12,"underscore":103}],260:[function(require,module,exports){
 var Backbone = require('backbone');
 
 var VisModel = Backbone.Model.extend({
@@ -51959,7 +51954,7 @@ var VisModel = Backbone.Model.extend({
 
 module.exports = VisModel;
 
-},{"backbone":2}],262:[function(require,module,exports){
+},{"backbone":2}],261:[function(require,module,exports){
 var INFOWINDOW_TEMPLATE = {
   light: [
     '<div class="cartodb-popup v2">',
@@ -51984,7 +51979,7 @@ var INFOWINDOW_TEMPLATE = {
 
 module.exports = INFOWINDOW_TEMPLATE;
 
-},{}],263:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 var _ = require('underscore');
 var log = require('cdb.log');
 
@@ -52013,7 +52008,7 @@ var Layers = {
 
 module.exports = Layers;
 
-},{"cdb.log":118,"underscore":103}],264:[function(require,module,exports){
+},{"cdb.log":118,"underscore":103}],263:[function(require,module,exports){
 var log = require('cdb.log');
 
 /**
@@ -52054,7 +52049,7 @@ var Overlay = {
 
 module.exports = Overlay;
 
-},{"cdb.log":118}],265:[function(require,module,exports){
+},{"cdb.log":118}],264:[function(require,module,exports){
 var Backbone = require('backbone');
 
 var Overlays = Backbone.Collection.extend({
@@ -52064,7 +52059,7 @@ var Overlays = Backbone.Collection.extend({
 
 module.exports = Overlays;
 
-},{"backbone":2}],266:[function(require,module,exports){
+},{"backbone":2}],265:[function(require,module,exports){
 var _ = require('underscore');
 var MapBase = require('./map-base');
 
@@ -52150,7 +52145,7 @@ var AnonymousMap = MapBase.extend({
 
 module.exports = AnonymousMap;
 
-},{"./map-base":273,"underscore":103}],267:[function(require,module,exports){
+},{"./map-base":272,"underscore":103}],266:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var LZMA = require('lzma');
@@ -52287,12 +52282,12 @@ WindshaftClient.prototype._jsonpCallbackName = function (payload) {
 
 module.exports = WindshaftClient;
 
-},{"../core/util":130,"jquery":12,"lzma":278,"underscore":103}],268:[function(require,module,exports){
+},{"../core/util":130,"jquery":12,"lzma":277,"underscore":103}],267:[function(require,module,exports){
 module.exports = {
   MAPS_API_BASE_URL: 'api/v1/map'
 };
 
-},{}],269:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 var Model = require('../../core/model');
 
 module.exports = Model.extend({
@@ -52311,7 +52306,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":125}],270:[function(require,module,exports){
+},{"../../core/model":125}],269:[function(require,module,exports){
 var Model = require('../../core/model');
 
 module.exports = Model.extend({
@@ -52338,7 +52333,7 @@ module.exports = Model.extend({
   }
 });
 
-},{"../../core/model":125}],271:[function(require,module,exports){
+},{"../../core/model":125}],270:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 var WindshaftFilterBase = require('./base');
@@ -52484,7 +52479,7 @@ module.exports = WindshaftFilterBase.extend({
   }
 });
 
-},{"./base":269,"backbone":2,"underscore":103}],272:[function(require,module,exports){
+},{"./base":268,"backbone":2,"underscore":103}],271:[function(require,module,exports){
 var _ = require('underscore');
 var WindshaftFilterBase = require('./base');
 
@@ -52517,7 +52512,7 @@ module.exports = WindshaftFilterBase.extend({
   }
 });
 
-},{"./base":269,"underscore":103}],273:[function(require,module,exports){
+},{"./base":268,"underscore":103}],272:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var WindshaftConfig = require('./config');
@@ -52810,23 +52805,32 @@ var WindshaftMap = Backbone.Model.extend({
 
 module.exports = WindshaftMap;
 
-},{"./config":268,"backbone":2,"underscore":103}],274:[function(require,module,exports){
+},{"./config":267,"backbone":2,"underscore":103}],273:[function(require,module,exports){
 var _ = require('underscore');
 var MapBase = require('./map-base.js');
 
 var NamedMap = MapBase.extend({
   toJSON: function () {
     var json = {};
-    _.each(this._getLayers(), function (layerModel, layerIndex) {
+    var layers = this._getLayers();
+    var styles = layers.reduce(function (p, c, i) {
+      var style = c.get('cartocss');
+      if (style) {
+        p[i] = style;
+      }
+      return p;
+    }, {});
+    _.each(layers, function (layerModel, layerIndex) {
       json['layer' + layerIndex] = layerModel.isVisible() ? 1 : 0;
     });
+    json.styles = styles;
     return json;
   }
 });
 
 module.exports = NamedMap;
 
-},{"./map-base.js":273,"underscore":103}],275:[function(require,module,exports){
+},{"./map-base.js":272,"underscore":103}],274:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 var GeoJSON = function( geojson, options ){
@@ -53065,7 +53069,7 @@ type: "Error",
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],276:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 (function (global){
 
 ; _ = global._ = require("underscore");
@@ -53096,7 +53100,7 @@ jQuery = global.jQuery = require("jquery");
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"jquery":12,"underscore":103}],277:[function(require,module,exports){
+},{"jquery":12,"underscore":103}],276:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 // -------------------------------------------------------------------------------------------------------------------
@@ -57956,7 +57960,7 @@ if (typeof window !== 'undefined') {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],278:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 var LZMA = (function () {
@@ -61848,7 +61852,7 @@ this.LZMA = LZMA;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],279:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 (function (global){
 
 ; jQuery = global.jQuery = require("jquery");
@@ -61941,7 +61945,7 @@ function handler(event) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"jquery":12}],280:[function(require,module,exports){
+},{"jquery":12}],279:[function(require,module,exports){
 (function (global){
 
 ; jQuery = global.jQuery = require("jquery");
@@ -62028,7 +62032,7 @@ function handler(event) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"jquery":12}],281:[function(require,module,exports){
+},{"jquery":12}],280:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /* wax - 7.0.1 - v6.0.4-181-ga34788e */
@@ -65408,9 +65412,9 @@ wax.g.connector.prototype.getTileUrl = function(coord, z) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],282:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"./tree":288,"dup":65}],283:[function(require,module,exports){
+},{"./tree":287,"dup":65}],282:[function(require,module,exports){
 (function (process,__dirname){
 var util = require('util'),
     fs = require('fs'),
@@ -65531,7 +65535,7 @@ function stylize(str, style) {
 
 }).call(this,require('_process'),"/../../../repo/d3.cartodb/node_modules/carto/lib/carto")
 
-},{"../../package.json":319,"./functions":282,"./parser":284,"./renderer":285,"./renderer_js":286,"./torque-reference":287,"./tree":288,"./tree/call":289,"./tree/color":290,"./tree/comment":291,"./tree/definition":292,"./tree/dimension":293,"./tree/element":294,"./tree/expression":295,"./tree/field":296,"./tree/filter":297,"./tree/filterset":298,"./tree/fontset":299,"./tree/frame_offset":300,"./tree/imagefilter":301,"./tree/invalid":302,"./tree/keyword":303,"./tree/layer":304,"./tree/literal":305,"./tree/operation":306,"./tree/quoted":307,"./tree/reference":308,"./tree/rule":309,"./tree/ruleset":310,"./tree/selector":311,"./tree/style":312,"./tree/url":313,"./tree/value":314,"./tree/variable":315,"./tree/zoom":316,"_process":407,"fs":399,"path":406,"util":409}],284:[function(require,module,exports){
+},{"../../package.json":318,"./functions":281,"./parser":283,"./renderer":284,"./renderer_js":285,"./torque-reference":286,"./tree":287,"./tree/call":288,"./tree/color":289,"./tree/comment":290,"./tree/definition":291,"./tree/dimension":292,"./tree/element":293,"./tree/expression":294,"./tree/field":295,"./tree/filter":296,"./tree/filterset":297,"./tree/fontset":298,"./tree/frame_offset":299,"./tree/imagefilter":300,"./tree/invalid":301,"./tree/keyword":302,"./tree/layer":303,"./tree/literal":304,"./tree/operation":305,"./tree/quoted":306,"./tree/reference":307,"./tree/rule":308,"./tree/ruleset":309,"./tree/selector":310,"./tree/style":311,"./tree/url":312,"./tree/value":313,"./tree/variable":314,"./tree/zoom":315,"_process":406,"fs":398,"path":405,"util":408}],283:[function(require,module,exports){
 (function (global){
 var carto = exports,
     tree = require('./tree'),
@@ -66317,7 +66321,7 @@ carto.Parser = function Parser(env) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./tree":288,"underscore":318}],285:[function(require,module,exports){
+},{"./tree":287,"underscore":317}],284:[function(require,module,exports){
 (function (global){
 var _ = global._ || require('underscore');
 var carto = require('./index');
@@ -66724,7 +66728,7 @@ module.exports.sortStyles = sortStyles;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./index":283,"underscore":318}],286:[function(require,module,exports){
+},{"./index":282,"underscore":317}],285:[function(require,module,exports){
 (function (global){
 (function(carto) {
 var tree = require('./tree');
@@ -67017,11 +67021,11 @@ if(typeof(module) !== 'undefined') {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../carto":283,"./torque-reference":287,"./tree":288,"underscore":318}],287:[function(require,module,exports){
+},{"../carto":282,"./torque-reference":286,"./tree":287,"underscore":317}],286:[function(require,module,exports){
 arguments[4][70][0].apply(exports,arguments)
-},{"dup":70}],288:[function(require,module,exports){
+},{"dup":70}],287:[function(require,module,exports){
 arguments[4][71][0].apply(exports,arguments)
-},{"dup":71}],289:[function(require,module,exports){
+},{"dup":71}],288:[function(require,module,exports){
 (function (global){
 (function(tree) {
 var _ = global._ || require('underscore');
@@ -67138,11 +67142,11 @@ tree.Call.prototype = {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"underscore":318}],290:[function(require,module,exports){
+},{"../tree":287,"underscore":317}],289:[function(require,module,exports){
 arguments[4][73][0].apply(exports,arguments)
-},{"../tree":288,"dup":73}],291:[function(require,module,exports){
+},{"../tree":287,"dup":73}],290:[function(require,module,exports){
 arguments[4][74][0].apply(exports,arguments)
-},{"../tree":288,"dup":74}],292:[function(require,module,exports){
+},{"../tree":287,"dup":74}],291:[function(require,module,exports){
 (function (global){
 (function(tree) {
 var assert = require('assert'),
@@ -67406,7 +67410,7 @@ tree.Definition.prototype.toJS = function(env) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"assert":400,"underscore":318}],293:[function(require,module,exports){
+},{"../tree":287,"assert":399,"underscore":317}],292:[function(require,module,exports){
 (function (global){
 (function(tree) {
 var _ = global._ || require('underscore');
@@ -67510,15 +67514,15 @@ tree.Dimension.prototype = {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"underscore":318}],294:[function(require,module,exports){
+},{"../tree":287,"underscore":317}],293:[function(require,module,exports){
 arguments[4][77][0].apply(exports,arguments)
-},{"../tree":288,"dup":77}],295:[function(require,module,exports){
+},{"../tree":287,"dup":77}],294:[function(require,module,exports){
 arguments[4][78][0].apply(exports,arguments)
-},{"../tree":288,"dup":78}],296:[function(require,module,exports){
+},{"../tree":287,"dup":78}],295:[function(require,module,exports){
 arguments[4][79][0].apply(exports,arguments)
-},{"../tree":288,"dup":79}],297:[function(require,module,exports){
+},{"../tree":287,"dup":79}],296:[function(require,module,exports){
 arguments[4][80][0].apply(exports,arguments)
-},{"../tree":288,"dup":80}],298:[function(require,module,exports){
+},{"../tree":287,"dup":80}],297:[function(require,module,exports){
 (function (global){
 var tree = require('../tree');
 var _ = global._ || require('underscore');
@@ -67790,25 +67794,25 @@ tree.Filterset.prototype.add = function(filter, env) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"underscore":318}],299:[function(require,module,exports){
+},{"../tree":287,"underscore":317}],298:[function(require,module,exports){
 arguments[4][82][0].apply(exports,arguments)
-},{"../tree":288,"dup":82}],300:[function(require,module,exports){
+},{"../tree":287,"dup":82}],299:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"../tree":288,"dup":83}],301:[function(require,module,exports){
+},{"../tree":287,"dup":83}],300:[function(require,module,exports){
 arguments[4][84][0].apply(exports,arguments)
-},{"../tree":288,"dup":84}],302:[function(require,module,exports){
+},{"../tree":287,"dup":84}],301:[function(require,module,exports){
 arguments[4][85][0].apply(exports,arguments)
-},{"../tree":288,"dup":85}],303:[function(require,module,exports){
+},{"../tree":287,"dup":85}],302:[function(require,module,exports){
 arguments[4][86][0].apply(exports,arguments)
-},{"../tree":288,"dup":86}],304:[function(require,module,exports){
+},{"../tree":287,"dup":86}],303:[function(require,module,exports){
 arguments[4][87][0].apply(exports,arguments)
-},{"../tree":288,"dup":87}],305:[function(require,module,exports){
+},{"../tree":287,"dup":87}],304:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"../tree":288,"dup":88}],306:[function(require,module,exports){
+},{"../tree":287,"dup":88}],305:[function(require,module,exports){
 arguments[4][89][0].apply(exports,arguments)
-},{"../tree":288,"dup":89}],307:[function(require,module,exports){
+},{"../tree":287,"dup":89}],306:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"../tree":288,"dup":90}],308:[function(require,module,exports){
+},{"../tree":287,"dup":90}],307:[function(require,module,exports){
 (function (global){
 // Carto pulls in a reference from the `mapnik-reference`
 // module. This file builds indexes from that file for its various
@@ -68032,13 +68036,13 @@ tree.Reference = ref;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"mapnik-reference":317,"underscore":318}],309:[function(require,module,exports){
+},{"../tree":287,"mapnik-reference":316,"underscore":317}],308:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"../tree":288,"dup":92}],310:[function(require,module,exports){
+},{"../tree":287,"dup":92}],309:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"../tree":288,"dup":93}],311:[function(require,module,exports){
+},{"../tree":287,"dup":93}],310:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"../tree":288,"dup":94}],312:[function(require,module,exports){
+},{"../tree":287,"dup":94}],311:[function(require,module,exports){
 (function (global){
 (function(tree) {
 var _ = global._ || require('underscore');
@@ -68111,15 +68115,15 @@ tree.StyleXML = function(name, attachment, definitions, env) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../tree":288,"underscore":318}],313:[function(require,module,exports){
+},{"../tree":287,"underscore":317}],312:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"../tree":288,"dup":96}],314:[function(require,module,exports){
+},{"../tree":287,"dup":96}],313:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"../tree":288,"dup":97}],315:[function(require,module,exports){
+},{"../tree":287,"dup":97}],314:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"../tree":288,"dup":98}],316:[function(require,module,exports){
+},{"../tree":287,"dup":98}],315:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"../tree":288,"dup":99}],317:[function(require,module,exports){
+},{"../tree":287,"dup":99}],316:[function(require,module,exports){
 (function (__dirname){
 var fs = require('fs'),
     path = require('path'),
@@ -68149,9 +68153,9 @@ refs.map(function(version) {
 
 }).call(this,"/../../../repo/d3.cartodb/node_modules/carto/node_modules/mapnik-reference")
 
-},{"fs":399,"path":406}],318:[function(require,module,exports){
+},{"fs":398,"path":405}],317:[function(require,module,exports){
 module.exports = require(103);
-},{"dup":103}],319:[function(require,module,exports){
+},{"dup":103}],318:[function(require,module,exports){
 module.exports={
   "name": "carto",
   "version": "0.15.1-cdb1",
@@ -68238,7 +68242,7 @@ module.exports={
   "_resolved": "git://github.com/CartoDB/carto.git#27850ed122a6f5dbfc5efa4938d8385bbcbc87c5"
 }
 
-},{}],320:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 (function(exports){
 crossfilter.version = "1.3.12";
 function crossfilter_identity(d) {
@@ -69641,10 +69645,10 @@ function crossfilter_capacity(w) {
 }
 })(typeof exports !== 'undefined' && exports || this);
 
-},{}],321:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 module.exports = require("./crossfilter").crossfilter;
 
-},{"./crossfilter":320}],322:[function(require,module,exports){
+},{"./crossfilter":319}],321:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.14"
@@ -79198,7 +79202,7 @@ module.exports = require("./crossfilter").crossfilter;
   });
   if (typeof define === "function" && define.amd) this.d3 = d3, define(d3); else if (typeof module === "object" && module.exports) module.exports = d3; else this.d3 = d3;
 }();
-},{}],323:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -79304,7 +79308,7 @@ ArraySet.prototype.toArray = function ArraySet_toArray() {
 
 exports.ArraySet = ArraySet;
 
-},{"./util":332}],324:[function(require,module,exports){
+},{"./util":331}],323:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -79446,7 +79450,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
   aOutParam.rest = aIndex;
 };
 
-},{"./base64":325}],325:[function(require,module,exports){
+},{"./base64":324}],324:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -79515,7 +79519,7 @@ exports.decode = function (charCode) {
   return -1;
 };
 
-},{}],326:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -79628,7 +79632,7 @@ exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
   return index;
 };
 
-},{}],327:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2014 Mozilla Foundation and contributors
@@ -79709,7 +79713,7 @@ MappingList.prototype.toArray = function MappingList_toArray() {
 
 exports.MappingList = MappingList;
 
-},{"./util":332}],328:[function(require,module,exports){
+},{"./util":331}],327:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -79825,7 +79829,7 @@ exports.quickSort = function (ary, comparator) {
   doQuickSort(ary, comparator, 0, ary.length - 1);
 };
 
-},{}],329:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -80908,7 +80912,7 @@ IndexedSourceMapConsumer.prototype._parseMappings =
 
 exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
 
-},{"./array-set":323,"./base64-vlq":324,"./binary-search":326,"./quick-sort":328,"./util":332}],330:[function(require,module,exports){
+},{"./array-set":322,"./base64-vlq":323,"./binary-search":325,"./quick-sort":327,"./util":331}],329:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -81311,7 +81315,7 @@ SourceMapGenerator.prototype.toString =
 
 exports.SourceMapGenerator = SourceMapGenerator;
 
-},{"./array-set":323,"./base64-vlq":324,"./mapping-list":327,"./util":332}],331:[function(require,module,exports){
+},{"./array-set":322,"./base64-vlq":323,"./mapping-list":326,"./util":331}],330:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -81720,7 +81724,7 @@ SourceNode.prototype.toStringWithSourceMap = function SourceNode_toStringWithSou
 
 exports.SourceNode = SourceNode;
 
-},{"./source-map-generator":330,"./util":332}],332:[function(require,module,exports){
+},{"./source-map-generator":329,"./util":331}],331:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -82139,7 +82143,7 @@ function compareByGeneratedPositionsInflated(mappingA, mappingB) {
 }
 exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
 
-},{}],333:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
 /*
  * Copyright 2009-2011 Mozilla Foundation and contributors
  * Licensed under the New BSD license. See LICENSE.txt or:
@@ -82149,7 +82153,7 @@ exports.SourceMapGenerator = require('./lib/source-map-generator').SourceMapGene
 exports.SourceMapConsumer = require('./lib/source-map-consumer').SourceMapConsumer;
 exports.SourceNode = require('./lib/source-node').SourceNode;
 
-},{"./lib/source-map-consumer":329,"./lib/source-map-generator":330,"./lib/source-node":331}],334:[function(require,module,exports){
+},{"./lib/source-map-consumer":328,"./lib/source-map-generator":329,"./lib/source-node":330}],333:[function(require,module,exports){
 // This product includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/).
 // JavaScript specs as packaged in the D3 library (d3js.org). Please see license at http://colorbrewer.org/export/LICENSE.txt
 !function() {
@@ -82466,10 +82470,10 @@ if (typeof define === "function" && define.amd) {
 
 }();
 
-},{}],335:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 module.exports = require('./colorbrewer.js');
 
-},{"./colorbrewer.js":334}],336:[function(require,module,exports){
+},{"./colorbrewer.js":333}],335:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -82639,7 +82643,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":337}],337:[function(require,module,exports){
+},{"./debug":336}],336:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -82838,7 +82842,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":338}],338:[function(require,module,exports){
+},{"ms":337}],337:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -82965,7 +82969,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],339:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -83924,7 +83928,7 @@ function plural(ms, n, name) {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"_process":407}],340:[function(require,module,exports){
+},{"_process":406}],339:[function(require,module,exports){
 var parse = require('./parse');
 var walk = require('./walk');
 var stringify = require('./stringify');
@@ -83954,7 +83958,7 @@ ValueParser.stringify = stringify;
 
 module.exports = ValueParser;
 
-},{"./parse":341,"./stringify":342,"./unit":343,"./walk":344}],341:[function(require,module,exports){
+},{"./parse":340,"./stringify":341,"./unit":342,"./walk":343}],340:[function(require,module,exports){
 var openParentheses = '('.charCodeAt(0);
 var closeParentheses = ')'.charCodeAt(0);
 var singleQuote = '\''.charCodeAt(0);
@@ -84198,7 +84202,7 @@ module.exports = function (input) {
     return stack[0].nodes;
 };
 
-},{}],342:[function(require,module,exports){
+},{}],341:[function(require,module,exports){
 function stringifyNode(node, custom) {
     var type = node.type;
     var value = node.value;
@@ -84241,7 +84245,7 @@ function stringify(nodes, custom) {
 
 module.exports = stringify;
 
-},{}],343:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 var minus = '-'.charCodeAt(0);
 var plus  = '+'.charCodeAt(0);
 var dot   = '.'.charCodeAt(0);
@@ -84284,7 +84288,7 @@ module.exports = function (value) {
     } : false;
 };
 
-},{}],344:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
 module.exports = function walk(nodes, cb, bubble) {
     var i, max, node, result;
 
@@ -84304,7 +84308,7 @@ module.exports = function walk(nodes, cb, bubble) {
     }
 };
 
-},{}],345:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -84402,7 +84406,7 @@ var AtRule = function (_Container) {
 
 exports.default = AtRule;
 module.exports = exports['default'];
-},{"./container":347,"./warn-once":367}],346:[function(require,module,exports){
+},{"./container":346,"./warn-once":366}],345:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -84476,7 +84480,7 @@ var Comment = function (_Node) {
 
 exports.default = Comment;
 module.exports = exports['default'];
-},{"./node":354,"./warn-once":367}],347:[function(require,module,exports){
+},{"./node":353,"./warn-once":366}],346:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85048,7 +85052,7 @@ var Container = function (_Node) {
 
 exports.default = Container;
 module.exports = exports['default'];
-},{"./at-rule":345,"./comment":346,"./declaration":349,"./node":354,"./parse":355,"./root":361,"./rule":362,"./warn-once":367}],348:[function(require,module,exports){
+},{"./at-rule":344,"./comment":345,"./declaration":348,"./node":353,"./parse":354,"./root":360,"./rule":361,"./warn-once":366}],347:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85144,7 +85148,7 @@ var CssSyntaxError = function () {
 
 exports.default = CssSyntaxError;
 module.exports = exports['default'];
-},{"./warn-once":367,"supports-color":370}],349:[function(require,module,exports){
+},{"./warn-once":366,"supports-color":369}],348:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85218,7 +85222,7 @@ var Declaration = function (_Node) {
 
 exports.default = Declaration;
 module.exports = exports['default'];
-},{"./node":354,"./warn-once":367}],350:[function(require,module,exports){
+},{"./node":353,"./warn-once":366}],349:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85323,7 +85327,7 @@ var Input = function () {
 
 exports.default = Input;
 module.exports = exports['default'];
-},{"./css-syntax-error":348,"./previous-map":358,"path":406}],351:[function(require,module,exports){
+},{"./css-syntax-error":347,"./previous-map":357,"path":405}],350:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85598,7 +85602,7 @@ var LazyResult = function () {
 
 exports.default = LazyResult;
 module.exports = exports['default'];
-},{"./map-generator":353,"./parse":355,"./result":360,"./stringify":364,"./warn-once":367}],352:[function(require,module,exports){
+},{"./map-generator":352,"./parse":354,"./result":359,"./stringify":363,"./warn-once":366}],351:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85657,7 +85661,7 @@ var list = {
 
 exports.default = list;
 module.exports = exports['default'];
-},{}],353:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -85947,7 +85951,7 @@ var _class = function () {
 
 exports.default = _class;
 module.exports = exports['default'];
-},{"js-base64":369,"path":406,"source-map":333}],354:[function(require,module,exports){
+},{"js-base64":368,"path":405,"source-map":332}],353:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -86279,7 +86283,7 @@ var Node = function () {
 
 exports.default = Node;
 module.exports = exports['default'];
-},{"./css-syntax-error":348,"./stringifier":363,"./stringify":364,"./warn-once":367}],355:[function(require,module,exports){
+},{"./css-syntax-error":347,"./stringifier":362,"./stringify":363,"./warn-once":366}],354:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -86310,7 +86314,7 @@ function parse(css, opts) {
     return parser.root;
 }
 module.exports = exports['default'];
-},{"./input":350,"./parser":356}],356:[function(require,module,exports){
+},{"./input":349,"./parser":355}],355:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -86813,7 +86817,7 @@ var Parser = function () {
 
 exports.default = Parser;
 module.exports = exports['default'];
-},{"./at-rule":345,"./comment":346,"./declaration":349,"./root":361,"./rule":362,"./tokenize":365}],357:[function(require,module,exports){
+},{"./at-rule":344,"./comment":345,"./declaration":348,"./root":360,"./rule":361,"./tokenize":364}],356:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -86909,7 +86913,7 @@ postcss.root = function (defaults) {
 
 exports.default = postcss;
 module.exports = exports['default'];
-},{"./at-rule":345,"./comment":346,"./declaration":349,"./list":352,"./parse":355,"./processor":359,"./root":361,"./rule":362,"./stringify":364,"./vendor":366}],358:[function(require,module,exports){
+},{"./at-rule":344,"./comment":345,"./declaration":348,"./list":351,"./parse":354,"./processor":358,"./root":360,"./rule":361,"./stringify":363,"./vendor":365}],357:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87024,7 +87028,7 @@ var PreviousMap = function () {
 
 exports.default = PreviousMap;
 module.exports = exports['default'];
-},{"fs":399,"js-base64":369,"path":406,"source-map":333}],359:[function(require,module,exports){
+},{"fs":398,"js-base64":368,"path":405,"source-map":332}],358:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87095,7 +87099,7 @@ var Processor = function () {
 
 exports.default = Processor;
 module.exports = exports['default'];
-},{"./lazy-result":351}],360:[function(require,module,exports){
+},{"./lazy-result":350}],359:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87156,7 +87160,7 @@ var Result = function () {
 
 exports.default = Result;
 module.exports = exports['default'];
-},{"./warning":368}],361:[function(require,module,exports){
+},{"./warning":367}],360:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87265,7 +87269,7 @@ var Root = function (_Container) {
 
 exports.default = Root;
 module.exports = exports['default'];
-},{"./container":347,"./lazy-result":351,"./processor":359,"./warn-once":367}],362:[function(require,module,exports){
+},{"./container":346,"./lazy-result":350,"./processor":358,"./warn-once":366}],361:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87337,7 +87341,7 @@ var Rule = function (_Container) {
 
 exports.default = Rule;
 module.exports = exports['default'];
-},{"./container":347,"./list":352,"./warn-once":367}],363:[function(require,module,exports){
+},{"./container":346,"./list":351,"./warn-once":366}],362:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87672,7 +87676,7 @@ var Stringifier = function () {
 
 exports.default = Stringifier;
 module.exports = exports['default'];
-},{}],364:[function(require,module,exports){
+},{}],363:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87689,7 +87693,7 @@ function stringify(node, builder) {
     str.stringify(node);
 }
 module.exports = exports['default'];
-},{"./stringifier":363}],365:[function(require,module,exports){
+},{"./stringifier":362}],364:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87928,7 +87932,7 @@ function tokenize(input) {
     return tokens;
 }
 module.exports = exports['default'];
-},{}],366:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87951,7 +87955,7 @@ exports.default = {
     }
 };
 module.exports = exports['default'];
-},{}],367:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -87967,7 +87971,7 @@ function warnOnce(message) {
     if (typeof console !== 'undefined' && console.warn) console.warn(message);
 }
 module.exports = exports['default'];
-},{}],368:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -88014,7 +88018,7 @@ var Warning = function () {
 
 exports.default = Warning;
 module.exports = exports['default'];
-},{}],369:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 /*
  * $Id: base64.js,v 2.15 2014/04/05 12:58:57 dankogai Exp dankogai $
  *
@@ -88210,11 +88214,11 @@ module.exports = exports['default'];
     }
 })(this);
 
-},{"buffer":401}],370:[function(require,module,exports){
+},{"buffer":400}],369:[function(require,module,exports){
 'use strict';
 module.exports = false;
 
-},{}],371:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88273,7 +88277,7 @@ function getRamp (datasource, column, method) {
 
 module.exports.fnName = 'buckets';
 
-},{"../helper/column-name":379,"../helper/debug":380,"es6-promise":339,"postcss":357}],372:[function(require,module,exports){
+},{"../helper/column-name":378,"../helper/debug":379,"es6-promise":338,"postcss":356}],371:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88320,7 +88324,7 @@ FnBuilder.prototype.exec = function () {
   return Promise.all(executorsExec);
 };
 
-},{"./fn-executor":375,"es6-promise":339}],373:[function(require,module,exports){
+},{"./fn-executor":374,"es6-promise":338}],372:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88346,7 +88350,7 @@ module.exports = function () {
 
 module.exports.fnName = 'colorbrewer';
 
-},{"../helper/debug":380,"colorbrewer":335,"es6-promise":339}],374:[function(require,module,exports){
+},{"../helper/debug":379,"colorbrewer":334,"es6-promise":338}],373:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88366,7 +88370,7 @@ module.exports = function () {
 
 module.exports.fnName = 'colors';
 
-},{"../helper/debug":380,"es6-promise":339}],375:[function(require,module,exports){
+},{"../helper/debug":379,"es6-promise":338}],374:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88426,7 +88430,7 @@ FnExecutor.prototype.execFn = function (nestedFnIndex) {
     });
 };
 
-},{"../helper/debug":380,"./fn-factory":376,"es6-promise":339}],376:[function(require,module,exports){
+},{"../helper/debug":379,"./fn-factory":375,"es6-promise":338}],375:[function(require,module,exports){
 'use strict';
 
 var fns = [
@@ -88451,7 +88455,7 @@ var FnFactory = {
 
 module.exports = FnFactory;
 
-},{"./fn-buckets":371,"./fn-colorbrew":373,"./fn-colors":374,"./fn-identity":377,"./fn-ramp":378}],377:[function(require,module,exports){
+},{"./fn-buckets":370,"./fn-colorbrew":372,"./fn-colors":373,"./fn-identity":376,"./fn-ramp":377}],376:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88478,7 +88482,7 @@ module.exports = function (fnName) {
 
 module.exports.fnName = 'pass';
 
-},{"../helper/debug":380,"es6-promise":339}],378:[function(require,module,exports){
+},{"../helper/debug":379,"es6-promise":338}],377:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88621,7 +88625,7 @@ function numericRamp (datasource, column, min, max, buckets, method) {
 
 module.exports.fnName = 'ramp';
 
-},{"../helper/column-name":379,"../helper/debug":380,"es6-promise":339,"postcss":357}],379:[function(require,module,exports){
+},{"../helper/column-name":378,"../helper/debug":379,"es6-promise":338,"postcss":356}],378:[function(require,module,exports){
 'use strict';
 
 function columnName (column) {
@@ -88630,7 +88634,7 @@ function columnName (column) {
 
 module.exports = columnName;
 
-},{}],380:[function(require,module,exports){
+},{}],379:[function(require,module,exports){
 'use strict';
 
 var debug = require('debug');
@@ -88638,7 +88642,7 @@ module.exports = function turboCartoDebug (ns) {
   return debug(['turbo-carto', ns].join(':'));
 };
 
-},{"debug":336}],381:[function(require,module,exports){
+},{"debug":335}],380:[function(require,module,exports){
 'use strict';
 
 var postcss = require('postcss');
@@ -88657,7 +88661,7 @@ function turbocarto (cartocss, datasource, callback) {
 
 module.exports = turbocarto;
 
-},{"./postcss-turbo-carto":382,"postcss":357}],382:[function(require,module,exports){
+},{"./postcss-turbo-carto":381,"postcss":356}],381:[function(require,module,exports){
 'use strict';
 
 require('es6-promise').polyfill();
@@ -88693,9 +88697,9 @@ PostcssTurboCarto.prototype.getPlugin = function () {
   });
 };
 
-},{"./fn/fn-builder":372,"es6-promise":339,"postcss":357,"postcss-value-parser":340}],383:[function(require,module,exports){
+},{"./fn/fn-builder":371,"es6-promise":338,"postcss":356,"postcss-value-parser":339}],382:[function(require,module,exports){
 module.exports = require(103);
-},{"dup":103}],384:[function(require,module,exports){
+},{"dup":103}],383:[function(require,module,exports){
 (function (global){
 var Event = {}
 Event.on = function (evt, callback) {
@@ -88791,7 +88795,7 @@ module.exports = {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],385:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 var d3 = require('d3')
 
 function CSSDataSource (filter) {
@@ -88823,7 +88827,7 @@ CSSDataSource.prototype.getRamp = function (column, bins, method, callback) {
   ramp && callback(null, ramp)
 }
 
-},{"d3":322}],386:[function(require,module,exports){
+},{"d3":321}],385:[function(require,module,exports){
 var Crossfilter = require('crossfilter')
 var cartodb = require('./')
 var geo = require('./geo')
@@ -89031,7 +89035,7 @@ Filter.reject = function (terms) {
 
 module.exports = Filter
 
-},{"./":388,"./geo":387,"crossfilter":321}],387:[function(require,module,exports){
+},{"./":387,"./geo":386,"crossfilter":320}],386:[function(require,module,exports){
 module.exports = {
   tile2lon: function (x, z) {
     return (x / Math.pow(2, z) * 360 - 180)
@@ -89116,7 +89120,7 @@ module.exports = {
   }
 }
 
-},{}],388:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
 module.exports.d3 = require('./core')
 require('./leaflet_d3.js')
 var elements = {
@@ -89131,7 +89135,7 @@ for (var key in elements) {
   module.exports.d3[key] = elements[key]
 }
 
-},{"./core":384,"./filter.js":386,"./geo.js":387,"./leaflet_d3.js":389,"./net.js":390,"./providers":391,"./renderer.js":395,"./util.js":397}],389:[function(require,module,exports){
+},{"./core":383,"./filter.js":385,"./geo.js":386,"./leaflet_d3.js":388,"./net.js":389,"./providers":390,"./renderer.js":394,"./util.js":396}],388:[function(require,module,exports){
 var Renderer = require('./renderer')
 var providers = require('./providers')
 var TileLoader = require('./tileloader')
@@ -89452,7 +89456,7 @@ L.CartoDBd3Layer = L.TileLayer.extend({
   }
 })
 
-},{"./geo":387,"./providers":391,"./renderer":395,"./tileloader":396}],390:[function(require,module,exports){
+},{"./geo":386,"./providers":390,"./renderer":394,"./tileloader":395}],389:[function(require,module,exports){
 (function (global){
 var d3 = require('d3')
 
@@ -89527,14 +89531,14 @@ module.exports.get = function get (url, callback, options) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"d3":322}],391:[function(require,module,exports){
+},{"d3":321}],390:[function(require,module,exports){
 module.exports = {
   SQLProvider: require('./sql.js'),
   XYZProvider: require('./xyz.js'),
   WindshaftProvider: require('./windshaft.js')
 }
 
-},{"./sql.js":392,"./windshaft.js":393,"./xyz.js":394}],392:[function(require,module,exports){
+},{"./sql.js":391,"./windshaft.js":392,"./xyz.js":393}],391:[function(require,module,exports){
 var d3 = require('d3')
 var geo = require('../geo')
 
@@ -89622,7 +89626,7 @@ SQLProvider.prototype = {
 
 module.exports = SQLProvider
 
-},{"../geo":387,"d3":322}],393:[function(require,module,exports){
+},{"../geo":386,"d3":321}],392:[function(require,module,exports){
 var cartodb = require('../')
 var XYZProvider = require('./xyz.js')
 
@@ -89681,7 +89685,7 @@ cartodb.d3.extend(WindshaftProvider.prototype, cartodb.d3.Event, {
 
 module.exports = WindshaftProvider
 
-},{"../":388,"./xyz.js":394}],394:[function(require,module,exports){
+},{"../":387,"./xyz.js":393}],393:[function(require,module,exports){
 var d3 = require('d3')
 var cartodb = require('../')
 
@@ -89767,7 +89771,7 @@ cartodb.d3.extend(XYZProvider.prototype, cartodb.d3.Event, {
 
 module.exports = XYZProvider
 
-},{"../":388,"d3":322}],395:[function(require,module,exports){
+},{"../":387,"d3":321}],394:[function(require,module,exports){
 (function (global){
 /** global L **/
 var d3 = global.d3 || require('d3')
@@ -90271,7 +90275,7 @@ module.exports = Renderer
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./datasource":385,"./filter":386,"./geo":387,"carto":283,"d3":322,"turbo-carto":381,"underscore":383}],396:[function(require,module,exports){
+},{"./datasource":384,"./filter":385,"./geo":386,"carto":282,"d3":321,"turbo-carto":380,"underscore":382}],395:[function(require,module,exports){
 var L = window.L
 
 module.exports = L.Class.extend({
@@ -90423,7 +90427,7 @@ module.exports = L.Class.extend({
   }
 })
 
-},{}],397:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 var L = window.L
 var cartodb = require('../')
 
@@ -90465,11 +90469,11 @@ module.exports = {
   }
 }
 
-},{"../":388}],398:[function(require,module,exports){
+},{"../":387}],397:[function(require,module,exports){
 module.exports = require(2);
-},{"dup":2,"jquery":411,"underscore":434}],399:[function(require,module,exports){
+},{"dup":2,"jquery":410,"underscore":433}],398:[function(require,module,exports){
 
-},{}],400:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -90830,7 +90834,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":409}],401:[function(require,module,exports){
+},{"util/":408}],400:[function(require,module,exports){
 (function (global){
 /*!
  * The buffer module from node.js, for the browser.
@@ -92383,7 +92387,7 @@ function blitBuffer (src, dst, offset, length) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"base64-js":402,"ieee754":403,"isarray":404}],402:[function(require,module,exports){
+},{"base64-js":401,"ieee754":402,"isarray":403}],401:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -92509,7 +92513,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],403:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -92595,14 +92599,14 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],404:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],405:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -92627,7 +92631,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],406:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -92856,7 +92860,7 @@ var substr = 'ab'.substr(-1) === 'b'
 
 }).call(this,require('_process'))
 
-},{"_process":407}],407:[function(require,module,exports){
+},{"_process":406}],406:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -92949,14 +92953,14 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],408:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],409:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -93547,11 +93551,11 @@ function hasOwnProperty(obj, prop) {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./support/isBuffer":408,"_process":407,"inherits":405}],410:[function(require,module,exports){
-module.exports = require(322);
-},{"dup":322}],411:[function(require,module,exports){
+},{"./support/isBuffer":407,"_process":406,"inherits":404}],409:[function(require,module,exports){
+module.exports = require(321);
+},{"dup":321}],410:[function(require,module,exports){
 module.exports = require(12);
-},{"dup":12}],412:[function(require,module,exports){
+},{"dup":12}],411:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -96747,51 +96751,51 @@ module.exports = require(12);
     return _moment;
 
 }));
-},{}],413:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 module.exports = require(15);
-},{"./src/js/main":419,"dup":15}],414:[function(require,module,exports){
+},{"./src/js/main":418,"dup":15}],413:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],415:[function(require,module,exports){
+},{"dup":16}],414:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],416:[function(require,module,exports){
+},{"dup":17}],415:[function(require,module,exports){
 arguments[4][18][0].apply(exports,arguments)
-},{"dup":18}],417:[function(require,module,exports){
+},{"dup":18}],416:[function(require,module,exports){
 arguments[4][19][0].apply(exports,arguments)
-},{"dup":19}],418:[function(require,module,exports){
+},{"dup":19}],417:[function(require,module,exports){
 arguments[4][20][0].apply(exports,arguments)
-},{"./class":414,"./dom":415,"dup":20}],419:[function(require,module,exports){
+},{"./class":413,"./dom":414,"dup":20}],418:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"./plugin/destroy":421,"./plugin/initialize":429,"./plugin/update":433,"dup":21}],420:[function(require,module,exports){
+},{"./plugin/destroy":420,"./plugin/initialize":428,"./plugin/update":432,"dup":21}],419:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],421:[function(require,module,exports){
+},{"dup":22}],420:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"../lib/dom":415,"../lib/helper":418,"./instances":430,"dup":23}],422:[function(require,module,exports){
+},{"../lib/dom":414,"../lib/helper":417,"./instances":429,"dup":23}],421:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"../../lib/helper":418,"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":24}],423:[function(require,module,exports){
+},{"../../lib/helper":417,"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":24}],422:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"../../lib/dom":415,"../../lib/helper":418,"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":25}],424:[function(require,module,exports){
+},{"../../lib/dom":414,"../../lib/helper":417,"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":25}],423:[function(require,module,exports){
 arguments[4][26][0].apply(exports,arguments)
-},{"../../lib/helper":418,"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":26}],425:[function(require,module,exports){
+},{"../../lib/helper":417,"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":26}],424:[function(require,module,exports){
 arguments[4][27][0].apply(exports,arguments)
-},{"../../lib/helper":418,"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":27}],426:[function(require,module,exports){
+},{"../../lib/helper":417,"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":27}],425:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"../instances":430,"../update-geometry":431,"dup":28}],427:[function(require,module,exports){
+},{"../instances":429,"../update-geometry":430,"dup":28}],426:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"../../lib/helper":418,"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":29}],428:[function(require,module,exports){
+},{"../../lib/helper":417,"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":29}],427:[function(require,module,exports){
 arguments[4][30][0].apply(exports,arguments)
-},{"../instances":430,"../update-geometry":431,"../update-scroll":432,"dup":30}],429:[function(require,module,exports){
+},{"../instances":429,"../update-geometry":430,"../update-scroll":431,"dup":30}],428:[function(require,module,exports){
 arguments[4][31][0].apply(exports,arguments)
-},{"../lib/class":414,"../lib/helper":418,"./handler/click-rail":422,"./handler/drag-scrollbar":423,"./handler/keyboard":424,"./handler/mouse-wheel":425,"./handler/native-scroll":426,"./handler/selection":427,"./handler/touch":428,"./instances":430,"./update-geometry":431,"dup":31}],430:[function(require,module,exports){
+},{"../lib/class":413,"../lib/helper":417,"./handler/click-rail":421,"./handler/drag-scrollbar":422,"./handler/keyboard":423,"./handler/mouse-wheel":424,"./handler/native-scroll":425,"./handler/selection":426,"./handler/touch":427,"./instances":429,"./update-geometry":430,"dup":31}],429:[function(require,module,exports){
 arguments[4][32][0].apply(exports,arguments)
-},{"../lib/dom":415,"../lib/event-manager":416,"../lib/guid":417,"../lib/helper":418,"./default-setting":420,"dup":32}],431:[function(require,module,exports){
+},{"../lib/dom":414,"../lib/event-manager":415,"../lib/guid":416,"../lib/helper":417,"./default-setting":419,"dup":32}],430:[function(require,module,exports){
 arguments[4][33][0].apply(exports,arguments)
-},{"../lib/class":414,"../lib/dom":415,"../lib/helper":418,"./instances":430,"./update-scroll":432,"dup":33}],432:[function(require,module,exports){
+},{"../lib/class":413,"../lib/dom":414,"../lib/helper":417,"./instances":429,"./update-scroll":431,"dup":33}],431:[function(require,module,exports){
 arguments[4][34][0].apply(exports,arguments)
-},{"./instances":430,"dup":34}],433:[function(require,module,exports){
+},{"./instances":429,"dup":34}],432:[function(require,module,exports){
 arguments[4][35][0].apply(exports,arguments)
-},{"../lib/dom":415,"../lib/helper":418,"./instances":430,"./update-geometry":431,"dup":35}],434:[function(require,module,exports){
+},{"../lib/dom":414,"../lib/helper":417,"./instances":429,"./update-geometry":430,"dup":35}],433:[function(require,module,exports){
 module.exports = require(103);
-},{"dup":103}],435:[function(require,module,exports){
+},{"dup":103}],434:[function(require,module,exports){
 module.exports={
   "name": "cartodb-deep-insights.js",
   "version": "0.0.1",
@@ -96884,7 +96888,7 @@ module.exports={
   }
 }
 
-},{}],436:[function(require,module,exports){
+},{}],435:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var Dashboard = require('./dashboard');
@@ -97014,7 +97018,7 @@ module.exports = function (selector, vizJSON, opts, callback) {
   }
 };
 
-},{"../dashboard-view":443,"../widgets-service":447,"../widgets/widgets-collection":524,"./dashboard":437,"cartodb.js":243,"underscore":434}],437:[function(require,module,exports){
+},{"../dashboard-view":442,"../widgets-service":446,"../widgets/widgets-collection":523,"./dashboard":436,"cartodb.js":242,"underscore":433}],436:[function(require,module,exports){
 function Dashboard (dashboard) {
   this._dashboard = dashboard;
 }
@@ -97099,7 +97103,7 @@ Dashboard.prototype = {
 
 module.exports = Dashboard;
 
-},{}],438:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var WidgetViewFactory = require('./widgets/widget-view-factory');
@@ -97178,7 +97182,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./widgets/time-series/content-view":499,"./widgets/time-series/torque-content-view":504,"./widgets/widget-view-factory":522,"cartodb.js":243,"underscore":434}],439:[function(require,module,exports){
+},{"./widgets/time-series/content-view":498,"./widgets/time-series/torque-content-view":503,"./widgets/widget-view-factory":521,"cartodb.js":242,"underscore":433}],438:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./dashboard-menu-view.tpl');
 var moment = require('moment');
@@ -97211,7 +97215,7 @@ var DashboardMenuView = cdb.core.View.extend({
 
 module.exports = DashboardMenuView;
 
-},{"./dashboard-menu-view.tpl":440,"cartodb.js":243,"moment":412}],440:[function(require,module,exports){
+},{"./dashboard-menu-view.tpl":439,"cartodb.js":242,"moment":411}],439:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -97233,7 +97237,7 @@ __p+='<div class="CDB-Dashboard-menuContainer"> <div class="CDB-Dashboard-menuIn
 return __p;
 };
 
-},{"underscore":434}],441:[function(require,module,exports){
+},{"underscore":433}],440:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var Ps = require('perfect-scrollbar');
@@ -97385,7 +97389,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./dashboard-sidebar.tpl":442,"./widgets/category/content-view":456,"./widgets/formula/content-view":481,"./widgets/histogram/content-view":485,"./widgets/list/content-view":492,"./widgets/widget-view-factory":522,"cartodb.js":243,"jquery":411,"perfect-scrollbar":413,"underscore":434}],442:[function(require,module,exports){
+},{"./dashboard-sidebar.tpl":441,"./widgets/category/content-view":455,"./widgets/formula/content-view":480,"./widgets/histogram/content-view":484,"./widgets/list/content-view":491,"./widgets/widget-view-factory":521,"cartodb.js":242,"jquery":410,"perfect-scrollbar":412,"underscore":433}],441:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -97395,7 +97399,7 @@ __p+='<div class="CDB-Widget-canvasInner js-container"></div>';
 return __p;
 };
 
-},{"underscore":434}],443:[function(require,module,exports){
+},{"underscore":433}],442:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./dashboard.tpl');
 var DashboardBelowMapView = require('./dashboard-below-map-view');
@@ -97451,7 +97455,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./dashboard-below-map-view":438,"./dashboard-menu-view":439,"./dashboard-sidebar-view":441,"./dashboard.tpl":444,"cartodb.js":243}],444:[function(require,module,exports){
+},{"./dashboard-below-map-view":437,"./dashboard-menu-view":438,"./dashboard-sidebar-view":440,"./dashboard.tpl":443,"cartodb.js":242}],443:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -97461,7 +97465,7 @@ __p+='<div class="CDB-Dashboard-mapWrapper js-map-wrapper"> <div class="CDB-Map-
 return __p;
 };
 
-},{"underscore":434}],445:[function(require,module,exports){
+},{"underscore":433}],444:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 
@@ -97509,7 +97513,7 @@ format.formatValue = function (value) {
 
 module.exports = format;
 
-},{"d3":410,"underscore":434}],446:[function(require,module,exports){
+},{"d3":409,"underscore":433}],445:[function(require,module,exports){
 var cdb = require('cartodb.js');
 cdb.deepInsights = {
   VERSION: require('../package.json').version,
@@ -97517,7 +97521,7 @@ cdb.deepInsights = {
 };
 module.exports = cdb;
 
-},{"../package.json":435,"./api/create-dashboard":436,"cartodb.js":243}],447:[function(require,module,exports){
+},{"../package.json":434,"./api/create-dashboard":435,"cartodb.js":242}],446:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetModel = require('./widgets/widget-model');
 var CategoryWidgetModel = require('./widgets/category/category-widget-model');
@@ -97680,7 +97684,7 @@ function _checkProperties (obj, propertiesArray) {
 
 module.exports = WidgetsService;
 
-},{"./widgets/category/category-widget-model":454,"./widgets/histogram/histogram-widget-model":489,"./widgets/widget-model":520,"underscore":434}],448:[function(require,module,exports){
+},{"./widgets/category/category-widget-model":453,"./widgets/histogram/histogram-widget-model":488,"./widgets/widget-model":519,"underscore":433}],447:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 var cdb = require('cartodb.js');
@@ -97802,7 +97806,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"cartodb.js":243,"d3":410,"underscore":434}],449:[function(require,module,exports){
+},{"cartodb.js":242,"d3":409,"underscore":433}],448:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var CategoryColors = require('./category-colors');
 var AutoStyler = cdb.core.Model.extend({
@@ -97853,7 +97857,7 @@ AutoStyler.MAPNIK_MAPPING = {
 
 module.exports = AutoStyler;
 
-},{"./category-colors":450,"cartodb.js":243}],450:[function(require,module,exports){
+},{"./category-colors":449,"cartodb.js":242}],449:[function(require,module,exports){
 var _ = require('underscore');
 var colorScales = [['#2CA095', '#E5811B', '#4A4DBA', '#AD2BAD', '#559030', '#E1C221'],
                    ['rgb(166,206,227)', 'rgb(31,120,180)', 'rgb(178,223,138)', 'rgb(51,160,44)', 'rgb(251,154,153)'],
@@ -97921,7 +97925,7 @@ CategoryColors.prototype.getCategoryByColor = function (color) {
 
 module.exports = CategoryColors;
 
-},{"underscore":434}],451:[function(require,module,exports){
+},{"underscore":433}],450:[function(require,module,exports){
 var AutoStyler = require('./auto-styler');
 var CategoryAutoStyler = AutoStyler.extend({
   getStyle: function () {
@@ -97959,7 +97963,7 @@ var CategoryAutoStyler = AutoStyler.extend({
 
 module.exports = CategoryAutoStyler;
 
-},{"./auto-styler":449}],452:[function(require,module,exports){
+},{"./auto-styler":448}],451:[function(require,module,exports){
 var CategoryAutoStyler = require('./category');
 var HistogramAutoStyler = require('./histogram');
 module.exports = {
@@ -97974,7 +97978,7 @@ module.exports = {
   }
 };
 
-},{"./category":451,"./histogram":453}],453:[function(require,module,exports){
+},{"./category":450,"./histogram":452}],452:[function(require,module,exports){
 var AutoStyler = require('./auto-styler');
 var HistogramAutoStyler = AutoStyler.extend({
   getStyle: function () {
@@ -98016,7 +98020,7 @@ var HistogramAutoStyler = AutoStyler.extend({
 
 module.exports = HistogramAutoStyler;
 
-},{"./auto-styler":449}],454:[function(require,module,exports){
+},{"./auto-styler":448}],453:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetModel = require('../widget-model');
 var LockedCategoriesCollection = require('./locked-categories-collection');
@@ -98157,7 +98161,7 @@ module.exports = WidgetModel.extend({
 
 });
 
-},{"../auto-style/factory":452,"../widget-model":520,"./locked-categories-collection":466,"underscore":434}],455:[function(require,module,exports){
+},{"../auto-style/factory":451,"../widget-model":519,"./locked-categories-collection":465,"underscore":433}],454:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98167,7 +98171,7 @@ __p+='<div class="CDB-Widget-header js-header"></div> <div class="CDB-Widget-con
 return __p;
 };
 
-},{"underscore":434}],456:[function(require,module,exports){
+},{"underscore":433}],455:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var SearchTitleView = require('./title/search-title-view');
 var CategoryOptionsView = require('./options/options-view');
@@ -98265,7 +98269,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./content-template.tpl":455,"./list/items-view":463,"./list/search-items-view":465,"./options/options-view":468,"./paginator/paginator-view":470,"./paginator/search-paginator-view":472,"./stats/stats-view":475,"./title/search-title-view":477,"cartodb.js":243}],457:[function(require,module,exports){
+},{"./content-template.tpl":454,"./list/items-view":462,"./list/search-items-view":464,"./options/options-view":467,"./paginator/paginator-view":469,"./paginator/search-paginator-view":471,"./stats/stats-view":474,"./title/search-title-view":476,"cartodb.js":242}],456:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98295,7 +98299,7 @@ __p+='<button type="button" class="CDB-Widget-listItemInner CDB-Widget-listButto
 return __p;
 };
 
-},{"underscore":434}],458:[function(require,module,exports){
+},{"underscore":433}],457:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98325,7 +98329,7 @@ __p+='<div class="CDB-Widget-listItemInner '+
 return __p;
 };
 
-},{"underscore":434}],459:[function(require,module,exports){
+},{"underscore":433}],458:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var formatter = require('../../../../formatter');
 var clickableTemplate = require('./item-clickable-template.tpl');
@@ -98385,7 +98389,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../../../formatter":445,"./item-clickable-template.tpl":457,"./item-unclickable-template.tpl":458,"cartodb.js":243}],460:[function(require,module,exports){
+},{"../../../../formatter":444,"./item-clickable-template.tpl":456,"./item-unclickable-template.tpl":457,"cartodb.js":242}],459:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98413,7 +98417,7 @@ __p+='<button type="button" class="CDB-Widget-listItemInner CDB-Widget-listItemI
 return __p;
 };
 
-},{"underscore":434}],461:[function(require,module,exports){
+},{"underscore":433}],460:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var formatter = require('../../../../formatter');
 var template = require('./search-item-clickable-template.tpl');
@@ -98469,7 +98473,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../../../formatter":445,"./search-item-clickable-template.tpl":460,"cartodb.js":243}],462:[function(require,module,exports){
+},{"../../../../formatter":444,"./search-item-clickable-template.tpl":459,"cartodb.js":242}],461:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98479,7 +98483,7 @@ __p+='<li class="CDB-Widget-listItem CDB-Widget-listItem--fake"></li> <li class=
 return __p;
 };
 
-},{"underscore":434}],463:[function(require,module,exports){
+},{"underscore":433}],462:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -98607,7 +98611,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./item/item-view":459,"./items-placeholder-template.tpl":462,"cartodb.js":243,"jquery":411,"underscore":434}],464:[function(require,module,exports){
+},{"./item/item-view":458,"./items-placeholder-template.tpl":461,"cartodb.js":242,"jquery":410,"underscore":433}],463:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98619,7 +98623,7 @@ __p+='<li class="CDB-Widget-listItem"> <h4 class="CDB-Text CDB-Size-large">No re
 return __p;
 };
 
-},{"underscore":434}],465:[function(require,module,exports){
+},{"underscore":433}],464:[function(require,module,exports){
 var $ = require('jquery');
 var CategoryItemsView = require('./items-view');
 var WidgetSearchCategoryItemView = require('./item/search-item-view');
@@ -98702,7 +98706,7 @@ module.exports = CategoryItemsView.extend({
 
 });
 
-},{"./item/search-item-view":461,"./items-view":463,"./search-items-no-results-template.tpl":464,"jquery":411}],466:[function(require,module,exports){
+},{"./item/search-item-view":460,"./items-view":462,"./search-items-no-results-template.tpl":463,"jquery":410}],465:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -98753,7 +98757,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"backbone":398,"underscore":434}],467:[function(require,module,exports){
+},{"backbone":397,"underscore":433}],466:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98795,7 +98799,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],468:[function(require,module,exports){
+},{"underscore":433}],467:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./options-template.tpl');
 
@@ -98872,7 +98876,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./options-template.tpl":467,"cartodb.js":243}],469:[function(require,module,exports){
+},{"./options-template.tpl":466,"cartodb.js":242}],468:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -98900,7 +98904,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],470:[function(require,module,exports){
+},{"underscore":433}],469:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -99016,7 +99020,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./paginator-template.tpl":469,"cartodb.js":243,"jquery":411,"underscore":434}],471:[function(require,module,exports){
+},{"./paginator-template.tpl":468,"cartodb.js":242,"jquery":410,"underscore":433}],470:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99040,7 +99044,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],472:[function(require,module,exports){
+},{"underscore":433}],471:[function(require,module,exports){
 var PaginatorView = require('./paginator-view');
 var searchTemplate = require('./search-paginator-template.tpl');
 
@@ -99082,7 +99086,7 @@ module.exports = PaginatorView.extend({
 
 });
 
-},{"./paginator-view":470,"./search-paginator-template.tpl":471}],473:[function(require,module,exports){
+},{"./paginator-view":469,"./search-paginator-template.tpl":470}],472:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99094,7 +99098,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":434}],474:[function(require,module,exports){
+},{"underscore":433}],473:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99122,7 +99126,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],475:[function(require,module,exports){
+},{"underscore":433}],474:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var formatter = require('../../../formatter');
@@ -99226,7 +99230,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../../formatter":445,"../../animate-values":448,"./cats-template.tpl":473,"./stats-template.tpl":474,"cartodb.js":243,"underscore":434}],476:[function(require,module,exports){
+},{"../../../formatter":444,"../../animate-values":447,"./cats-template.tpl":472,"./stats-template.tpl":473,"cartodb.js":242,"underscore":433}],475:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99260,7 +99264,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],477:[function(require,module,exports){
+},{"underscore":433}],476:[function(require,module,exports){
 var _ = require('underscore');
 var $ = require('jquery');
 var cdb = require('cartodb.js');
@@ -99412,7 +99416,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../dropdown/widget-dropdown-view":479,"../../widget-tooltip-view":521,"./search-title-template.tpl":476,"cartodb.js":243,"jquery":411,"underscore":434}],478:[function(require,module,exports){
+},{"../../dropdown/widget-dropdown-view":478,"../../widget-tooltip-view":520,"./search-title-template.tpl":475,"cartodb.js":242,"jquery":410,"underscore":433}],477:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99444,7 +99448,7 @@ __p+=' </ul>';
 return __p;
 };
 
-},{"underscore":434}],479:[function(require,module,exports){
+},{"underscore":433}],478:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -99589,7 +99593,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./template.tpl":478,"cartodb.js":243,"jquery":411,"underscore":434}],480:[function(require,module,exports){
+},{"./template.tpl":477,"cartodb.js":242,"jquery":410,"underscore":433}],479:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99605,7 +99609,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":434}],481:[function(require,module,exports){
+},{"underscore":433}],480:[function(require,module,exports){
 var _ = require('underscore');
 var d3 = require('d3');
 var cdb = require('cartodb.js');
@@ -99704,7 +99708,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":445,"../animate-values.js":448,"../dropdown/widget-dropdown-view":479,"./animation-template.tpl":480,"./template.tpl":482,"cartodb.js":243,"d3":410,"underscore":434}],482:[function(require,module,exports){
+},{"../../formatter":444,"../animate-values.js":447,"../dropdown/widget-dropdown-view":478,"./animation-template.tpl":479,"./template.tpl":481,"cartodb.js":242,"d3":409,"underscore":433}],481:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99754,7 +99758,7 @@ __p+=' </div>';
 return __p;
 };
 
-},{"underscore":434}],483:[function(require,module,exports){
+},{"underscore":433}],482:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -99768,7 +99772,7 @@ __p+=''+
 return __p;
 };
 
-},{"underscore":434}],484:[function(require,module,exports){
+},{"underscore":433}],483:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var d3 = require('d3');
@@ -100895,7 +100899,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../formatter":445,"cartodb.js":243,"d3":410,"jquery":411,"underscore":434}],485:[function(require,module,exports){
+},{"../../formatter":444,"cartodb.js":242,"d3":409,"jquery":410,"underscore":433}],484:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var formatter = require('../../formatter');
@@ -101336,7 +101340,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"../../formatter":445,"../animate-values.js":448,"../dropdown/widget-dropdown-view":479,"./animation-template.tpl":483,"./chart":484,"./content.tpl":486,"./histogram-title-view":488,"./placeholder.tpl":490,"cartodb.js":243,"underscore":434}],486:[function(require,module,exports){
+},{"../../formatter":444,"../animate-values.js":447,"../dropdown/widget-dropdown-view":478,"./animation-template.tpl":482,"./chart":483,"./content.tpl":485,"./histogram-title-view":487,"./placeholder.tpl":489,"cartodb.js":242,"underscore":433}],485:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101350,7 +101354,7 @@ __p+=' </div> <div class="CDB-Widget-content CDB-Widget-content--histogram js-co
 return __p;
 };
 
-},{"underscore":434}],487:[function(require,module,exports){
+},{"underscore":433}],486:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101370,7 +101374,7 @@ __p+='<div class="CDB-Widget-title CDB-Widget-contentSpaced"> <h3 class="CDB-Tex
 return __p;
 };
 
-},{"underscore":434}],488:[function(require,module,exports){
+},{"underscore":433}],487:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var TooltipView = require('../widget-tooltip-view');
@@ -101437,7 +101441,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../auto-style/factory":452,"../widget-tooltip-view":521,"./histogram-title-template.tpl":487,"cartodb.js":243,"jquery":411}],489:[function(require,module,exports){
+},{"../auto-style/factory":451,"../widget-tooltip-view":520,"./histogram-title-template.tpl":486,"cartodb.js":242,"jquery":410}],488:[function(require,module,exports){
 var WidgetModel = require('../widget-model');
 
 /**
@@ -101456,7 +101460,7 @@ module.exports = WidgetModel.extend({
 
 });
 
-},{"../widget-model":520}],490:[function(require,module,exports){
+},{"../widget-model":519}],489:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101472,7 +101476,7 @@ __p+=' </ul>';
 return __p;
 };
 
-},{"underscore":434}],491:[function(require,module,exports){
+},{"underscore":433}],490:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101488,7 +101492,7 @@ __p+='<div class="CDB-Widget-header"> <div class="CDB-Widget-title CDB-Widget-co
 return __p;
 };
 
-},{"underscore":434}],492:[function(require,module,exports){
+},{"underscore":433}],491:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var format = require('../../formatter');
@@ -101569,7 +101573,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":445,"./content-template.tpl":491,"./edges-view":493,"./items-view":496,"./paginator-view":497,"./placeholder-template.tpl":498,"cartodb.js":243,"underscore":434}],493:[function(require,module,exports){
+},{"../../formatter":444,"./content-template.tpl":490,"./edges-view":492,"./items-view":495,"./paginator-view":496,"./placeholder-template.tpl":497,"cartodb.js":242,"underscore":433}],492:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 
@@ -101627,7 +101631,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":243,"underscore":434}],494:[function(require,module,exports){
+},{"cartodb.js":242,"underscore":433}],493:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101683,7 +101687,7 @@ __p+='';
 return __p;
 };
 
-},{"underscore":434}],495:[function(require,module,exports){
+},{"underscore":433}],494:[function(require,module,exports){
 var _ = require('underscore');
 var format = require('../../formatter');
 var cdb = require('cartodb.js');
@@ -101762,7 +101766,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../../formatter":445,"./item-template.tpl":494,"cartodb.js":243,"underscore":434}],496:[function(require,module,exports){
+},{"../../formatter":444,"./item-template.tpl":493,"cartodb.js":242,"underscore":433}],495:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var WidgetListItemView = require('./item-view');
 
@@ -101807,7 +101811,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./item-view":495,"cartodb.js":243}],497:[function(require,module,exports){
+},{"./item-view":494,"cartodb.js":242}],496:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var cdb = require('cartodb.js');
@@ -101912,7 +101916,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":243,"jquery":411,"underscore":434}],498:[function(require,module,exports){
+},{"cartodb.js":242,"jquery":410,"underscore":433}],497:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -101922,7 +101926,7 @@ __p+='<ul class="CDB-Widget-list CDB-Widget-list--withBorders"> <li class="CDB-W
 return __p;
 };
 
-},{"underscore":434}],499:[function(require,module,exports){
+},{"underscore":433}],498:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var placeholderTemplate = require('./placeholder.tpl');
@@ -101986,7 +101990,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./histogram-view":500,"./placeholder.tpl":501,"cartodb.js":243,"underscore":434}],500:[function(require,module,exports){
+},{"./histogram-view":499,"./placeholder.tpl":500,"cartodb.js":242,"underscore":433}],499:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var HistogramChartView = require('../histogram/chart');
@@ -102094,7 +102098,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../histogram/chart":484,"./time-series-header-view":502,"cartodb.js":243,"jquery":411}],501:[function(require,module,exports){
+},{"../histogram/chart":483,"./time-series-header-view":501,"cartodb.js":242,"jquery":410}],500:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102118,7 +102122,7 @@ __p+=' </div> </div>';
 return __p;
 };
 
-},{"underscore":434}],502:[function(require,module,exports){
+},{"underscore":433}],501:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./time-series-header.tpl');
 var d3 = require('d3');
@@ -102171,7 +102175,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./time-series-header.tpl":503,"cartodb.js":243,"d3":410}],503:[function(require,module,exports){
+},{"./time-series-header.tpl":502,"cartodb.js":242,"d3":409}],502:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102189,7 +102193,7 @@ __p+='<div> <p class="CDB-Text CDB-Size-large u-iBlock"> Selected from </p> <p c
 return __p;
 };
 
-},{"underscore":434}],504:[function(require,module,exports){
+},{"underscore":433}],503:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 var torqueTemplate = require('./torque-template.tpl');
@@ -102265,7 +102269,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./placeholder.tpl":501,"./torque-header-view":507,"./torque-histogram-view":508,"./torque-template.tpl":513,"cartodb.js":243,"underscore":434}],505:[function(require,module,exports){
+},{"./placeholder.tpl":500,"./torque-header-view":506,"./torque-histogram-view":507,"./torque-template.tpl":512,"cartodb.js":242,"underscore":433}],504:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./torque-controls.tpl');
 
@@ -102308,7 +102312,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-controls.tpl":506,"cartodb.js":243}],506:[function(require,module,exports){
+},{"./torque-controls.tpl":505,"cartodb.js":242}],505:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102320,7 +102324,7 @@ __p+='<div class="CDB-Widget-controlButtonContent"> <i class="'+
 return __p;
 };
 
-},{"underscore":434}],507:[function(require,module,exports){
+},{"underscore":433}],506:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var TorqueControlsView = require('./torque-controls-view');
 var TorqueTimeInfoView = require('./torque-time-info-view');
@@ -102379,7 +102383,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-controls-view":505,"./torque-render-range-info-view":509,"./torque-reset-render-range-view":511,"./torque-time-info-view":514,"cartodb.js":243}],508:[function(require,module,exports){
+},{"./torque-controls-view":504,"./torque-render-range-info-view":508,"./torque-reset-render-range-view":510,"./torque-time-info-view":513,"cartodb.js":242}],507:[function(require,module,exports){
 var $ = require('jquery');
 var cdb = require('cartodb.js');
 var HistogramChartView = require('../histogram/chart');
@@ -102532,7 +102536,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"../histogram/chart":484,"./torque-time-slider-view":516,"cartodb.js":243,"jquery":411}],509:[function(require,module,exports){
+},{"../histogram/chart":483,"./torque-time-slider-view":515,"cartodb.js":242,"jquery":410}],508:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var d3 = require('d3');
 var template = require('./torque-render-range-info.tpl');
@@ -102580,7 +102584,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-render-range-info.tpl":510,"cartodb.js":243,"d3":410}],510:[function(require,module,exports){
+},{"./torque-render-range-info.tpl":509,"cartodb.js":242,"d3":409}],509:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102598,7 +102602,7 @@ __p+='<p class="CDB-Text CDB-Size-large u-iBlock"> Selected from </p> <p class="
 return __p;
 };
 
-},{"underscore":434}],511:[function(require,module,exports){
+},{"underscore":433}],510:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./torque-reset-render-range.tpl');
 
@@ -102625,7 +102629,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-reset-render-range.tpl":512,"cartodb.js":243}],512:[function(require,module,exports){
+},{"./torque-reset-render-range.tpl":511,"cartodb.js":242}],511:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102635,7 +102639,7 @@ __p+='<button class="CDB-Text CDB-Size-small u-upperCase u-actionTextColor CDB-W
 return __p;
 };
 
-},{"underscore":434}],513:[function(require,module,exports){
+},{"underscore":433}],512:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102645,7 +102649,7 @@ __p+='<div class="CDB-Widget-header CDB-Widget-header--timeSeries js-header"></d
 return __p;
 };
 
-},{"underscore":434}],514:[function(require,module,exports){
+},{"underscore":433}],513:[function(require,module,exports){
 var d3 = require('d3');
 var cdb = require('cartodb.js');
 var template = require('./torque-time-info.tpl');
@@ -102682,7 +102686,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./torque-time-info.tpl":515,"cartodb.js":243,"d3":410}],515:[function(require,module,exports){
+},{"./torque-time-info.tpl":514,"cartodb.js":242,"d3":409}],514:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102696,7 +102700,7 @@ __p+='<p class="CDB-Text CDB-Size-large u-iBlock"> '+
 return __p;
 };
 
-},{"underscore":434}],516:[function(require,module,exports){
+},{"underscore":433}],515:[function(require,module,exports){
 var d3 = require('d3');
 var cdb = require('cartodb.js');
 
@@ -102859,7 +102863,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"cartodb.js":243,"d3":410}],517:[function(require,module,exports){
+},{"cartodb.js":242,"d3":409}],516:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -102869,7 +102873,7 @@ __p+='<button class="CDB-Widget-button CDB-Widget-errorButton js-refresh"> <span
 return __p;
 };
 
-},{"underscore":434}],518:[function(require,module,exports){
+},{"underscore":433}],517:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var template = require('./widget-error-template.tpl');
 
@@ -102917,7 +102921,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"./widget-error-template.tpl":517,"cartodb.js":243}],519:[function(require,module,exports){
+},{"./widget-error-template.tpl":516,"cartodb.js":242}],518:[function(require,module,exports){
 var cdb = require('cartodb.js');
 
 /**
@@ -102957,7 +102961,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":243}],520:[function(require,module,exports){
+},{"cartodb.js":242}],519:[function(require,module,exports){
 var _ = require('underscore');
 var cdb = require('cartodb.js');
 
@@ -103001,7 +103005,7 @@ module.exports = cdb.core.Model.extend({
   }
 });
 
-},{"cartodb.js":243,"underscore":434}],521:[function(require,module,exports){
+},{"cartodb.js":242,"underscore":433}],520:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var _ = require('underscore');
 
@@ -103062,7 +103066,7 @@ module.exports = cdb.core.View.extend({
 
 });
 
-},{"cartodb.js":243,"underscore":434}],522:[function(require,module,exports){
+},{"cartodb.js":242,"underscore":433}],521:[function(require,module,exports){
 var _ = require('underscore');
 var WidgetView = require('./widget-view');
 
@@ -103114,7 +103118,7 @@ WidgetViewFactory.prototype.createWidgetView = function (widget) {
 
 module.exports = WidgetViewFactory;
 
-},{"./widget-view":523,"underscore":434}],523:[function(require,module,exports){
+},{"./widget-view":522,"underscore":433}],522:[function(require,module,exports){
 var cdb = require('cartodb.js');
 var WidgetLoaderView = require('./widget-loader-view');
 var WidgetErrorView = require('./widget-error-view');
@@ -103156,7 +103160,7 @@ module.exports = cdb.core.View.extend({
   }
 });
 
-},{"./widget-error-view":518,"./widget-loader-view":519,"cartodb.js":243}],524:[function(require,module,exports){
+},{"./widget-error-view":517,"./widget-loader-view":518,"cartodb.js":242}],523:[function(require,module,exports){
 var _ = require('underscore');
 var Backbone = require('backbone');
 
@@ -103192,6 +103196,6 @@ module.exports = Backbone.Collection.extend({
   }
 });
 
-},{"backbone":398,"underscore":434}]},{},[446])(446)
+},{"backbone":397,"underscore":433}]},{},[445])(445)
 });
 //# sourceMappingURL=deep-insights.uncompressed.map
