@@ -97817,7 +97817,7 @@ var AutoStyler = cdb.core.Model.extend({
   },
 
   _getLayerHeader: function (symbol) {
-    return '#' + this.dataviewModel.layer.get('layer_name') + '[mapnik-geometry-type=' + AutoStyler.MAPNIK_MAPPING[symbol] + ']{';
+    return '#' + this.dataviewModel.layer.get('layer_name').replace(/\s*/g, '') + '[mapnik-geometry-type=' + AutoStyler.MAPNIK_MAPPING[symbol] + ']{';
   }
 
 });
@@ -97850,9 +97850,9 @@ AutoStyler.STYLE_TEMPLATE = {
 };
 
 AutoStyler.MAPNIK_MAPPING = {
-  polygon: 'polygon',
-  marker: 'point',
-  line: 'linestring'
+  polygon: 3,
+  marker: 1,
+  line: 2
 };
 
 module.exports = AutoStyler;
@@ -97865,7 +97865,6 @@ var colorScales = [['#2CA095', '#E5811B', '#4A4DBA', '#AD2BAD', '#559030', '#E1C
                    ['rgb(127,201,127)', 'rgb(190,174,212)', 'rgb(253,192,134)', 'rgb(255,255,153)', 'rgb(56,108,176)', 'rgb(240,2,127)'],
                    ['rgb(141,211,199)', 'rgb(255,255,179)', 'rgb(190,186,218)', 'rgb(251,128,114)', 'rgb(128,177,211)', 'rgb(253,180,98)']
                   ]; // Demo colors
-var defaultColor = '#CCC';
 
 /**
  *  Class to set categories to each color
@@ -97916,7 +97915,7 @@ CategoryColors.prototype.getColorByCategory = function (category) {
       return i;
     }
   }
-  return defaultColor;
+  return Object.keys(this.colors)[Object.keys(this.colors).length - 1];
 };
 
 CategoryColors.prototype.getCategoryByColor = function (color) {
@@ -98010,7 +98009,7 @@ var HistogramAutoStyler = AutoStyler.extend({
     if (geometryType === 'polygon') {
       style = style.replace('{{defaultColor}}', 'ramp([{{column}}], colorbrewer({{color}}, {{bins}}))');
     } else if (geometryType === 'marker') {
-      style = style.replace('{{markerWidth}}', 'ramp([{{column}}], {{min}}, {{max}}), {{bins}})');
+      style = style.replace('{{markerWidth}}', 'ramp([{{column}}], {{min}}, {{max}}, {{bins}})');
     } else {
       style = style.replace('{{defaultColor}}', '#000');
     }
@@ -98077,6 +98076,7 @@ module.exports = WidgetModel.extend({
   },
 
   autoStyle: function () {
+    this.autoStyler.colors.updateData(this.dataviewModel.get('allCategoryNames'));
     var style = this.autoStyler.getStyle();
     this.dataviewModel.layer.set('cartocss', style);
     this.set('autoStyle', true);
@@ -98137,9 +98137,8 @@ module.exports = WidgetModel.extend({
   },
 
   _onDataviewAllCategoryNamesChange: function (m, names) {
-    this.autoStyler.colors.updateData(names);
-    if (this.isAutoStyle()) {
-      this.autoStyle();
+    if (!this.isAutoStyle()) {
+      this.autoStyler.colors.updateData(names);
     }
   },
 
@@ -99931,14 +99930,16 @@ module.exports = cdb.core.View.extend({
   },
 
   _onChangeRange: function () {
-    if (this.model.get('lo_index') === 0 && this.model.get('hi_index') === 0) {
+    var lo_index = this.model.get('lo_index');
+    var hi_index = this.model.get('hi_index');
+    if ((lo_index === 0 && hi_index === 0) || (lo_index === null && hi_index === null)) {
       return;
     }
-    this.selectRange(this.model.get('lo_index'), this.model.get('hi_index'));
+    this.selectRange(lo_index, hi_index);
     this._adjustBrushHandles();
     this._selectBars();
-    this.trigger('range_updated', this.model.get('lo_index'), this.model.get('hi_index'));
-    this.trigger('on_brush_end', this.model.get('lo_index'), this.model.get('hi_index'));
+    this.trigger('range_updated', lo_index, hi_index);
+    this.trigger('on_brush_end', lo_index, hi_index);
   },
 
   _onChangeWidth: function () {
