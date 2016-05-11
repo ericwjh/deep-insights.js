@@ -9,7 +9,7 @@ var DashboardSidebarView = require('./dashboard-sidebar-view');
  * Widgets may be rendered in two areas, in the "sidebar" or "below-map".
  */
 module.exports = cdb.core.View.extend({
-  className: 'CDB-Dashboard-canvas',
+  className: 'Editor-Dashboard-canvas',
 
   initialize: function (options) {
     this._widgets = options.widgets;
