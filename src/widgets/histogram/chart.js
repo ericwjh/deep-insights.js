@@ -539,7 +539,8 @@ module.exports = cdb.core.View.extend({
   },
 
   _setupRanges: function () {
-    var n = Math.round(this.chartWidth() / this.options.divisionWidth);
+    // var n = Math.round(this.chartWidth() / this.options.divisionWidth);
+    var n = 23
     this.verticalRange = d3.range(0, this.chartWidth() + this.chartWidth() / n, this.chartWidth() / n);
     this.horizontalRange = d3.range(0, this.chartHeight() + this.chartHeight() / 2, this.chartHeight() / 2);
   },
@@ -900,8 +901,8 @@ module.exports = cdb.core.View.extend({
       .attr('x', function (d) { return d; })
       .attr('y', function (d) { return self.chartHeight() + 15; })
       .attr('text-anchor', adjustTextAnchor)
-      .text(function (d) {
-        if (self.xAxisScale) {
+      .text(function (d,i) {
+        if (!(i%4) && self.xAxisScale) {
           return formatter.formatNumber(self.xAxisScale(d));
         }
       });
@@ -917,6 +918,7 @@ module.exports = cdb.core.View.extend({
       .tickPadding(5)
       .innerTickSize(-this.chartHeight())
       .scale(this.xAxisScale)
+      .tickFormat(d3.time.format("%x"))
       .orient('bottom');
 
     var axis = this.canvas.append('g')

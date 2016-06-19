@@ -17,8 +17,8 @@ var URLHelper = require('./url-helper');
  *   dashboardView: root (backbone) view of the dashboard
  *   vis: the instantiated vis map, same result as given from cdb.createVis()
  */
-var createDashboard = function (selector, vizJSON, opts, callback) {
-  var dashboardEl = document.querySelector(selector);
+var createDashboard = function (dashboardEl, vizJSON, opts, callback) {
+  // var dashboardEl = document.querySelector(selector);
   if (!dashboardEl) throw new Error('no element found with selector ' + selector);
 
   // Default options
@@ -31,11 +31,11 @@ var createDashboard = function (selector, vizJSON, opts, callback) {
   var coords = JSON.parse(vizJSON.center);
 
   var model = new cdb.core.Model({
-    title: vizJSON.title,
-    description: vizJSON.description,
-    updatedAt: vizJSON.updated_at,
-    userName: vizJSON.user.fullname,
-    userAvatarURL: vizJSON.user.avatar_url,
+    // title: vizJSON.title,
+    // description: vizJSON.description,
+    // updatedAt: vizJSON.updated_at,
+    // userName: vizJSON.user.fullname,
+    // userAvatarURL: vizJSON.user.avatar_url,
     renderMenu: opts.renderMenu,
     initialPosition: {
       center: coords,
